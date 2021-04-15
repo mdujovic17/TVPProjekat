@@ -1,0 +1,11 @@
+C:\source\TVPProjekat\TVPProjekat\TVPProjekat\bin\Debug\TVPProjekat.exe.config
+C:\source\TVPProjekat\TVPProjekat\TVPProjekat\bin\Debug\TVPProjekat.exe
+C:\source\TVPProjekat\TVPProjekat\TVPProjekat\bin\Debug\TVPProjekat.pdb
+C:\source\TVPProjekat\TVPProjekat\TVPProjekat\obj\Debug\TVPProjekat.csprojAssemblyReference.cache
+C:\source\TVPProjekat\TVPProjekat\TVPProjekat\obj\Debug\TVPProjekat.FormRegistracija.resources
+C:\source\TVPProjekat\TVPProjekat\TVPProjekat\obj\Debug\TVPProjekat.Properties.Resources.resources
+C:\source\TVPProjekat\TVPProjekat\TVPProjekat\obj\Debug\TVPProjekat.csproj.GenerateResource.cache
+C:\source\TVPProjekat\TVPProjekat\TVPProjekat\obj\Debug\TVPProjekat.csproj.CoreCompileInputs.cache
+C:\source\TVPProjekat\TVPProjekat\TVPProjekat\obj\Debug\TVPProjekat.exe
+C:\source\TVPProjekat\TVPProjekat\TVPProjekat\obj\Debug\TVPProjekat.pdb
+C:\source\TVPProjekat\TVPProjekat\TVPProjekat\obj\Debug\TVPProjekat.FormLogin.resources

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace TVPProjekat
 {
+    /*
+     * Klasa za upravljanje fajlovima. Ima mogucnost pravljenja, citanja i pisanja fajlove CSV formata.
+     */
     class LocalFileManager
     {
     }

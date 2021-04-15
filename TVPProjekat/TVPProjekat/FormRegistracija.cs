@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace TVPProjekat
 {
-    public partial class frmLanding : Form
+    public partial class FormRegistracija : Form
     {
-        public frmLanding()
+        public FormRegistracija()
         {
             InitializeComponent();
         }
