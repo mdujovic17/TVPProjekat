@@ -59,6 +59,7 @@ namespace TVPProjekat
             this.btnPrijava.TabIndex = 2;
             this.btnPrijava.Text = "Prijavite se";
             this.btnPrijava.UseVisualStyleBackColor = true;
+            this.btnPrijava.Click += new System.EventHandler(this.prijava);
             // 
             // btnRegistracija
             // 
@@ -88,7 +89,7 @@ namespace TVPProjekat
             this.lblSifra.TabIndex = 5;
             this.lblSifra.Text = "Šifra";
             // 
-            // frmLanding
+            // FormLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -99,8 +100,9 @@ namespace TVPProjekat
             this.Controls.Add(this.btnPrijava);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.txtUsername);
-            this.Name = "frmLanding";
+            this.Name = "FormLogin";
             this.Text = "Prijava";
+            this.Load += new System.EventHandler(this.FormLogin_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

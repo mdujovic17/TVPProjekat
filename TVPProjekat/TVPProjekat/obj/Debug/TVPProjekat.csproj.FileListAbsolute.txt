@@ -9,3 +9,5 @@ C:\source\TVPProjekat\TVPProjekat\TVPProjekat\obj\Debug\TVPProjekat.csproj.CoreC
 C:\source\TVPProjekat\TVPProjekat\TVPProjekat\obj\Debug\TVPProjekat.exe
 C:\source\TVPProjekat\TVPProjekat\TVPProjekat\obj\Debug\TVPProjekat.pdb
 C:\source\TVPProjekat\TVPProjekat\TVPProjekat\obj\Debug\TVPProjekat.FormLogin.resources
+C:\source\TVPProjekat\TVPProjekat\TVPProjekat\obj\Debug\TVPProjekat.FormAdmin.resources
+C:\source\TVPProjekat\TVPProjekat\TVPProjekat\obj\Debug\TVPProjekat.FormKupac.resources

@@ -70,9 +70,18 @@
     <Compile Include="FormRegistracija.Designer.cs">
       <DependentUpon>FormRegistracija.cs</DependentUpon>
     </Compile>
+    <Compile Include="korisnik\Administrator.cs" />
+    <Compile Include="korisnik\Kupac.cs" />
+    <Compile Include="korisnik\Korisnik.cs" />
     <Compile Include="util\LocalFileManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormAdmin.resx">
+      <DependentUpon>FormAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormKupac.resx">
+      <DependentUpon>FormKupac.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>

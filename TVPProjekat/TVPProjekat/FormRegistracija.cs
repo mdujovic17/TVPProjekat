@@ -7,14 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TVPProjekat.korisnik;
 
 namespace TVPProjekat
 {
     public partial class FormRegistracija : Form
     {
+        List<Korisnik> lista;
         public FormRegistracija()
         {
             InitializeComponent();
+            lista = new List<Korisnik>();
         }
     }
 }

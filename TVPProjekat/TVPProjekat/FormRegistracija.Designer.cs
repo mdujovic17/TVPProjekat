@@ -94,7 +94,6 @@ namespace TVPProjekat
             // 
             this.comboPol.FormattingEnabled = true;
             this.comboPol.Items.AddRange(new object[] {
-            "Odaberite pol...",
             "M",
             "Ž"});
             this.comboPol.Location = new System.Drawing.Point(248, 68);
