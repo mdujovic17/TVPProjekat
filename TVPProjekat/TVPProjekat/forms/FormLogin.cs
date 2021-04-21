@@ -119,6 +119,8 @@ namespace TVPProjekat
             }
         }
 
+        //Kontrolise osvezavanje baze, poziva se preko delegata iz drugih formi.
+        //True vrednost blokira osvezavanje, False dozvoljava.
         public static void osvezi(bool test)
         {
             prikaz = test;
