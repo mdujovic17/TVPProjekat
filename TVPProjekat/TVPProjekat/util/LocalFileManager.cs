@@ -31,28 +31,18 @@ namespace TVPProjekat
         //Poziva podrazumevani fajl koji sadrzi osnovne korisnike
         public LocalFileManager()
         {
-            folder = @"..\data";
             this.fajl = "default";
             this.ekstenzija = "csv";
 
             string putanja = folder + @"\" + this.fajl + "." + this.ekstenzija;
-            //DirectoryInfo dir = new DirectoryInfo(this.folder);
-            //if (!fs.Exists) {
-            //    MessageBox.Show("Fajl " + this.fajl + " ne postoji.");
-            //    if (!dir.Exists)
-            //    {
-            //        Directory.CreateDirectory(folder);
-            //    }
-            //    fs.Create();
-            //}
         }
 
-        public LocalFileManager(string folder, string fajl, string ekstenzija)
-        {
-            folder = folder;
-            this.fajl = fajl;
-            this.ekstenzija = ekstenzija;
-        }
+        //public LocalFileManager(string folder, string fajl, string ekstenzija)
+        //{
+        //    folder = folder;
+        //    this.fajl = fajl;
+        //    this.ekstenzija = ekstenzija;
+        //}
 
         //Sluzi za citanje generisanih CSV fajlova
         public List<Korisnik> UserCSVRead()
@@ -81,6 +71,8 @@ namespace TVPProjekat
             return lista;
         }
 
+        /*Sluzi za serijalizaciju svih objekata. Prihvata parametar za objekat i parametar za ime foldera.
+         Ograniceno je na objekte iz projekta.*/
         public static void JSONSerialize(object o, string folder)
         {
             FileStream fs;
@@ -103,18 +95,15 @@ namespace TVPProjekat
                 case "bioskopi":
                     break;
                 default:
+                    Debug.WriteLine(DateTime.Now.ToString("(HH: mm:ss)") + " " + $"[GRESKA]: Folder {folder} ne postoji!");
                     break;
             }
-            
-            //DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(Administrator));
-            //serializer.WriteObject(fs, korisnik);
-            //byte[] json = stream.ToArray();
-            //stream.Close();
-
-            //fs.Write(json, 0, json.Length);
-            //fs.Flush(); fs.Close();
         }
 
+        /* Koristi se za deserijalizaciju podataka tipa objekta Korisnik upisanih u JSON oblik.
+         * Parametri: List<Korisnik> lista - Lista korisnika kojoj se dodaju deserijalizovani objekti
+         *            string folder - Folder u kom se nalaze JSON podaci.
+         */
         public static void JSONDeserialize(List<Korisnik> lista, string folder)
         {
             DirectoryInfo directory = new DirectoryInfo(@"..\data\" + folder + @"\");
@@ -131,14 +120,14 @@ namespace TVPProjekat
                         serializer = new DataContractJsonSerializer(typeof(Administrator));
                         Administrator admin = (Administrator)serializer.ReadObject(fs);
                         lista.Add(admin);
-                        Debug.WriteLine($"[INFO]: Deserijalizacija objekta sa UUID: {admin.AdminUUID} + sa lokacije {file.FullName}");
+                        Debug.WriteLine(DateTime.Now.ToString("(HH:mm:ss)") + " " + $"[INFO]: Deserijalizacija objekta sa UUID: {admin.AdminUUID} + sa lokacije {file.FullName}");
                         serializer = null;
                         break;
                     case "kupci":
                         serializer = new DataContractJsonSerializer(typeof(Kupac));
                         Kupac kupac = (Kupac)serializer.ReadObject(fs);
                         lista.Add(kupac);
-                        Debug.WriteLine($"[INFO]: Deserijalizacija objekta sa UUID: {kupac.KupacUUID} + sa lokacije {file.FullName}");
+                        Debug.WriteLine(DateTime.Now.ToString("(HH:mm:ss)") + " " + $"[INFO]: Deserijalizacija objekta sa UUID: {kupac.KupacUUID} + sa lokacije {file.FullName}");
                         break;
                     default:
                         break;

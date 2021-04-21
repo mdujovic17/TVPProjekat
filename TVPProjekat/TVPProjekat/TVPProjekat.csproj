@@ -48,6 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="bioskop\Projekcija.cs" />
+    <Compile Include="bioskop\Sala.cs" />
+    <Compile Include="bioskop\Film.cs" />
     <Compile Include="forms\FormAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +81,12 @@
     <Compile Include="forms\pomocne\FormRegistracija.Designer.cs">
       <DependentUpon>FormRegistracija.cs</DependentUpon>
     </Compile>
+    <Compile Include="forms\pomocne\FormRezervacija.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\pomocne\FormRezervacija.Designer.cs">
+      <DependentUpon>FormRezervacija.cs</DependentUpon>
+    </Compile>
     <Compile Include="korisnik\Administrator.cs" />
     <Compile Include="korisnik\Kupac.cs" />
     <Compile Include="korisnik\Korisnik.cs" />
@@ -98,6 +107,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\pomocne\FormRegistracija.resx">
       <DependentUpon>FormRegistracija.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\pomocne\FormRezervacija.resx">
+      <DependentUpon>FormRezervacija.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

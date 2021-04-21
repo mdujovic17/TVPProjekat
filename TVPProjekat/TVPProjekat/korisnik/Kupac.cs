@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace TVPProjekat.korisnik
 {
-    [Serializable]
+    [DataContract]
     public class Kupac : Korisnik
     {
+        [DataMember]
         private string kupacUUID;
+        [DataMember]
         private bool isAdmin;
         public string KupacUUID { get => kupacUUID; set => kupacUUID = value; }
         public bool IsAdmin { get => isAdmin; set => isAdmin = value; }
@@ -30,7 +33,7 @@ namespace TVPProjekat.korisnik
             this.KupacUUID = uuid;
             this.IsAdmin = isAdmin;
         }
-
+        //Generise jedinstveni identifikator za svakog kupca
         private string generisiUUID()
         {
             string uuid;

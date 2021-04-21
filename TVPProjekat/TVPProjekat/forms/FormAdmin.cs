@@ -21,7 +21,7 @@ namespace TVPProjekat
         private Form frmDodajAdmina;
         private List<Korisnik> administratori;
         private List<Korisnik> kupci;
-        private Korisnik selectedItem;
+        //private Korisnik selectedItem;
 
         Osvezi osvezavanje = FormLogin.osvezi;
 
@@ -52,6 +52,8 @@ namespace TVPProjekat
 
         private void btnShowAdmins_Click(object sender, EventArgs e)
         {
+            administratori = new List<Korisnik>();
+
             if (this.lvAdminPrikaz.Columns.Count != 0)
             {
                 for (int i = 0; i < this.lvAdminPrikaz.Columns.Count; i++)
@@ -74,23 +76,33 @@ namespace TVPProjekat
             this.lvAdminPrikaz.Columns.Add("Sifra (E)", 100);
             this.lvAdminPrikaz.Columns.Add("Datum rodjenja", 100);
 
-            LocalFileManager lfm = new LocalFileManager();
-            administratori = lfm.UserCSVRead();
-            for (int i = 0; i < administratori.Count; i++)
-            {
-                if (administratori[i] is Kupac)
-                {
-                    administratori.Remove(administratori[i]);
-                    i--;
-                }
-                else
-                {
-                    Administrator a = administratori[i] as Administrator;
-                    ListViewItem item = new ListViewItem(new[] { a.AdminUUID, a.Ime, a.Prezime, a.Pol.ToString(), a.Telefon, a.Email, a.KorisnickoIme, a.Sifra, a.DatumRodjenja.ToString("dd/MM/yyyy") });
+            //LocalFileManager lfm = new LocalFileManager();
+            //administratori = lfm.UserCSVRead();
 
-                    this.lvAdminPrikaz.Items.Add(item);
-                }
+            LocalFileManager.JSONDeserialize(administratori, "administratori");
+
+            foreach (Administrator administrator in administratori)
+            { 
+                ListViewItem item = new ListViewItem(new[] { administrator.AdminUUID, administrator.Ime, administrator.Prezime, administrator.StrPol(), administrator.Telefon, administrator.Email, administrator.KorisnickoIme, administrator.Sifra, administrator.DatumRodjenja.ToString("dd/MM/yyyy") });
+
+                this.lvAdminPrikaz.Items.Add(item);
             }
+
+            //for (int i = 0; i < administratori.Count; i++)
+            //{
+            //    if (administratori[i] is Kupac)
+            //    {
+            //        administratori.Remove(administratori[i]);
+            //        i--;
+            //    }
+            //    else
+            //    {
+            //        Administrator a = administratori[i] as Administrator;
+            //        ListViewItem item = new ListViewItem(new[] { a.AdminUUID, a.Ime, a.Prezime, a.Pol.ToString(), a.Telefon, a.Email, a.KorisnickoIme, a.Sifra, a.DatumRodjenja.ToString("dd/MM/yyyy") });
+
+            //        this.lvAdminPrikaz.Items.Add(item);
+            //    }
+            //}
         }
 
         private void odjaviSe(object sender, EventArgs e)

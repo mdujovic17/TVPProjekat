@@ -25,8 +25,7 @@ namespace TVPProjekat
         FormAdmin frmAdmin;
 
         List<Korisnik> listaKorisnika;
-        List<Korisnik> listaLozinki;
-        Korisnik prijavljenKorisnik;
+        //List<Korisnik> listaLozinki;
         public FormLogin()
         {
             InitializeComponent();
@@ -39,10 +38,11 @@ namespace TVPProjekat
             formaZaRegistraciju.Show();
         }
 
+        //Proverava unete podatke sa listom korisnika. Ako su podaci tacni, taj korisnik se salje u predvidjenu formu putem delegata.
         private void prijaviKorisnika(string username, string password)
         {
             string tempUsername, tempPassword;
-            string uuid;
+            //string uuid;
             foreach (Korisnik k in listaKorisnika)
             {
                 Kupac k1 = k as Kupac;
@@ -94,6 +94,7 @@ namespace TVPProjekat
 
         }
 
+        //Poziva prijavu korisnika, ako je uspesno prijavljivanje, ova forma se sakriva.
         private void prijava(object sender, EventArgs e)
         {
             prijaviKorisnika(txtUsername.Text, txtPassword.Text);
@@ -113,7 +114,7 @@ namespace TVPProjekat
         {
             if (!prikaz)
             {
-                Debug.WriteLine("[INFO]: Osvezavanje baze...");
+                Debug.WriteLine(DateTime.Now.ToString("(HH:mm:ss)") + " " + "[INFO]: Osvezavanje baze...");
                 listaKorisnika.Clear();
                 UcitajBazu(sender, e);
             }

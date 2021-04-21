@@ -36,6 +36,7 @@ namespace TVPProjekat
             this.statusnaLinija = new System.Windows.Forms.StatusStrip();
             this.stripUser = new System.Windows.Forms.ToolStripStatusLabel();
             this.stripStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusUUID = new System.Windows.Forms.ToolStripStatusLabel();
             this.lvAdminPrikaz = new System.Windows.Forms.ListView();
             this.btnObrisi = new System.Windows.Forms.Button();
             this.btnIzmeni = new System.Windows.Forms.Button();
@@ -43,16 +44,16 @@ namespace TVPProjekat
             this.btnExportCSV = new System.Windows.Forms.Button();
             this.btnUcitajCSV = new System.Windows.Forms.Button();
             this.btnLogout = new System.Windows.Forms.Button();
-            this.statusUUID = new System.Windows.Forms.ToolStripStatusLabel();
             this.btnDodajAdmina = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.statusnaLinija.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnShowUsers
             // 
-            this.btnShowUsers.Location = new System.Drawing.Point(235, 12);
+            this.btnShowUsers.Location = new System.Drawing.Point(183, 12);
             this.btnShowUsers.Name = "btnShowUsers";
-            this.btnShowUsers.Size = new System.Drawing.Size(223, 25);
+            this.btnShowUsers.Size = new System.Drawing.Size(165, 25);
             this.btnShowUsers.TabIndex = 0;
             this.btnShowUsers.Text = "Prikaži listu korisnika";
             this.btnShowUsers.UseVisualStyleBackColor = true;
@@ -62,7 +63,7 @@ namespace TVPProjekat
             // 
             this.btnShowAdmins.Location = new System.Drawing.Point(12, 12);
             this.btnShowAdmins.Name = "btnShowAdmins";
-            this.btnShowAdmins.Size = new System.Drawing.Size(217, 25);
+            this.btnShowAdmins.Size = new System.Drawing.Size(165, 25);
             this.btnShowAdmins.TabIndex = 1;
             this.btnShowAdmins.Text = "Prikaži listu administratora";
             this.btnShowAdmins.UseVisualStyleBackColor = true;
@@ -70,18 +71,18 @@ namespace TVPProjekat
             // 
             // btnShowTheaters
             // 
-            this.btnShowTheaters.Location = new System.Drawing.Point(464, 12);
+            this.btnShowTheaters.Location = new System.Drawing.Point(354, 12);
             this.btnShowTheaters.Name = "btnShowTheaters";
-            this.btnShowTheaters.Size = new System.Drawing.Size(205, 25);
+            this.btnShowTheaters.Size = new System.Drawing.Size(165, 25);
             this.btnShowTheaters.TabIndex = 2;
             this.btnShowTheaters.Text = "Prikaži listu bioskopa";
             this.btnShowTheaters.UseVisualStyleBackColor = true;
             // 
             // btnShowMovies
             // 
-            this.btnShowMovies.Location = new System.Drawing.Point(675, 12);
+            this.btnShowMovies.Location = new System.Drawing.Point(525, 12);
             this.btnShowMovies.Name = "btnShowMovies";
-            this.btnShowMovies.Size = new System.Drawing.Size(213, 25);
+            this.btnShowMovies.Size = new System.Drawing.Size(165, 25);
             this.btnShowMovies.TabIndex = 3;
             this.btnShowMovies.Text = "Prikaži repertoar filmova";
             this.btnShowMovies.UseVisualStyleBackColor = true;
@@ -92,7 +93,7 @@ namespace TVPProjekat
             this.stripUser,
             this.stripStatus,
             this.statusUUID});
-            this.statusnaLinija.Location = new System.Drawing.Point(0, 407);
+            this.statusnaLinija.Location = new System.Drawing.Point(0, 408);
             this.statusnaLinija.Name = "statusnaLinija";
             this.statusnaLinija.Size = new System.Drawing.Size(895, 22);
             this.statusnaLinija.TabIndex = 7;
@@ -108,6 +109,13 @@ namespace TVPProjekat
             this.stripStatus.Name = "stripStatus";
             this.stripStatus.Size = new System.Drawing.Size(84, 17);
             this.stripStatus.Text = "Status naloga: ";
+            // 
+            // statusUUID
+            // 
+            this.statusUUID.Margin = new System.Windows.Forms.Padding(350, 3, 0, 2);
+            this.statusUUID.Name = "statusUUID";
+            this.statusUUID.Size = new System.Drawing.Size(84, 17);
+            this.statusUUID.Text = "Selektovan ID: ";
             // 
             // lvAdminPrikaz
             // 
@@ -183,13 +191,6 @@ namespace TVPProjekat
             this.btnLogout.UseVisualStyleBackColor = true;
             this.btnLogout.Click += new System.EventHandler(this.odjaviSe);
             // 
-            // statusUUID
-            // 
-            this.statusUUID.Margin = new System.Windows.Forms.Padding(350, 3, 0, 2);
-            this.statusUUID.Name = "statusUUID";
-            this.statusUUID.Size = new System.Drawing.Size(84, 17);
-            this.statusUUID.Text = "Selektovan ID: ";
-            // 
             // btnDodajAdmina
             // 
             this.btnDodajAdmina.Location = new System.Drawing.Point(747, 181);
@@ -200,11 +201,21 @@ namespace TVPProjekat
             this.btnDodajAdmina.UseVisualStyleBackColor = true;
             this.btnDodajAdmina.Click += new System.EventHandler(this.dodajAdmina);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(696, 12);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(192, 25);
+            this.button1.TabIndex = 16;
+            this.button1.Text = "Prikazi projekcije";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // FormAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(895, 429);
+            this.ClientSize = new System.Drawing.Size(895, 430);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnDodajAdmina);
             this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.btnUcitajCSV);
@@ -247,5 +258,6 @@ namespace TVPProjekat
         private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.ToolStripStatusLabel statusUUID;
         private System.Windows.Forms.Button btnDodajAdmina;
+        private System.Windows.Forms.Button button1;
     }
 }

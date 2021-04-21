@@ -12,3 +12,4 @@ C:\source\TVPProjekat\TVPProjekat\TVPProjekat\obj\Debug\TVPProjekat.FormLogin.re
 C:\source\TVPProjekat\TVPProjekat\TVPProjekat\obj\Debug\TVPProjekat.FormAdmin.resources
 C:\source\TVPProjekat\TVPProjekat\TVPProjekat\obj\Debug\TVPProjekat.FormKupac.resources
 C:\source\TVPProjekat\TVPProjekat\TVPProjekat\obj\Debug\TVPProjekat.FormDodajAdmina.resources
+C:\source\TVPProjekat\TVPProjekat\TVPProjekat\obj\Debug\TVPProjekat.forms.pomocne.FormRezervacija.resources

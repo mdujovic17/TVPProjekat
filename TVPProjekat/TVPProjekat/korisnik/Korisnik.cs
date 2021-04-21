@@ -41,19 +41,6 @@ namespace TVPProjekat.korisnik
             this.Admin = admin;
         }
 
-        public Korisnik()
-        {
-            this.Ime = "";
-            this.Prezime = "";
-            this.Pol = 0;
-            this.Telefon = "";
-            this.Email = "";
-            this.KorisnickoIme = "";
-            this.Sifra = "";
-            this.DatumRodjenja = new DateTime();
-            this.Admin = false;
-        }
-
         public static string sifrujLozinku(string sifra)
         {
             string sifrovanaLozinka = "";
@@ -103,6 +90,18 @@ namespace TVPProjekat.korisnik
                 }
             }
             return desifrovanaLozinka;
+        }
+
+        public string StrPol()
+        {
+            if (this.Pol == 1)
+            {
+                return "Muško";
+            }
+            else
+            {
+                return "Žensko";
+            }
         }
 
         public override string ToString()

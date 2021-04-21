@@ -34,13 +34,7 @@ namespace TVPProjekat.korisnik
             this.AdminUUID = uuid;
             this.IsAdmin = isAdmin;
         }
-
-        public Administrator()
-        {
-            this.AdminUUID = "";
-            this.IsAdmin = true;
-        }
-
+        //Generise jedinstveni identifikator za svakog administratora
         private string generisiUUID()
         {
             string uuid;
