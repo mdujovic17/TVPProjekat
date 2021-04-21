@@ -1,21 +1,44 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace TVPProjekat.korisnik
 {
+    [DataContract]
     public class Administrator : Korisnik
     {
-        string adminUUID;
+        [DataMember]
+        private string adminUUID;
+        [DataMember]
+        private bool isAdmin;
 
         public string AdminUUID { get => adminUUID; set => adminUUID = value; }
+        public bool IsAdmin { get => isAdmin; set => isAdmin = value; }
 
-        public Administrator(string uuid, string ime, string prezime, int pol, string telefon, string email, string korisnickoIme, string sifra, DateTime datumRodjenja)
+        //Konstruktor za kreiranje novog administratora
+        public Administrator(string ime, string prezime, int pol, string telefon, string email, string korisnickoIme, string sifra, DateTime datumRodjenja)
             : base(ime, prezime, pol, telefon, email, korisnickoIme, sifra, datumRodjenja, true)
         {
+            this.Sifra = Korisnik.sifrujLozinku(sifra);
+            this.AdminUUID = generisiUUID();
+            this.IsAdmin = true;
+        }
+
+        //Konstruktor za ucitavanje administratora
+        public Administrator(string uuid, string ime, string prezime, int pol, string telefon, string email, string korisnickoIme, string sifra, DateTime datumRodjenja, bool isAdmin)
+            : base(ime, prezime, pol, telefon, email, korisnickoIme, sifra, datumRodjenja, isAdmin)
+        {
             this.AdminUUID = uuid;
+            this.IsAdmin = isAdmin;
+        }
+
+        public Administrator()
+        {
+            this.AdminUUID = "";
+            this.IsAdmin = true;
         }
 
         private string generisiUUID()

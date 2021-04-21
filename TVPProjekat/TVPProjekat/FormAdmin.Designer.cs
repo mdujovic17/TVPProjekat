@@ -29,68 +29,73 @@ namespace TVPProjekat
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.stripStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.btnShowUsers = new System.Windows.Forms.Button();
+            this.btnShowAdmins = new System.Windows.Forms.Button();
+            this.btnShowTheaters = new System.Windows.Forms.Button();
+            this.btnShowMovies = new System.Windows.Forms.Button();
+            this.statusnaLinija = new System.Windows.Forms.StatusStrip();
             this.stripUser = new System.Windows.Forms.ToolStripStatusLabel();
-            this.statusStrip1.SuspendLayout();
+            this.stripStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lvAdminPrikaz = new System.Windows.Forms.ListView();
+            this.btnObrisi = new System.Windows.Forms.Button();
+            this.btnIzmeni = new System.Windows.Forms.Button();
+            this.btnDodaj = new System.Windows.Forms.Button();
+            this.btnExportCSV = new System.Windows.Forms.Button();
+            this.btnUcitajCSV = new System.Windows.Forms.Button();
+            this.btnLogout = new System.Windows.Forms.Button();
+            this.statusUUID = new System.Windows.Forms.ToolStripStatusLabel();
+            this.btnDodajAdmina = new System.Windows.Forms.Button();
+            this.statusnaLinija.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button1
+            // btnShowUsers
             // 
-            this.button1.Location = new System.Drawing.Point(12, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(268, 38);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Prikaži listu korisnika";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnShowUsers.Location = new System.Drawing.Point(235, 12);
+            this.btnShowUsers.Name = "btnShowUsers";
+            this.btnShowUsers.Size = new System.Drawing.Size(223, 25);
+            this.btnShowUsers.TabIndex = 0;
+            this.btnShowUsers.Text = "Prikaži listu korisnika";
+            this.btnShowUsers.UseVisualStyleBackColor = true;
+            this.btnShowUsers.Click += new System.EventHandler(this.prikaziKorisnike);
             // 
-            // button2
+            // btnShowAdmins
             // 
-            this.button2.Location = new System.Drawing.Point(12, 144);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(268, 38);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Prikaži listu administratora";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnShowAdmins.Location = new System.Drawing.Point(12, 12);
+            this.btnShowAdmins.Name = "btnShowAdmins";
+            this.btnShowAdmins.Size = new System.Drawing.Size(217, 25);
+            this.btnShowAdmins.TabIndex = 1;
+            this.btnShowAdmins.Text = "Prikaži listu administratora";
+            this.btnShowAdmins.UseVisualStyleBackColor = true;
+            this.btnShowAdmins.Click += new System.EventHandler(this.btnShowAdmins_Click);
             // 
-            // button3
+            // btnShowTheaters
             // 
-            this.button3.Location = new System.Drawing.Point(12, 100);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(268, 38);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Prikaži listu bioskopa";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnShowTheaters.Location = new System.Drawing.Point(464, 12);
+            this.btnShowTheaters.Name = "btnShowTheaters";
+            this.btnShowTheaters.Size = new System.Drawing.Size(205, 25);
+            this.btnShowTheaters.TabIndex = 2;
+            this.btnShowTheaters.Text = "Prikaži listu bioskopa";
+            this.btnShowTheaters.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // btnShowMovies
             // 
-            this.button4.Location = new System.Drawing.Point(12, 56);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(268, 38);
-            this.button4.TabIndex = 3;
-            this.button4.Text = "Prikaži repertoar filmova";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnShowMovies.Location = new System.Drawing.Point(675, 12);
+            this.btnShowMovies.Name = "btnShowMovies";
+            this.btnShowMovies.Size = new System.Drawing.Size(213, 25);
+            this.btnShowMovies.TabIndex = 3;
+            this.btnShowMovies.Text = "Prikaži repertoar filmova";
+            this.btnShowMovies.UseVisualStyleBackColor = true;
             // 
-            // statusStrip1
+            // statusnaLinija
             // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusnaLinija.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.stripUser,
-            this.stripStatus});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 190);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(293, 22);
-            this.statusStrip1.TabIndex = 7;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // stripStatus
-            // 
-            this.stripStatus.Name = "stripStatus";
-            this.stripStatus.Size = new System.Drawing.Size(84, 17);
-            this.stripStatus.Text = "Status naloga: ";
+            this.stripStatus,
+            this.statusUUID});
+            this.statusnaLinija.Location = new System.Drawing.Point(0, 407);
+            this.statusnaLinija.Name = "statusnaLinija";
+            this.statusnaLinija.Size = new System.Drawing.Size(895, 22);
+            this.statusnaLinija.TabIndex = 7;
             // 
             // stripUser
             // 
@@ -98,20 +103,127 @@ namespace TVPProjekat
             this.stripUser.Size = new System.Drawing.Size(71, 17);
             this.stripUser.Text = "Dobrodosli, ";
             // 
+            // stripStatus
+            // 
+            this.stripStatus.Name = "stripStatus";
+            this.stripStatus.Size = new System.Drawing.Size(84, 17);
+            this.stripStatus.Text = "Status naloga: ";
+            // 
+            // lvAdminPrikaz
+            // 
+            this.lvAdminPrikaz.Activation = System.Windows.Forms.ItemActivation.OneClick;
+            this.lvAdminPrikaz.AllowColumnReorder = true;
+            this.lvAdminPrikaz.FullRowSelect = true;
+            this.lvAdminPrikaz.GridLines = true;
+            this.lvAdminPrikaz.HideSelection = false;
+            this.lvAdminPrikaz.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lvAdminPrikaz.Location = new System.Drawing.Point(12, 43);
+            this.lvAdminPrikaz.MultiSelect = false;
+            this.lvAdminPrikaz.Name = "lvAdminPrikaz";
+            this.lvAdminPrikaz.Size = new System.Drawing.Size(729, 355);
+            this.lvAdminPrikaz.TabIndex = 8;
+            this.lvAdminPrikaz.UseCompatibleStateImageBehavior = false;
+            this.lvAdminPrikaz.SelectedIndexChanged += new System.EventHandler(this.selektujObjekat);
+            // 
+            // btnObrisi
+            // 
+            this.btnObrisi.Enabled = false;
+            this.btnObrisi.Location = new System.Drawing.Point(747, 105);
+            this.btnObrisi.Name = "btnObrisi";
+            this.btnObrisi.Size = new System.Drawing.Size(141, 25);
+            this.btnObrisi.TabIndex = 9;
+            this.btnObrisi.Text = "Obrisi stavku";
+            this.btnObrisi.UseVisualStyleBackColor = true;
+            // 
+            // btnIzmeni
+            // 
+            this.btnIzmeni.Enabled = false;
+            this.btnIzmeni.Location = new System.Drawing.Point(747, 74);
+            this.btnIzmeni.Name = "btnIzmeni";
+            this.btnIzmeni.Size = new System.Drawing.Size(141, 25);
+            this.btnIzmeni.TabIndex = 10;
+            this.btnIzmeni.Text = "Izmeni selektovano";
+            this.btnIzmeni.UseVisualStyleBackColor = true;
+            // 
+            // btnDodaj
+            // 
+            this.btnDodaj.Enabled = false;
+            this.btnDodaj.Location = new System.Drawing.Point(747, 43);
+            this.btnDodaj.Name = "btnDodaj";
+            this.btnDodaj.Size = new System.Drawing.Size(141, 25);
+            this.btnDodaj.TabIndex = 11;
+            this.btnDodaj.Text = "Dodaj novu stavku";
+            this.btnDodaj.UseVisualStyleBackColor = true;
+            // 
+            // btnExportCSV
+            // 
+            this.btnExportCSV.Location = new System.Drawing.Point(747, 313);
+            this.btnExportCSV.Name = "btnExportCSV";
+            this.btnExportCSV.Size = new System.Drawing.Size(141, 25);
+            this.btnExportCSV.TabIndex = 12;
+            this.btnExportCSV.Text = "Eksportuj u CSV";
+            this.btnExportCSV.UseVisualStyleBackColor = true;
+            // 
+            // btnUcitajCSV
+            // 
+            this.btnUcitajCSV.Location = new System.Drawing.Point(747, 282);
+            this.btnUcitajCSV.Name = "btnUcitajCSV";
+            this.btnUcitajCSV.Size = new System.Drawing.Size(141, 25);
+            this.btnUcitajCSV.TabIndex = 13;
+            this.btnUcitajCSV.Text = "Ucitaj CSV";
+            this.btnUcitajCSV.UseVisualStyleBackColor = true;
+            // 
+            // btnLogout
+            // 
+            this.btnLogout.Location = new System.Drawing.Point(747, 373);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(141, 25);
+            this.btnLogout.TabIndex = 14;
+            this.btnLogout.Text = "Odjavi se";
+            this.btnLogout.UseVisualStyleBackColor = true;
+            this.btnLogout.Click += new System.EventHandler(this.odjaviSe);
+            // 
+            // statusUUID
+            // 
+            this.statusUUID.Margin = new System.Windows.Forms.Padding(350, 3, 0, 2);
+            this.statusUUID.Name = "statusUUID";
+            this.statusUUID.Size = new System.Drawing.Size(84, 17);
+            this.statusUUID.Text = "Selektovan ID: ";
+            // 
+            // btnDodajAdmina
+            // 
+            this.btnDodajAdmina.Location = new System.Drawing.Point(747, 181);
+            this.btnDodajAdmina.Name = "btnDodajAdmina";
+            this.btnDodajAdmina.Size = new System.Drawing.Size(141, 44);
+            this.btnDodajAdmina.TabIndex = 15;
+            this.btnDodajAdmina.Text = "Dodaj novog administratora";
+            this.btnDodajAdmina.UseVisualStyleBackColor = true;
+            this.btnDodajAdmina.Click += new System.EventHandler(this.dodajAdmina);
+            // 
             // FormAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(293, 212);
-            this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(895, 429);
+            this.Controls.Add(this.btnDodajAdmina);
+            this.Controls.Add(this.btnLogout);
+            this.Controls.Add(this.btnUcitajCSV);
+            this.Controls.Add(this.btnExportCSV);
+            this.Controls.Add(this.btnDodaj);
+            this.Controls.Add(this.btnIzmeni);
+            this.Controls.Add(this.btnObrisi);
+            this.Controls.Add(this.lvAdminPrikaz);
+            this.Controls.Add(this.statusnaLinija);
+            this.Controls.Add(this.btnShowMovies);
+            this.Controls.Add(this.btnShowTheaters);
+            this.Controls.Add(this.btnShowAdmins);
+            this.Controls.Add(this.btnShowUsers);
             this.Name = "FormAdmin";
             this.Text = "Administratorski panel";
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.zatvoriProgram);
+            this.Load += new System.EventHandler(this.loadAdminPanel);
+            this.statusnaLinija.ResumeLayout(false);
+            this.statusnaLinija.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -119,12 +231,21 @@ namespace TVPProjekat
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.Button btnShowUsers;
+        private System.Windows.Forms.Button btnShowAdmins;
+        private System.Windows.Forms.Button btnShowTheaters;
+        private System.Windows.Forms.Button btnShowMovies;
+        private System.Windows.Forms.StatusStrip statusnaLinija;
         private System.Windows.Forms.ToolStripStatusLabel stripStatus;
         private System.Windows.Forms.ToolStripStatusLabel stripUser;
+        private System.Windows.Forms.ListView lvAdminPrikaz;
+        private System.Windows.Forms.Button btnObrisi;
+        private System.Windows.Forms.Button btnIzmeni;
+        private System.Windows.Forms.Button btnDodaj;
+        private System.Windows.Forms.Button btnExportCSV;
+        private System.Windows.Forms.Button btnUcitajCSV;
+        private System.Windows.Forms.Button btnLogout;
+        private System.Windows.Forms.ToolStripStatusLabel statusUUID;
+        private System.Windows.Forms.Button btnDodajAdmina;
     }
 }

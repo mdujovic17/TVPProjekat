@@ -1,15 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace TVPProjekat.korisnik
 {
+    [DataContract]
     public class Korisnik
     {
+        [DataMember]
         private string ime, prezime, telefon, email, korisnickoIme, sifra;
+        [DataMember]
         private int pol;
+        [DataMember]
         private DateTime datumRodjenja;
         private bool admin;
 
@@ -36,6 +41,19 @@ namespace TVPProjekat.korisnik
             this.Admin = admin;
         }
 
+        public Korisnik()
+        {
+            this.Ime = "";
+            this.Prezime = "";
+            this.Pol = 0;
+            this.Telefon = "";
+            this.Email = "";
+            this.KorisnickoIme = "";
+            this.Sifra = "";
+            this.DatumRodjenja = new DateTime();
+            this.Admin = false;
+        }
+
         public static string sifrujLozinku(string sifra)
         {
             string sifrovanaLozinka = "";
@@ -43,19 +61,19 @@ namespace TVPProjekat.korisnik
             {
                 if (char.IsUpper(sifra[i]))
                 {
-                    sifrovanaLozinka += ((char)(sifra[i] + 3 - 65) % 26 + 65);
+                    sifrovanaLozinka += (char)((sifra[i] + 3 - 65) % 26 + 65);
                 }
                 else if (char.IsLower(sifra[i]))
                 {
-                    sifrovanaLozinka += ((char)(sifra[i] + 3 - 97) % 26 + 97);
+                    sifrovanaLozinka += (char)((sifra[i] + 3 - 97) % 26 + 97);
                 }
                 else if (char.IsDigit(sifra[i]))
                 {
-                    sifrovanaLozinka += ((char)(sifra[i] + 3 - 48) % 10 + 48);
+                    sifrovanaLozinka += (char)((sifra[i] + 3 - 48) % 10 + 48);
                 }
                 else if (char.IsPunctuation(sifra[i]))
                 {
-                    sifrovanaLozinka += ((char)(sifra[i] + 3 - 33) % 15 + 33);
+                    sifrovanaLozinka += (char)((sifra[i] + 3 - 33) % 15 + 33);
                 }
             }
 

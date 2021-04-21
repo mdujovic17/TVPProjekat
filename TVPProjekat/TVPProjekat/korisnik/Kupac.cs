@@ -6,16 +6,29 @@ using System.Threading.Tasks;
 
 namespace TVPProjekat.korisnik
 {
+    [Serializable]
     public class Kupac : Korisnik
     {
-        string kupacUUID;
-
+        private string kupacUUID;
+        private bool isAdmin;
         public string KupacUUID { get => kupacUUID; set => kupacUUID = value; }
+        public bool IsAdmin { get => isAdmin; set => isAdmin = value; }
 
-        public Kupac(string uuid, string ime, string prezime, int pol, string telefon, string email, string korisnickoIme, string sifra, DateTime datumRodjenja)
+        //Za kreiranje novog kupca
+        public Kupac(string ime, string prezime, int pol, string telefon, string email, string korisnickoIme, string sifra, DateTime datumRodjenja)
             : base(ime, prezime, pol, telefon, email, korisnickoIme, sifra, datumRodjenja, false)
         {
+            this.Sifra = Korisnik.sifrujLozinku(Sifra);
+            this.KupacUUID = generisiUUID();
+            this.IsAdmin = false;
+        }
+
+        //Za ucitavanje kupca;
+        public Kupac(string uuid, string ime, string prezime, int pol, string telefon, string email, string korisnickoIme, string sifra, DateTime datumRodjenja, bool isAdmin)
+            : base(ime, prezime, pol, telefon, email, korisnickoIme, sifra, datumRodjenja, isAdmin)
+        {
             this.KupacUUID = uuid;
+            this.IsAdmin = isAdmin;
         }
 
         private string generisiUUID()

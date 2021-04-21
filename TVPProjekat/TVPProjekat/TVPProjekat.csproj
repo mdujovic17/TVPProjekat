@@ -35,6 +35,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,6 +53,12 @@
     </Compile>
     <Compile Include="FormAdmin.Designer.cs">
       <DependentUpon>FormAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormDodajAdmina.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDodajAdmina.Designer.cs">
+      <DependentUpon>FormDodajAdmina.cs</DependentUpon>
     </Compile>
     <Compile Include="FormKupac.cs">
       <SubType>Form</SubType>
@@ -78,6 +86,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormAdmin.resx">
       <DependentUpon>FormAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDodajAdmina.resx">
+      <DependentUpon>FormDodajAdmina.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormKupac.resx">
       <DependentUpon>FormKupac.cs</DependentUpon>

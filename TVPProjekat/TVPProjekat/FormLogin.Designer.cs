@@ -102,7 +102,9 @@ namespace TVPProjekat
             this.Controls.Add(this.txtUsername);
             this.Name = "FormLogin";
             this.Text = "Prijava";
-            this.Load += new System.EventHandler(this.FormLogin_Load);
+            this.Load += new System.EventHandler(this.UcitajBazu);
+            this.Shown += new System.EventHandler(this.OsveziBazu);
+            this.VisibleChanged += new System.EventHandler(this.OsveziBazu);
             this.ResumeLayout(false);
             this.PerformLayout();
 
