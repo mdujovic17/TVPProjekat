@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="bioskop\Projekcija.cs" />
+    <Compile Include="bioskop\Rezervacija.cs" />
     <Compile Include="bioskop\Sala.cs" />
     <Compile Include="bioskop\Film.cs" />
     <Compile Include="forms\FormAdmin.cs">
@@ -56,6 +57,12 @@
     </Compile>
     <Compile Include="forms\FormAdmin.Designer.cs">
       <DependentUpon>FormAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\pomocne\FormDetaljiRezervacije.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\pomocne\FormDetaljiRezervacije.Designer.cs">
+      <DependentUpon>FormDetaljiRezervacije.cs</DependentUpon>
     </Compile>
     <Compile Include="forms\pomocne\FormDodajAdmina.cs">
       <SubType>Form</SubType>
@@ -74,6 +81,36 @@
     </Compile>
     <Compile Include="forms\FormLogin.Designer.cs">
       <DependentUpon>FormLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\pomocne\FormDodajFilm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\pomocne\FormDodajFilm.Designer.cs">
+      <DependentUpon>FormDodajFilm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\pomocne\FormDodajKupca.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\pomocne\FormDodajKupca.Designer.cs">
+      <DependentUpon>FormDodajKupca.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\pomocne\FormDodajProjekciju.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\pomocne\FormDodajProjekciju.Designer.cs">
+      <DependentUpon>FormDodajProjekciju.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\pomocne\FormDodajSalu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\pomocne\FormDodajSalu.Designer.cs">
+      <DependentUpon>FormDodajSalu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\pomocne\FormIzmenaKorisnik.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\pomocne\FormIzmenaKorisnik.Designer.cs">
+      <DependentUpon>FormIzmenaKorisnik.cs</DependentUpon>
     </Compile>
     <Compile Include="forms\pomocne\FormRegistracija.cs">
       <SubType>Form</SubType>
@@ -97,6 +134,9 @@
     <EmbeddedResource Include="forms\FormAdmin.resx">
       <DependentUpon>FormAdmin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\pomocne\FormDetaljiRezervacije.resx">
+      <DependentUpon>FormDetaljiRezervacije.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\pomocne\FormDodajAdmina.resx">
       <DependentUpon>FormDodajAdmina.cs</DependentUpon>
     </EmbeddedResource>
@@ -105,6 +145,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\pomocne\FormDodajFilm.resx">
+      <DependentUpon>FormDodajFilm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\pomocne\FormDodajKupca.resx">
+      <DependentUpon>FormDodajKupca.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\pomocne\FormDodajProjekciju.resx">
+      <DependentUpon>FormDodajProjekciju.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\pomocne\FormDodajSalu.resx">
+      <DependentUpon>FormDodajSalu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\pomocne\FormIzmenaKorisnik.resx">
+      <DependentUpon>FormIzmenaKorisnik.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\pomocne\FormRegistracija.resx">
       <DependentUpon>FormRegistracija.cs</DependentUpon>

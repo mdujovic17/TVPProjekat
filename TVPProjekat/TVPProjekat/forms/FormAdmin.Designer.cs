@@ -31,7 +31,7 @@ namespace TVPProjekat
         {
             this.btnShowUsers = new System.Windows.Forms.Button();
             this.btnShowAdmins = new System.Windows.Forms.Button();
-            this.btnShowTheaters = new System.Windows.Forms.Button();
+            this.btnPrikaziSale = new System.Windows.Forms.Button();
             this.btnShowMovies = new System.Windows.Forms.Button();
             this.statusnaLinija = new System.Windows.Forms.StatusStrip();
             this.stripUser = new System.Windows.Forms.ToolStripStatusLabel();
@@ -44,8 +44,8 @@ namespace TVPProjekat
             this.btnExportCSV = new System.Windows.Forms.Button();
             this.btnUcitajCSV = new System.Windows.Forms.Button();
             this.btnLogout = new System.Windows.Forms.Button();
-            this.btnDodajAdmina = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.btnDetalji = new System.Windows.Forms.Button();
             this.statusnaLinija.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,16 +67,17 @@ namespace TVPProjekat
             this.btnShowAdmins.TabIndex = 1;
             this.btnShowAdmins.Text = "Prikaži listu administratora";
             this.btnShowAdmins.UseVisualStyleBackColor = true;
-            this.btnShowAdmins.Click += new System.EventHandler(this.btnShowAdmins_Click);
+            this.btnShowAdmins.Click += new System.EventHandler(this.prikaziAdmine);
             // 
-            // btnShowTheaters
+            // btnPrikaziSale
             // 
-            this.btnShowTheaters.Location = new System.Drawing.Point(354, 12);
-            this.btnShowTheaters.Name = "btnShowTheaters";
-            this.btnShowTheaters.Size = new System.Drawing.Size(165, 25);
-            this.btnShowTheaters.TabIndex = 2;
-            this.btnShowTheaters.Text = "Prikaži listu bioskopa";
-            this.btnShowTheaters.UseVisualStyleBackColor = true;
+            this.btnPrikaziSale.Location = new System.Drawing.Point(354, 12);
+            this.btnPrikaziSale.Name = "btnPrikaziSale";
+            this.btnPrikaziSale.Size = new System.Drawing.Size(165, 25);
+            this.btnPrikaziSale.TabIndex = 2;
+            this.btnPrikaziSale.Text = "Prikaži listu sala";
+            this.btnPrikaziSale.UseVisualStyleBackColor = true;
+            this.btnPrikaziSale.Click += new System.EventHandler(this.prikaziSale);
             // 
             // btnShowMovies
             // 
@@ -86,6 +87,7 @@ namespace TVPProjekat
             this.btnShowMovies.TabIndex = 3;
             this.btnShowMovies.Text = "Prikaži repertoar filmova";
             this.btnShowMovies.UseVisualStyleBackColor = true;
+            this.btnShowMovies.Click += new System.EventHandler(this.prikaziFilmove);
             // 
             // statusnaLinija
             // 
@@ -136,7 +138,7 @@ namespace TVPProjekat
             // btnObrisi
             // 
             this.btnObrisi.Enabled = false;
-            this.btnObrisi.Location = new System.Drawing.Point(747, 105);
+            this.btnObrisi.Location = new System.Drawing.Point(747, 134);
             this.btnObrisi.Name = "btnObrisi";
             this.btnObrisi.Size = new System.Drawing.Size(141, 25);
             this.btnObrisi.TabIndex = 9;
@@ -164,6 +166,7 @@ namespace TVPProjekat
             this.btnDodaj.TabIndex = 11;
             this.btnDodaj.Text = "Dodaj novu stavku";
             this.btnDodaj.UseVisualStyleBackColor = true;
+            this.btnDodaj.Click += new System.EventHandler(this.dodajStavku);
             // 
             // btnExportCSV
             // 
@@ -193,16 +196,6 @@ namespace TVPProjekat
             this.btnLogout.UseVisualStyleBackColor = true;
             this.btnLogout.Click += new System.EventHandler(this.odjaviSe);
             // 
-            // btnDodajAdmina
-            // 
-            this.btnDodajAdmina.Location = new System.Drawing.Point(747, 181);
-            this.btnDodajAdmina.Name = "btnDodajAdmina";
-            this.btnDodajAdmina.Size = new System.Drawing.Size(141, 44);
-            this.btnDodajAdmina.TabIndex = 15;
-            this.btnDodajAdmina.Text = "Dodaj novog administratora";
-            this.btnDodajAdmina.UseVisualStyleBackColor = true;
-            this.btnDodajAdmina.Click += new System.EventHandler(this.dodajAdmina);
-            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(696, 12);
@@ -211,14 +204,25 @@ namespace TVPProjekat
             this.button1.TabIndex = 16;
             this.button1.Text = "Prikazi projekcije";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.prikaziProjekcije);
+            // 
+            // btnDetalji
+            // 
+            this.btnDetalji.Enabled = false;
+            this.btnDetalji.Location = new System.Drawing.Point(747, 105);
+            this.btnDetalji.Name = "btnDetalji";
+            this.btnDetalji.Size = new System.Drawing.Size(141, 23);
+            this.btnDetalji.TabIndex = 17;
+            this.btnDetalji.Text = "Detalji o rezervacijama";
+            this.btnDetalji.UseVisualStyleBackColor = true;
             // 
             // FormAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(895, 430);
+            this.Controls.Add(this.btnDetalji);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.btnDodajAdmina);
             this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.btnUcitajCSV);
             this.Controls.Add(this.btnExportCSV);
@@ -228,13 +232,12 @@ namespace TVPProjekat
             this.Controls.Add(this.lvAdminPrikaz);
             this.Controls.Add(this.statusnaLinija);
             this.Controls.Add(this.btnShowMovies);
-            this.Controls.Add(this.btnShowTheaters);
+            this.Controls.Add(this.btnPrikaziSale);
             this.Controls.Add(this.btnShowAdmins);
             this.Controls.Add(this.btnShowUsers);
             this.Name = "FormAdmin";
             this.Text = "Administratorski panel";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.zatvoriProgram);
-            this.Load += new System.EventHandler(this.loadAdminPanel);
             this.statusnaLinija.ResumeLayout(false);
             this.statusnaLinija.PerformLayout();
             this.ResumeLayout(false);
@@ -246,7 +249,7 @@ namespace TVPProjekat
 
         private System.Windows.Forms.Button btnShowUsers;
         private System.Windows.Forms.Button btnShowAdmins;
-        private System.Windows.Forms.Button btnShowTheaters;
+        private System.Windows.Forms.Button btnPrikaziSale;
         private System.Windows.Forms.Button btnShowMovies;
         private System.Windows.Forms.StatusStrip statusnaLinija;
         private System.Windows.Forms.ToolStripStatusLabel stripStatus;
@@ -259,7 +262,7 @@ namespace TVPProjekat
         private System.Windows.Forms.Button btnUcitajCSV;
         private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.ToolStripStatusLabel statusUUID;
-        private System.Windows.Forms.Button btnDodajAdmina;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnDetalji;
     }
 }

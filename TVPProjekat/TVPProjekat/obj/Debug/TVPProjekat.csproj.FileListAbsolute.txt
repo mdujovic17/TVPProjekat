@@ -13,3 +13,8 @@ C:\source\TVPProjekat\TVPProjekat\TVPProjekat\obj\Debug\TVPProjekat.FormAdmin.re
 C:\source\TVPProjekat\TVPProjekat\TVPProjekat\obj\Debug\TVPProjekat.FormKupac.resources
 C:\source\TVPProjekat\TVPProjekat\TVPProjekat\obj\Debug\TVPProjekat.FormDodajAdmina.resources
 C:\source\TVPProjekat\TVPProjekat\TVPProjekat\obj\Debug\TVPProjekat.forms.pomocne.FormRezervacija.resources
+C:\source\TVPProjekat\TVPProjekat\TVPProjekat\obj\Debug\TVPProjekat.forms.pomocne.FormDodajKupca.resources
+C:\source\TVPProjekat\TVPProjekat\TVPProjekat\obj\Debug\TVPProjekat.forms.pomocne.FormDodajFilm.resources
+C:\source\TVPProjekat\TVPProjekat\TVPProjekat\obj\Debug\TVPProjekat.forms.pomocne.FormDodajProjekciju.resources
+C:\source\TVPProjekat\TVPProjekat\TVPProjekat\obj\Debug\TVPProjekat.forms.pomocne.FormDodajSalu.resources
+C:\source\TVPProjekat\TVPProjekat\TVPProjekat\obj\Debug\TVPProjekat.forms.pomocne.FormIzmenaKorisnik.resources

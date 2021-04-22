@@ -8,6 +8,7 @@ using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TVPProjekat.bioskop;
 using TVPProjekat.korisnik;
 
 namespace TVPProjekat
@@ -44,7 +45,7 @@ namespace TVPProjekat
         //    this.ekstenzija = ekstenzija;
         //}
 
-        //Sluzi za citanje generisanih CSV fajlova
+        //Sluzi za citanje generisanih CSV fajlova za korisnike
         public List<Korisnik> UserCSVRead()
         {
             List<Korisnik> lista = new List<Korisnik>();
@@ -78,54 +79,52 @@ namespace TVPProjekat
             FileStream fs;
             DataContractJsonSerializer serializer;
             string directoryPath = @"..\data\" + folder + @"\";
+            string path = "";
             switch (folder)
             {
                 case "administratori":
-                    fs = new FileStream(directoryPath + (o as Administrator).AdminUUID + ".json", FileMode.Create, FileAccess.ReadWrite);
-                    serializer = new DataContractJsonSerializer(typeof(Administrator));
-                    serializer.WriteObject(fs, o);
-                    fs.Flush(); fs.Close();
+                    path = directoryPath + (o as Administrator).AdminUUID + ".json";
                     break;
                 case "kupci":
-                    fs = new FileStream(directoryPath + (o as Kupac).KupacUUID + ".json", FileMode.Create, FileAccess.ReadWrite);
-                    serializer = new DataContractJsonSerializer(typeof(Kupac));
-                    serializer.WriteObject(fs, o);
-                    fs.Flush(); fs.Close();
+                    path = directoryPath + (o as Kupac).KupacUUID + ".json";
                     break;
                 case "filmovi":
+                    path = directoryPath + (o as Film).Id + ".json";
                     break;
-                case "bioskopi":
+                case "sale":
+                    path = directoryPath + (o as Sala).Uid + ".json";
+                    break;
+                case "projekcije":
+                    path = directoryPath + (o as Projekcija).Uid + ".json";
+                    break;
+                case "rezervacije":
+                    path = directoryPath + (o as Rezervacija).KorisnickiID + "-" + (o as Rezervacija).ProjekcijaID + ".json";
                     break;
                 default:
                     Debug.WriteLine(DateTime.Now.ToString("(HH: mm:ss)") + " " + $"[GRESKA]: Folder {folder} ne postoji!");
                     break;
             }
-            
+            fs = new FileStream(path, FileMode.Create, FileAccess.ReadWrite);
+            serializer = new DataContractJsonSerializer(o.GetType());
+            serializer.WriteObject(fs, o);
+            fs.Flush(); fs.Close();
         }
 
+        //Sluzi za invalidaciju serijalizovanog objekta. Ako se objekat invaliduje, njegov UUID se prvobitno postavlja na -1
         private static void JSONInvalidate(object o, string folder, string uuid)
         {
             FileStream fs;
             DataContractJsonSerializer serializer;
-            string directoryPath = @"..\data\" + folder + @"\";
-            switch (folder)
+            if (uuid != "" && folder != "")
             {
-                case "administratori":
-                    fs = new FileStream(directoryPath + uuid + ".json", FileMode.Create, FileAccess.ReadWrite);
-                    serializer = new DataContractJsonSerializer(typeof(Administrator));
-                    serializer.WriteObject(fs, o);
-                    fs.Flush(); fs.Close();
-                    break;
-                case "kupci":
-                    fs = new FileStream(directoryPath + uuid + ".json", FileMode.Create, FileAccess.ReadWrite);
-                    serializer = new DataContractJsonSerializer(typeof(Kupac));
-                    serializer.WriteObject(fs, o);
-                    fs.Flush(); fs.Close();
-                    break;
-                default:
-                    Debug.WriteLine(DateTime.Now.ToString("(HH: mm:ss)") + " " + $"[GRESKA]: Folder {folder} ne postoji!");
-                    break;
+                string directoryPath = @"..\data\" + folder + @"\";
+
+                fs = new FileStream(directoryPath + uuid + ".json", FileMode.Create, FileAccess.ReadWrite);
+                serializer = new DataContractJsonSerializer(o.GetType());
+                serializer.WriteObject(fs, o);
+                fs.Flush(); fs.Close();
             }
+            
         }
 
         /* Koristi se za deserijalizaciju podataka tipa objekta Korisnik upisanih u JSON oblik.
@@ -149,7 +148,6 @@ namespace TVPProjekat
                         Administrator admin = (Administrator)serializer.ReadObject(fs);
                         lista.Add(admin);
                         Debug.WriteLine(DateTime.Now.ToString("(HH:mm:ss)") + " " + $"[INFO]: Deserijalizacija objekta sa UUID: {admin.AdminUUID} + sa lokacije {file.FullName}");
-                        serializer = null;
                         break;
                     case "kupci":
                         serializer = new DataContractJsonSerializer(typeof(Kupac));
@@ -163,84 +161,113 @@ namespace TVPProjekat
                 fs.Close();
             }
         }
+        public static void JSONDeserialize(List<Sala> lista, string folder) 
+        {
+            DirectoryInfo directory = new DirectoryInfo(@"..\data\" + folder + @"\");
+            FileInfo[] files = directory.GetFiles("*.json");
+            FileStream fs;
+            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(Sala));
 
-        //Brise korisnicki fajl, ako je admin, kompletno brise korisnika, ako je kupac,
-        //Menja se UUID parametar na -1, i time se obavestava korisnik da je njegov nalog obrisan.
-        public static void JSONDelete(Korisnik korisnik)
+            foreach (FileInfo fajl in files)
+            {
+                fs = new FileStream(fajl.FullName, FileMode.Open, FileAccess.Read);
+                Sala sala = (Sala)serializer.ReadObject(fs);
+                lista.Add(sala);
+                Debug.WriteLine(DateTime.Now.ToString("(HH:mm:ss)") + " " + $"[INFO]: Deserijalizacija objekta sa UUID: {sala.Uid} + sa lokacije {fajl.FullName}");
+                fs.Close();
+            }
+        }
+        public static void JSONDeserialize(List<Film> lista, string folder) 
+        {
+            DirectoryInfo directory = new DirectoryInfo(@"..\data\" + folder + @"\");
+            FileInfo[] files = directory.GetFiles("*.json");
+            FileStream fs;
+            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(Film));
+
+            foreach (FileInfo fajl in files)
+            {
+                fs = new FileStream(fajl.FullName, FileMode.Open, FileAccess.Read);
+                Film film = (Film)serializer.ReadObject(fs);
+                lista.Add(film);
+                Debug.WriteLine(DateTime.Now.ToString("(HH:mm:ss)") + " " + $"[INFO]: Deserijalizacija objekta sa UUID: {film.Id} + sa lokacije {fajl.FullName}");
+                fs.Close();
+            }
+        }
+        public static void JSONDeserialize(List<Projekcija> lista, string folder) 
+        {
+            DirectoryInfo directory = new DirectoryInfo(@"..\data\" + folder + @"\");
+            FileInfo[] files = directory.GetFiles("*.json");
+            FileStream fs;
+            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(Projekcija));
+
+            foreach (FileInfo fajl in files)
+            {
+                fs = new FileStream(fajl.FullName, FileMode.Open, FileAccess.Read);
+                Projekcija projekcija = (Projekcija)serializer.ReadObject(fs);
+                lista.Add(projekcija);
+                Debug.WriteLine(DateTime.Now.ToString("(HH:mm:ss)") + " " + $"[INFO]: Deserijalizacija objekta sa UUID: {projekcija.Uid} + sa lokacije {fajl.FullName}");
+                fs.Close();
+            }
+        }
+        public static void JSONDeserialize(List<Rezervacija> lista, string folder) 
+        {
+            DirectoryInfo directory = new DirectoryInfo(@"..\data\" + folder + @"\");
+            FileInfo[] files = directory.GetFiles("*.json");
+            FileStream fs;
+            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(Rezervacija));
+
+            foreach (FileInfo fajl in files)
+            {
+                fs = new FileStream(fajl.FullName, FileMode.Open, FileAccess.Read);
+                Rezervacija rezervacija = (Rezervacija)serializer.ReadObject(fs);
+                lista.Add(rezervacija);
+                Debug.WriteLine(DateTime.Now.ToString("(HH:mm:ss)") + " " + $"[INFO]: Deserijalizacija objekta sa UUID: {rezervacija.KorisnickiID} - {rezervacija.ProjekcijaID} + sa lokacije {fajl.FullName}");
+                fs.Close();
+            }
+        }
+
+        //Brise fajl ciji se id podudara sa imenom fajla, ako je kupac, menja se UUID
+        //parametar na -1, i time se obavestava korisnik da je njegov nalog obrisan.
+        public static void JSONDelete(object o)
         {
             string folder = "";
             string uuid = "";
-            if (korisnik is Administrator)
+            if (o is Administrator)
             {
                 folder = "administratori";
-                uuid = (korisnik as Administrator).AdminUUID;
-                if (folder != "" && uuid != "")
-                {
-                    string[] file = Directory.GetFiles(@"../data/" + folder, uuid + ".json");
-                    foreach (string fajl in file)
-                    {
-                        File.Delete(fajl);
-                    }
-                }
+                uuid = (o as Administrator).AdminUUID;
             }
-            else if (korisnik is Kupac)
+            else if (o is Film)
+            {
+                folder = "filmovi";
+                uuid = (o as Film).Id;
+            }
+            else if (o is Sala)
+            {
+                folder = "sale";
+                uuid = (o as Sala).Uid;
+            }
+            else if (o is Projekcija)
+            {
+                folder = "projekcije";
+                uuid = (o as Projekcija).Uid;
+            }
+            else if (o is Kupac)
             {
                 folder = "kupci";
-                uuid = (korisnik as Kupac).KupacUUID;
-                (korisnik as Kupac).KupacUUID = "-1";
-                JSONInvalidate(korisnik, folder, uuid);
+                uuid = (o as Kupac).KupacUUID;
+                (o as Kupac).KupacUUID = "-1";
+                JSONInvalidate(o, folder, uuid);
             }
 
-            
+            if (folder != "" && uuid != "")
+            {
+                string[] file = Directory.GetFiles(@"../data/" + folder, uuid + ".json");
+                foreach (string fajl in file)
+                {
+                    File.Delete(fajl);
+                }
+            }
         }
-
-        public static void JSONDeserialize(List<object> lista, string folder)
-        {
-            
-            
-            //while(fs.Position != fs.Length)
-            //{
-            //    Administrator admin = (Administrator)serializer.ReadObject(fs);
-            //    Debug.WriteLine($"Deserijalizacija objekta: ${admin.AdminUUID}");
-            //    lista.Add(admin);
-            //}
-        }
-
-        //public static void UpisiXMLAdministratora(Administrator administrator)
-        //{
-        //    FileStream upisXML = new FileStream(@"../data/administratori.xml", FileMode.Append); //Ako ne postoji fajl, kreira ga
-        //    SoapFormatter formattter = new SoapFormatter();
-
-        //    formattter.Serialize(upisXML, administrator);
-
-        //    upisXML.Flush(); upisXML.Close();
-        //}
-
-        //public static void CitajXMLAdmina(List<Korisnik> lista) 
-        //{
-        //    int brojac = 0; int temp = 1; long pos, len;
-        //    FileStream citanjeXML = new FileStream(@"../data/administratori.xml", FileMode.Open, FileAccess.Read);
-        //    //citanjeXML.Seek(0, SeekOrigin.Begin);
-        //    SoapFormatter formatter = new SoapFormatter();
-        //    pos = citanjeXML.Position;
-        //    len = citanjeXML.Length;
-        //    //List<Administrator> admini = new List<Administrator>();
-        //    if (len != 0)
-        //    {
-        //        do
-        //        {
-        //            lista.Add((Administrator)formatter.Deserialize(citanjeXML));
-        //            pos = citanjeXML.Position;
-        //            //temp -= brojac;
-        //            //brojac++;
-        //        }
-        //        while (citanjeXML.Position < citanjeXML.Length);
-        //    }
-            
-
-        //    pos = citanjeXML.Position;
-
-        //    citanjeXML.Flush(); citanjeXML.Close();
-        //}
     }
 }

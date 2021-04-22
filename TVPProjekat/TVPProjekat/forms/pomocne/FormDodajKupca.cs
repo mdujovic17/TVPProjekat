@@ -9,14 +9,29 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TVPProjekat.korisnik;
 
-namespace TVPProjekat
+namespace TVPProjekat.forms.pomocne
 {
-    public partial class FormDodajAdmina : Form
+    public partial class FormDodajKupca : Form
     {
-        public FormDodajAdmina()
+        public FormDodajKupca()
         {
             InitializeComponent();
         }
+
+        private void dodajNovogKupca(object sender, EventArgs e)
+        {
+            if (!(txtIme.Text.Equals("") && txtPrezime.Text.Equals("") && txtEmail.Text.Equals("") && txtKorisnickoIme.Text.Equals("") && comboPol.SelectedIndex.Equals(null) && txtTelefon.Text.Equals("") && txtSifra.Text.Equals("") && dateDatum.Value.Equals(null)))
+            {
+                Kupac noviKupac = new Kupac(txtIme.Text, txtPrezime.Text, comboPol.SelectedIndex, txtTelefon.Text, txtEmail.Text, txtKorisnickoIme.Text, txtSifra.Text, dateDatum.Value);
+                LocalFileManager.JSONSerialize(noviKupac, "kupci");
+
+                this.Dispose(); //Potrebno da bi se svi resursi ove forme oslobodili, u suprotnom izaziva StackOverflowExepction
+                this.Close();
+
+                MessageBox.Show("Potrebno je osveziti listu da bi ste videli izmene.", "Izmena podataka", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
         private void clear(object sender, EventArgs e)
         {
             txtIme.Clear();
@@ -25,20 +40,6 @@ namespace TVPProjekat
             txtKorisnickoIme.Clear();
             txtSifra.Clear();
             txtTelefon.Clear();
-        }
-
-        private void dodajNovogAdmina(object sender, EventArgs e)
-        {
-            if (!(txtIme.Text.Equals("") && txtPrezime.Text.Equals("") && txtEmail.Text.Equals("") && txtKorisnickoIme.Text.Equals("") && comboPol.SelectedIndex.Equals(null) && txtTelefon.Text.Equals("") && txtSifra.Text.Equals("") && dateDatum.Value.Equals(null)))
-            {
-                Administrator noviAdmin = new Administrator(txtIme.Text, txtPrezime.Text, comboPol.SelectedIndex, txtTelefon.Text, txtEmail.Text, txtKorisnickoIme.Text, txtSifra.Text, dateDatum.Value);
-                LocalFileManager.JSONSerialize(noviAdmin, "administratori");
-
-                this.Dispose(); //Potrebno da bi se svi resursi ove forme oslobodili, u suprotnom izaziva StackOverflowExepction
-                this.Close();
-
-                MessageBox.Show("Potrebno je osveziti listu da bi ste videli izmene.", "Izmena podataka", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
         }
     }
 }

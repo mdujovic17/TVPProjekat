@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TVPProjekat.forms.pomocne;
 using TVPProjekat.korisnik;
 
 namespace TVPProjekat
@@ -18,6 +19,7 @@ namespace TVPProjekat
 
         private static Kupac prijavljenKupac;
         public Form frmLogin;
+        private Form frmRezervacija;
         private List<object> listaRezervacija;
 
         Osvezi osvezavanje = FormLogin.osvezi;
@@ -25,11 +27,6 @@ namespace TVPProjekat
         {
             InitializeComponent();
             osvezavanje(true);
-        }
-
-        private void toolStripStatusLabel1_Click(object sender, EventArgs e)
-        {
-
         }
 
         public static Korisnik PrihvatiKorisnika(Korisnik kupac)
@@ -68,6 +65,12 @@ namespace TVPProjekat
         private void nalogInfo(object sender, EventArgs e)
         {
             MessageBox.Show($"Korisnicko ime: {prijavljenKupac.KorisnickoIme}\nE-Mail: {prijavljenKupac.Email}\nIme i prezime: {prijavljenKupac.Ime} {prijavljenKupac.Prezime}\nBroj telefona: {prijavljenKupac.Telefon}\nPol: {prijavljenKupac.StrPol()}\nDatum rođenja: {prijavljenKupac.DatumRodjenja.ToString("dd/MM/yyyy")}\nUUID: {prijavljenKupac.KupacUUID}");
+        }
+
+        private void btnRezervacija_Click(object sender, EventArgs e)
+        {
+            frmRezervacija = new FormRezervacija();
+            frmRezervacija.Show();
         }
     }
 }

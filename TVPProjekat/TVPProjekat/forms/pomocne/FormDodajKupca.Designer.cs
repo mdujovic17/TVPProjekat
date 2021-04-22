@@ -1,7 +1,7 @@
 ﻿
-namespace TVPProjekat
+namespace TVPProjekat.forms.pomocne
 {
-    partial class FormDodajAdmina
+    partial class FormDodajKupca
     {
         /// <summary>
         /// Required designer variable.
@@ -51,104 +51,104 @@ namespace TVPProjekat
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(202, 262);
+            this.btnClear.Location = new System.Drawing.Point(202, 257);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(158, 23);
-            this.btnClear.TabIndex = 38;
+            this.btnClear.TabIndex = 56;
             this.btnClear.Text = "Obriši formu";
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.clear);
             // 
             // btnDodaj
             // 
-            this.btnDodaj.Location = new System.Drawing.Point(12, 262);
+            this.btnDodaj.Location = new System.Drawing.Point(12, 257);
             this.btnDodaj.Name = "btnDodaj";
             this.btnDodaj.Size = new System.Drawing.Size(158, 23);
-            this.btnDodaj.TabIndex = 37;
-            this.btnDodaj.Text = "Dodaj administratora";
+            this.btnDodaj.TabIndex = 55;
+            this.btnDodaj.Text = "Dodaj kupca";
             this.btnDodaj.UseVisualStyleBackColor = true;
-            this.btnDodaj.Click += new System.EventHandler(this.dodajNovogAdmina);
+            this.btnDodaj.Click += new System.EventHandler(this.dodajNovogKupca);
             // 
             // lblTelefon
             // 
             this.lblTelefon.AutoSize = true;
-            this.lblTelefon.Location = new System.Drawing.Point(9, 220);
+            this.lblTelefon.Location = new System.Drawing.Point(9, 215);
             this.lblTelefon.Name = "lblTelefon";
             this.lblTelefon.Size = new System.Drawing.Size(43, 13);
-            this.lblTelefon.TabIndex = 35;
+            this.lblTelefon.TabIndex = 54;
             this.lblTelefon.Text = "Telefon";
             // 
             // txtTelefon
             // 
-            this.txtTelefon.Location = new System.Drawing.Point(12, 236);
+            this.txtTelefon.Location = new System.Drawing.Point(12, 231);
             this.txtTelefon.Name = "txtTelefon";
             this.txtTelefon.Size = new System.Drawing.Size(348, 20);
-            this.txtTelefon.TabIndex = 34;
+            this.txtTelefon.TabIndex = 53;
             // 
             // lblSifra
             // 
             this.lblSifra.AutoSize = true;
-            this.lblSifra.Location = new System.Drawing.Point(9, 178);
+            this.lblSifra.Location = new System.Drawing.Point(9, 173);
             this.lblSifra.Name = "lblSifra";
             this.lblSifra.Size = new System.Drawing.Size(28, 13);
-            this.lblSifra.TabIndex = 33;
+            this.lblSifra.TabIndex = 52;
             this.lblSifra.Text = "Šifra";
             // 
             // txtSifra
             // 
-            this.txtSifra.Location = new System.Drawing.Point(12, 194);
+            this.txtSifra.Location = new System.Drawing.Point(12, 189);
             this.txtSifra.Name = "txtSifra";
             this.txtSifra.Size = new System.Drawing.Size(348, 20);
-            this.txtSifra.TabIndex = 32;
+            this.txtSifra.TabIndex = 51;
             // 
             // lblEmail
             // 
             this.lblEmail.AutoSize = true;
-            this.lblEmail.Location = new System.Drawing.Point(9, 139);
+            this.lblEmail.Location = new System.Drawing.Point(9, 134);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(36, 13);
-            this.lblEmail.TabIndex = 31;
+            this.lblEmail.TabIndex = 50;
             this.lblEmail.Text = "E-Mail";
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(12, 155);
+            this.txtEmail.Location = new System.Drawing.Point(12, 150);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(348, 20);
-            this.txtEmail.TabIndex = 30;
+            this.txtEmail.TabIndex = 49;
             // 
             // lblKorIme
             // 
             this.lblKorIme.AutoSize = true;
-            this.lblKorIme.Location = new System.Drawing.Point(9, 100);
+            this.lblKorIme.Location = new System.Drawing.Point(9, 95);
             this.lblKorIme.Name = "lblKorIme";
             this.lblKorIme.Size = new System.Drawing.Size(75, 13);
-            this.lblKorIme.TabIndex = 29;
+            this.lblKorIme.TabIndex = 48;
             this.lblKorIme.Text = "Korisničko ime";
             // 
             // txtKorisnickoIme
             // 
-            this.txtKorisnickoIme.Location = new System.Drawing.Point(12, 116);
+            this.txtKorisnickoIme.Location = new System.Drawing.Point(12, 111);
             this.txtKorisnickoIme.Name = "txtKorisnickoIme";
             this.txtKorisnickoIme.Size = new System.Drawing.Size(348, 20);
-            this.txtKorisnickoIme.TabIndex = 28;
+            this.txtKorisnickoIme.TabIndex = 47;
             // 
             // lblPol
             // 
             this.lblPol.AutoSize = true;
-            this.lblPol.Location = new System.Drawing.Point(245, 57);
+            this.lblPol.Location = new System.Drawing.Point(245, 52);
             this.lblPol.Name = "lblPol";
             this.lblPol.Size = new System.Drawing.Size(22, 13);
-            this.lblPol.TabIndex = 27;
+            this.lblPol.TabIndex = 46;
             this.lblPol.Text = "Pol";
             // 
             // lblDatum
             // 
             this.lblDatum.AutoSize = true;
-            this.lblDatum.Location = new System.Drawing.Point(9, 57);
+            this.lblDatum.Location = new System.Drawing.Point(9, 52);
             this.lblDatum.Name = "lblDatum";
             this.lblDatum.Size = new System.Drawing.Size(77, 13);
-            this.lblDatum.TabIndex = 26;
+            this.lblDatum.TabIndex = 45;
             this.lblDatum.Text = "Datum rođenja";
             // 
             // comboPol
@@ -157,55 +157,55 @@ namespace TVPProjekat
             this.comboPol.Items.AddRange(new object[] {
             "M",
             "Ž"});
-            this.comboPol.Location = new System.Drawing.Point(248, 72);
+            this.comboPol.Location = new System.Drawing.Point(248, 67);
             this.comboPol.Name = "comboPol";
             this.comboPol.Size = new System.Drawing.Size(112, 21);
-            this.comboPol.TabIndex = 25;
+            this.comboPol.TabIndex = 44;
             // 
             // dateDatum
             // 
-            this.dateDatum.Location = new System.Drawing.Point(12, 73);
+            this.dateDatum.Location = new System.Drawing.Point(12, 68);
             this.dateDatum.Name = "dateDatum";
             this.dateDatum.Size = new System.Drawing.Size(230, 20);
-            this.dateDatum.TabIndex = 24;
+            this.dateDatum.TabIndex = 43;
             // 
             // lblPrezime
             // 
             this.lblPrezime.AutoSize = true;
-            this.lblPrezime.Location = new System.Drawing.Point(186, 13);
+            this.lblPrezime.Location = new System.Drawing.Point(186, 8);
             this.lblPrezime.Name = "lblPrezime";
             this.lblPrezime.Size = new System.Drawing.Size(44, 13);
-            this.lblPrezime.TabIndex = 23;
+            this.lblPrezime.TabIndex = 42;
             this.lblPrezime.Text = "Prezime";
             // 
             // lblIme
             // 
             this.lblIme.AutoSize = true;
-            this.lblIme.Location = new System.Drawing.Point(9, 13);
+            this.lblIme.Location = new System.Drawing.Point(9, 8);
             this.lblIme.Name = "lblIme";
             this.lblIme.Size = new System.Drawing.Size(24, 13);
-            this.lblIme.TabIndex = 22;
+            this.lblIme.TabIndex = 41;
             this.lblIme.Text = "Ime";
             // 
             // txtPrezime
             // 
-            this.txtPrezime.Location = new System.Drawing.Point(189, 29);
+            this.txtPrezime.Location = new System.Drawing.Point(189, 24);
             this.txtPrezime.Name = "txtPrezime";
             this.txtPrezime.Size = new System.Drawing.Size(171, 20);
-            this.txtPrezime.TabIndex = 21;
+            this.txtPrezime.TabIndex = 40;
             // 
             // txtIme
             // 
-            this.txtIme.Location = new System.Drawing.Point(12, 29);
+            this.txtIme.Location = new System.Drawing.Point(12, 24);
             this.txtIme.Name = "txtIme";
             this.txtIme.Size = new System.Drawing.Size(171, 20);
-            this.txtIme.TabIndex = 20;
+            this.txtIme.TabIndex = 39;
             // 
-            // FormDodajAdmina
+            // FormDodajKupca
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(373, 300);
+            this.ClientSize = new System.Drawing.Size(374, 294);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnDodaj);
             this.Controls.Add(this.lblTelefon);
@@ -224,14 +224,15 @@ namespace TVPProjekat
             this.Controls.Add(this.lblIme);
             this.Controls.Add(this.txtPrezime);
             this.Controls.Add(this.txtIme);
-            this.Name = "FormDodajAdmina";
-            this.Text = "FormDodajAdmina";
+            this.Name = "FormDodajKupca";
+            this.Text = "FormDodajKorisnika";
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
+
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button btnDodaj;
         private System.Windows.Forms.Label lblTelefon;
