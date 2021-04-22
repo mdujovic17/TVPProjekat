@@ -1,4 +1,4 @@
-﻿Legenda: X = TODO; O = Done; ? = Untested
+﻿Legenda: X = TODO; O = Done; ? = Untested; P = Prototype
 
 X:9; O:5; ?:0;
 [X] FormKupac
