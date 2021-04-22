@@ -30,7 +30,6 @@ namespace TVPProjekat
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.btnDetalji = new System.Windows.Forms.Button();
             this.btnOtkazi = new System.Windows.Forms.Button();
             this.btnRezervacija = new System.Windows.Forms.Button();
             this.lvRezervacije = new System.Windows.Forms.ListView();
@@ -44,7 +43,8 @@ namespace TVPProjekat
             this.stripStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.btnOdjava = new System.Windows.Forms.Button();
             this.btnNalog = new System.Windows.Forms.Button();
-            this.btnPrikazi = new System.Windows.Forms.Button();
+            this.clmCena = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnOsvezi = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,27 +57,19 @@ namespace TVPProjekat
             this.label1.TabIndex = 1;
             this.label1.Text = "Vaše rezervacije";
             // 
-            // btnDetalji
-            // 
-            this.btnDetalji.Location = new System.Drawing.Point(661, 81);
-            this.btnDetalji.Name = "btnDetalji";
-            this.btnDetalji.Size = new System.Drawing.Size(126, 23);
-            this.btnDetalji.TabIndex = 2;
-            this.btnDetalji.Text = "Detalji rezervacije";
-            this.btnDetalji.UseVisualStyleBackColor = true;
-            // 
             // btnOtkazi
             // 
-            this.btnOtkazi.Location = new System.Drawing.Point(661, 110);
+            this.btnOtkazi.Location = new System.Drawing.Point(662, 82);
             this.btnOtkazi.Name = "btnOtkazi";
             this.btnOtkazi.Size = new System.Drawing.Size(126, 23);
             this.btnOtkazi.TabIndex = 3;
             this.btnOtkazi.Text = "Otkaži rezervaciju";
             this.btnOtkazi.UseVisualStyleBackColor = true;
+            this.btnOtkazi.Click += new System.EventHandler(this.otkaziRezervaciju);
             // 
             // btnRezervacija
             // 
-            this.btnRezervacija.Location = new System.Drawing.Point(661, 53);
+            this.btnRezervacija.Location = new System.Drawing.Point(662, 53);
             this.btnRezervacija.Name = "btnRezervacija";
             this.btnRezervacija.Size = new System.Drawing.Size(126, 23);
             this.btnRezervacija.TabIndex = 4;
@@ -92,7 +84,8 @@ namespace TVPProjekat
             this.film,
             this.bioskop,
             this.datumVreme,
-            this.brojSedista});
+            this.brojSedista,
+            this.clmCena});
             this.lvRezervacije.HideSelection = false;
             this.lvRezervacije.Location = new System.Drawing.Point(12, 24);
             this.lvRezervacije.Name = "lvRezervacije";
@@ -104,12 +97,12 @@ namespace TVPProjekat
             // idRezervacije
             // 
             this.idRezervacije.Text = "ID Rezervacije";
-            this.idRezervacije.Width = 85;
+            this.idRezervacije.Width = 84;
             // 
             // film
             // 
             this.film.Text = "Naziv filma";
-            this.film.Width = 190;
+            this.film.Width = 172;
             // 
             // bioskop
             // 
@@ -119,7 +112,7 @@ namespace TVPProjekat
             // datumVreme
             // 
             this.datumVreme.Text = "Datum i vreme";
-            this.datumVreme.Width = 164;
+            this.datumVreme.Width = 108;
             // 
             // brojSedista
             // 
@@ -168,29 +161,35 @@ namespace TVPProjekat
             this.btnNalog.TabIndex = 8;
             this.btnNalog.Text = "Detalji naloga";
             this.btnNalog.UseVisualStyleBackColor = true;
+            this.btnNalog.Click += new System.EventHandler(this.detaljiNaloga);
             // 
-            // btnPrikazi
+            // clmCena
             // 
-            this.btnPrikazi.Location = new System.Drawing.Point(662, 24);
-            this.btnPrikazi.Name = "btnPrikazi";
-            this.btnPrikazi.Size = new System.Drawing.Size(125, 23);
-            this.btnPrikazi.TabIndex = 9;
-            this.btnPrikazi.Text = "Prikazi rezervacije";
-            this.btnPrikazi.UseVisualStyleBackColor = true;
+            this.clmCena.Text = "Cena";
+            this.clmCena.Width = 74;
+            // 
+            // btnOsvezi
+            // 
+            this.btnOsvezi.Location = new System.Drawing.Point(662, 24);
+            this.btnOsvezi.Name = "btnOsvezi";
+            this.btnOsvezi.Size = new System.Drawing.Size(126, 23);
+            this.btnOsvezi.TabIndex = 9;
+            this.btnOsvezi.Text = "Osveži listu";
+            this.btnOsvezi.UseVisualStyleBackColor = true;
+            this.btnOsvezi.Click += new System.EventHandler(this.prikaziListu);
             // 
             // FormKupac
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 273);
-            this.Controls.Add(this.btnPrikazi);
+            this.Controls.Add(this.btnOsvezi);
             this.Controls.Add(this.btnNalog);
             this.Controls.Add(this.btnOdjava);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.lvRezervacije);
             this.Controls.Add(this.btnRezervacija);
             this.Controls.Add(this.btnOtkazi);
-            this.Controls.Add(this.btnDetalji);
             this.Controls.Add(this.label1);
             this.Name = "FormKupac";
             this.Text = "FormKupac";
@@ -205,7 +204,6 @@ namespace TVPProjekat
 
         #endregion
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnDetalji;
         private System.Windows.Forms.Button btnOtkazi;
         private System.Windows.Forms.Button btnRezervacija;
         private System.Windows.Forms.ListView lvRezervacije;
@@ -219,6 +217,7 @@ namespace TVPProjekat
         private System.Windows.Forms.Button btnOdjava;
         private System.Windows.Forms.ToolStripStatusLabel stripUser;
         private System.Windows.Forms.Button btnNalog;
-        private System.Windows.Forms.Button btnPrikazi;
+        private System.Windows.Forms.ColumnHeader clmCena;
+        private System.Windows.Forms.Button btnOsvezi;
     }
 }

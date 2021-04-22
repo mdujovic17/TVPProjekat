@@ -225,7 +225,6 @@ namespace TVPProjekat
                 fs.Close();
             }
         }
-
         //Brise fajl ciji se id podudara sa imenom fajla, ako je kupac, menja se UUID
         //parametar na -1, i time se obavestava korisnik da je njegov nalog obrisan.
         public static void JSONDelete(object o)

@@ -18,3 +18,5 @@ C:\source\TVPProjekat\TVPProjekat\TVPProjekat\obj\Debug\TVPProjekat.forms.pomocn
 C:\source\TVPProjekat\TVPProjekat\TVPProjekat\obj\Debug\TVPProjekat.forms.pomocne.FormDodajProjekciju.resources
 C:\source\TVPProjekat\TVPProjekat\TVPProjekat\obj\Debug\TVPProjekat.forms.pomocne.FormDodajSalu.resources
 C:\source\TVPProjekat\TVPProjekat\TVPProjekat\obj\Debug\TVPProjekat.forms.pomocne.FormIzmenaKorisnik.resources
+C:\source\TVPProjekat\TVPProjekat\TVPProjekat\obj\Debug\TVPProjekat.forms.pomocne.FormDetaljiNaloga.resources
+C:\source\TVPProjekat\TVPProjekat\TVPProjekat\obj\Debug\TVPProjekat.forms.pomocne.FormDetaljiRezervacije.resources

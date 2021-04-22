@@ -30,7 +30,24 @@ namespace TVPProjekat.forms.pomocne
         {
             if ((this.txtCena.Text != null || txtCena.Text != "") && (this.comboFilm.SelectedIndex != -1) && (this.comboSala.SelectedIndex != -1))
             {
-                novaProjekcija = new Projekcija(comboFilm.SelectedItem.ToString(), comboSala.SelectedIndex + 1, dateTimePicker1.Value, timeVreme.Value, double.Parse(txtCena.Text));
+                Film film = null;
+                int brojDosupnihMesta = 0;
+                foreach (Film film1 in filmovi)
+                {
+                    if (film1.ImeFilma.Equals(comboFilm.SelectedItem.ToString()))
+                    {
+                        film = film1;
+                        break;
+                    }
+                }
+                foreach (Sala sala in sale)
+                {
+                    if ((comboSala.SelectedIndex + 1).ToString().Equals(sala.BrojSale.ToString()))
+                    {
+                        brojDosupnihMesta = sala.UkupanBrojSedista;
+                    }
+                }
+                novaProjekcija = new Projekcija(film, comboSala.SelectedIndex + 1, brojDosupnihMesta, dateTimePicker1.Value, timeVreme.Value, double.Parse(txtCena.Text));
                 LocalFileManager.JSONSerialize(novaProjekcija, "projekcije");
 
                 this.Dispose();

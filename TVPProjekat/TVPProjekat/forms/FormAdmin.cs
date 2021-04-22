@@ -208,11 +208,11 @@ namespace TVPProjekat
             ocistiLV();
 
             lvAdminPrikaz.Columns.Add("ID Projekcije", 110);
-            lvAdminPrikaz.Columns.Add("Datum projekcije", 100);
+            lvAdminPrikaz.Columns.Add("Datum i vreme projekcije", 200);
             lvAdminPrikaz.Columns.Add("Sala", 60);
             lvAdminPrikaz.Columns.Add("Cena karte", 90);
-            lvAdminPrikaz.Columns.Add("Vreme projekcije", 100);
             lvAdminPrikaz.Columns.Add("Film", 150);
+            lvAdminPrikaz.Columns.Add("Dostupna mesta");
 
             LocalFileManager.JSONDeserialize(projekcije, "projekcije");
             LocalFileManager.JSONDeserialize(sale, "sale");
@@ -221,7 +221,7 @@ namespace TVPProjekat
             for (int i = 0; i < projekcije.Count; i++)
             {
                 Projekcija p = projekcije[i];
-                ListViewItem item = new ListViewItem(new[] { p.Uid, p.DatumProjekcije.ToString("dd/MM/yyyy"), "Sala " + p.Sala, p.CenaKarte + " RSD", p.VremeProjekcije.ToString("HH:mm"), p.Film });
+                ListViewItem item = new ListViewItem(new[] { p.Uid, p.DatumProjekcije.ToString("dd/MM/yyyy") + " " + p.VremeProjekcije.ToString("HH:mm"), "Sala " + p.Sala, p.CenaKarte + " RSD", p.Film.ImeFilma, p.DostupnaMesta.ToString() });
                 lvAdminPrikaz.Items.Add(item);
             }
         }

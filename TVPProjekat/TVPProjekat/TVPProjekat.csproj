@@ -58,6 +58,12 @@
     <Compile Include="forms\FormAdmin.Designer.cs">
       <DependentUpon>FormAdmin.cs</DependentUpon>
     </Compile>
+    <Compile Include="forms\pomocne\FormDetaljiNaloga.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\pomocne\FormDetaljiNaloga.Designer.cs">
+      <DependentUpon>FormDetaljiNaloga.cs</DependentUpon>
+    </Compile>
     <Compile Include="forms\pomocne\FormDetaljiRezervacije.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +139,9 @@
     <Compile Include="util\ProveraForme.cs" />
     <EmbeddedResource Include="forms\FormAdmin.resx">
       <DependentUpon>FormAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\pomocne\FormDetaljiNaloga.resx">
+      <DependentUpon>FormDetaljiNaloga.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\pomocne\FormDetaljiRezervacije.resx">
       <DependentUpon>FormDetaljiRezervacije.cs</DependentUpon>

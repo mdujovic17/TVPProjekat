@@ -29,32 +29,48 @@ namespace TVPProjekat.forms.pomocne
         /// </summary>
         private void InitializeComponent()
         {
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.lvProjekcije = new System.Windows.Forms.ListView();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.datePocetniDatum = new System.Windows.Forms.DateTimePicker();
+            this.dateKrajniDatum = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboSale = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.comboNazivFilma = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.clmImeFilma = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.clmTrajanje = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.clmCenaKarte = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.clmDatumIVreme = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.clmSala = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.clmBrojDostupnihSedista = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
-            // listView1
+            // lvProjekcije
             // 
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(12, 89);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(682, 191);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.lvProjekcije.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.clmImeFilma,
+            this.clmTrajanje,
+            this.clmCenaKarte,
+            this.clmDatumIVreme,
+            this.clmSala,
+            this.clmBrojDostupnihSedista});
+            this.lvProjekcije.FullRowSelect = true;
+            this.lvProjekcije.HideSelection = false;
+            this.lvProjekcije.Location = new System.Drawing.Point(12, 89);
+            this.lvProjekcije.Name = "lvProjekcije";
+            this.lvProjekcije.Size = new System.Drawing.Size(682, 191);
+            this.lvProjekcije.TabIndex = 0;
+            this.lvProjekcije.UseCompatibleStateImageBehavior = false;
+            this.lvProjekcije.View = System.Windows.Forms.View.Details;
+            this.lvProjekcije.SelectedIndexChanged += new System.EventHandler(this.selektujObjekat);
             // 
             // numericUpDown1
             // 
@@ -106,19 +122,19 @@ namespace TVPProjekat.forms.pomocne
             this.label3.TabIndex = 6;
             this.label3.Text = "Rezervacija projekcije";
             // 
-            // dateTimePicker1
+            // datePocetniDatum
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(12, 63);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(174, 20);
-            this.dateTimePicker1.TabIndex = 7;
+            this.datePocetniDatum.Location = new System.Drawing.Point(12, 63);
+            this.datePocetniDatum.Name = "datePocetniDatum";
+            this.datePocetniDatum.Size = new System.Drawing.Size(174, 20);
+            this.datePocetniDatum.TabIndex = 7;
             // 
-            // dateTimePicker2
+            // dateKrajniDatum
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(192, 63);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(174, 20);
-            this.dateTimePicker2.TabIndex = 8;
+            this.dateKrajniDatum.Location = new System.Drawing.Point(192, 63);
+            this.dateKrajniDatum.Name = "dateKrajniDatum";
+            this.dateKrajniDatum.Size = new System.Drawing.Size(174, 20);
+            this.dateKrajniDatum.TabIndex = 8;
             // 
             // label4
             // 
@@ -138,13 +154,13 @@ namespace TVPProjekat.forms.pomocne
             this.label5.TabIndex = 10;
             this.label5.Text = "Krajnji datum";
             // 
-            // comboBox1
+            // comboSale
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(372, 62);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 11;
+            this.comboSale.FormattingEnabled = true;
+            this.comboSale.Location = new System.Drawing.Point(372, 62);
+            this.comboSale.Name = "comboSale";
+            this.comboSale.Size = new System.Drawing.Size(121, 21);
+            this.comboSale.TabIndex = 11;
             // 
             // label6
             // 
@@ -155,13 +171,13 @@ namespace TVPProjekat.forms.pomocne
             this.label6.TabIndex = 12;
             this.label6.Text = "Sala";
             // 
-            // comboBox2
+            // comboNazivFilma
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(500, 62);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(194, 21);
-            this.comboBox2.TabIndex = 13;
+            this.comboNazivFilma.FormattingEnabled = true;
+            this.comboNazivFilma.Location = new System.Drawing.Point(500, 62);
+            this.comboNazivFilma.Name = "comboNazivFilma";
+            this.comboNazivFilma.Size = new System.Drawing.Size(194, 21);
+            this.comboNazivFilma.TabIndex = 13;
             // 
             // label7
             // 
@@ -172,28 +188,60 @@ namespace TVPProjekat.forms.pomocne
             this.label7.TabIndex = 14;
             this.label7.Text = "Naziv filma";
             // 
+            // clmImeFilma
+            // 
+            this.clmImeFilma.Text = "Film";
+            this.clmImeFilma.Width = 201;
+            // 
+            // clmTrajanje
+            // 
+            this.clmTrajanje.Text = "Trajanje";
+            this.clmTrajanje.Width = 57;
+            // 
+            // clmCenaKarte
+            // 
+            this.clmCenaKarte.Text = "Cena karte";
+            this.clmCenaKarte.Width = 82;
+            // 
+            // clmDatumIVreme
+            // 
+            this.clmDatumIVreme.Text = "Datum i Vreme";
+            this.clmDatumIVreme.Width = 145;
+            // 
+            // clmSala
+            // 
+            this.clmSala.Text = "Sala";
+            this.clmSala.Width = 62;
+            // 
+            // clmBrojDostupnihSedista
+            // 
+            this.clmBrojDostupnihSedista.Text = "Broj dostupnih mesta";
+            this.clmBrojDostupnihSedista.Width = 130;
+            // 
             // FormRezervacija
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(706, 318);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.comboNazivFilma);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.comboSale);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.dateTimePicker2);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.dateKrajniDatum);
+            this.Controls.Add(this.datePocetniDatum);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.numericUpDown1);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.lvProjekcije);
             this.Name = "FormRezervacija";
             this.Text = "FormRezervacija";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.zatvori);
+            this.Load += new System.EventHandler(this.ucitajPodatke);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -202,20 +250,26 @@ namespace TVPProjekat.forms.pomocne
 
         #endregion
 
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView lvProjekcije;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker datePocetniDatum;
+        private System.Windows.Forms.DateTimePicker dateKrajniDatum;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboSale;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox comboNazivFilma;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ColumnHeader clmImeFilma;
+        private System.Windows.Forms.ColumnHeader clmTrajanje;
+        private System.Windows.Forms.ColumnHeader clmCenaKarte;
+        private System.Windows.Forms.ColumnHeader clmDatumIVreme;
+        private System.Windows.Forms.ColumnHeader clmSala;
+        private System.Windows.Forms.ColumnHeader clmBrojDostupnihSedista;
     }
 }

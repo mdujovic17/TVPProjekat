@@ -11,9 +11,11 @@ namespace TVPProjekat.bioskop
     class Projekcija
     {
         [DataMember]
-        private string film;
+        private Film film;
         [DataMember]
         private int sala;
+        [DataMember]
+        private int dostupnaMesta;
         [DataMember]
         private DateTime datumProjekcije;
         [DataMember]
@@ -24,21 +26,23 @@ namespace TVPProjekat.bioskop
         private string uid;
 
         //Kreiranje nove projekcije
-        public Projekcija(string film, int sala, DateTime datumProjekcije, DateTime vremeProjekcije, double cenaKarte)
+        public Projekcija(Film film, int sala, int dostupnaMesta, DateTime datumProjekcije, DateTime vremeProjekcije, double cenaKarte)
         {
             this.Uid = generateUID();
             this.Film = film;
             this.Sala = sala;
+            this.DostupnaMesta = dostupnaMesta;
             this.DatumProjekcije = datumProjekcije;
             this.VremeProjekcije = vremeProjekcije;
             this.CenaKarte = cenaKarte;
         }
 
-        public Projekcija(string uid, string film, int sala, DateTime datumProjekcije, DateTime vremeProjekcije, double cenaKarte)
+        public Projekcija(string uid, Film film, int sala, int dostupnaMesta, DateTime datumProjekcije, DateTime vremeProjekcije, double cenaKarte)
         {
             this.Uid = uid;
             this.Film = film;
             this.Sala = sala;
+            this.DostupnaMesta = dostupnaMesta;
             this.DatumProjekcije = datumProjekcije;
             this.VremeProjekcije = vremeProjekcije;
             this.CenaKarte = cenaKarte;
@@ -48,7 +52,8 @@ namespace TVPProjekat.bioskop
         public DateTime VremeProjekcije { get => vremeProjekcije; set => vremeProjekcije = value; }
         public double CenaKarte { get => cenaKarte; set => cenaKarte = value; }
         public string Uid { get => uid; set => uid = value; }
-        internal string Film { get => film; set => film = value; }
+        public int DostupnaMesta { get => dostupnaMesta; set => dostupnaMesta = value; }
+        internal Film Film { get => film; set => film = value; }
         internal int Sala { get => sala; set => sala = value; }
 
         private string generateUID()
