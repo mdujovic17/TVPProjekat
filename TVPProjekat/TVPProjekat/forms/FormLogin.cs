@@ -42,7 +42,7 @@ namespace TVPProjekat
         private void prijaviKorisnika(string username, string password)
         {
             string tempUsername, tempPassword;
-            //string uuid;
+            string uuid;
             foreach (Korisnik k in listaKorisnika)
             {
                 Kupac k1 = k as Kupac;
@@ -63,10 +63,23 @@ namespace TVPProjekat
                         tempPassword = password;
                         if (k1 != null)
                         {
-                            frmKupac = new FormKupac();
-                            posaljiKorisnika prijava = FormKupac.PrihvatiKorisnika;
-                            provera = true;
-                            prijava(k1);
+                            uuid = k1.KupacUUID;
+                            if (uuid != "-1")
+                            {
+                                frmKupac = new FormKupac();
+                                posaljiKorisnika prijava = FormKupac.PrihvatiKorisnika;
+                                provera = true;
+                                prijava(k1);
+                                frmKupac.frmLogin = this;
+
+                                frmKupac.Show();
+                                this.Hide();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Vaš nalog je obrisan od strane administratora.\nKontaktirajte korisnički servis za više informacija.", "Obrisan nalog", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                            }
+                            
                         }
                         else if (a1 != null)
                         {
@@ -74,6 +87,10 @@ namespace TVPProjekat
                             posaljiKorisnika prijava = FormAdmin.PrihvatiKorisnika;
                             provera = true;
                             prijava(a1);
+                            frmAdmin.frmLogin = this;
+
+                            frmAdmin.Show();
+                            this.Hide();
                         }
                     }
 
@@ -88,7 +105,8 @@ namespace TVPProjekat
             LocalFileManager lfm = new LocalFileManager(); //Ucitava osnovnu listu korisnika (..\data\default.csv)
             listaKorisnika = lfm.UserCSVRead();
             Debug.WriteLine(DateTime.Now.ToString("(HH:mm:ss)") +" "+ "[UPOZORENJE]: Ucitana je baza osnovnih naloga!");
-            //LocalFileManager.CitajXMLAdmina(listaKorisnika);
+
+            //Ucitavanje korisnika iz JSON fajlova
             LocalFileManager.JSONDeserialize(listaKorisnika, "administratori");
             LocalFileManager.JSONDeserialize(listaKorisnika, "kupci");
 
@@ -101,10 +119,7 @@ namespace TVPProjekat
 
             if (provera)
             {
-                frmAdmin.frmLogin = this;
-
-                frmAdmin.Show();
-                this.Hide();
+                
             }
         }
 

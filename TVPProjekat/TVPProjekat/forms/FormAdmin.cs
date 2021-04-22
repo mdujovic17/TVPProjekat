@@ -21,7 +21,9 @@ namespace TVPProjekat
         private Form frmDodajAdmina;
         private List<Korisnik> administratori;
         private List<Korisnik> kupci;
-        //private Korisnik selectedItem;
+        private Korisnik selectedItem;
+
+        private string sifra;
 
         Osvezi osvezavanje = FormLogin.osvezi;
 
@@ -76,33 +78,19 @@ namespace TVPProjekat
             this.lvAdminPrikaz.Columns.Add("Sifra (E)", 100);
             this.lvAdminPrikaz.Columns.Add("Datum rodjenja", 100);
 
-            //LocalFileManager lfm = new LocalFileManager();
-            //administratori = lfm.UserCSVRead();
-
             LocalFileManager.JSONDeserialize(administratori, "administratori");
 
             foreach (Administrator administrator in administratori)
-            { 
-                ListViewItem item = new ListViewItem(new[] { administrator.AdminUUID, administrator.Ime, administrator.Prezime, administrator.StrPol(), administrator.Telefon, administrator.Email, administrator.KorisnickoIme, administrator.Sifra, administrator.DatumRodjenja.ToString("dd/MM/yyyy") });
+            {
+                sifra = "";
+                for (int j = 0; j < administrator.Sifra.Length; j++)
+                {
+                    sifra += "*";
+                }
+                ListViewItem item = new ListViewItem(new[] { administrator.AdminUUID, administrator.Ime, administrator.Prezime, administrator.StrPol(), administrator.Telefon, administrator.Email, administrator.KorisnickoIme, sifra, administrator.DatumRodjenja.ToString("dd/MM/yyyy") });
 
                 this.lvAdminPrikaz.Items.Add(item);
             }
-
-            //for (int i = 0; i < administratori.Count; i++)
-            //{
-            //    if (administratori[i] is Kupac)
-            //    {
-            //        administratori.Remove(administratori[i]);
-            //        i--;
-            //    }
-            //    else
-            //    {
-            //        Administrator a = administratori[i] as Administrator;
-            //        ListViewItem item = new ListViewItem(new[] { a.AdminUUID, a.Ime, a.Prezime, a.Pol.ToString(), a.Telefon, a.Email, a.KorisnickoIme, a.Sifra, a.DatumRodjenja.ToString("dd/MM/yyyy") });
-
-            //        this.lvAdminPrikaz.Items.Add(item);
-            //    }
-            //}
         }
 
         private void odjaviSe(object sender, EventArgs e)
@@ -129,6 +117,7 @@ namespace TVPProjekat
 
         private void prikaziKorisnike(object sender, EventArgs e)
         {
+            kupci = new List<Korisnik>();
             if (this.lvAdminPrikaz.Columns.Count != 0)
             {
                 for (int i = 0; i < this.lvAdminPrikaz.Columns.Count; i++)
@@ -152,8 +141,8 @@ namespace TVPProjekat
             this.lvAdminPrikaz.Columns.Add("Datum rodjenja", 90);
             this.lvAdminPrikaz.Columns.Add("Rezervacije", 70);
 
-            LocalFileManager lfm = new LocalFileManager();
-            kupci = lfm.UserCSVRead();
+            LocalFileManager.JSONDeserialize(kupci, "kupci");
+
             for (int i = 0; i < kupci.Count; i++)
             {
                 if (kupci[i] is Administrator)
@@ -164,7 +153,12 @@ namespace TVPProjekat
                 else
                 {
                     Kupac k = kupci[i] as Kupac;
-                    ListViewItem item = new ListViewItem(new[] { k.KupacUUID, k.Ime, k.Prezime, k.Pol.ToString(), k.Telefon, k.Email, k.KorisnickoIme, k.Sifra, k.DatumRodjenja.ToString("dd/MM/yyyy") });
+                    sifra = "";
+                    for (int j = 0; j < k.Sifra.Length; j++)
+                    {
+                        sifra += "*";
+                    }
+                    ListViewItem item = new ListViewItem(new[] { k.KupacUUID, k.Ime, k.Prezime, k.StrPol(), k.Telefon, k.Email, k.KorisnickoIme, sifra, k.DatumRodjenja.ToString("dd/MM/yyyy") });
 
                     this.lvAdminPrikaz.Items.Add(item);
                 }
@@ -181,6 +175,7 @@ namespace TVPProjekat
             }
 
             this.statusUUID.Text += selektovanUUID;
+            kontrola(selektovanUUID);
 
             if (selektovanUUID.Equals(""))
             {
@@ -198,6 +193,63 @@ namespace TVPProjekat
         {
             frmDodajAdmina = new FormDodajAdmina();
             frmDodajAdmina.Show();
+        }
+
+        private void kontrola(string uuid)
+        {
+            if (uuid.Length == 20 || uuid.Length == 22)
+            {
+                foreach (Administrator admin in administratori)
+                {
+                    if (admin.AdminUUID.Equals(uuid))
+                    {
+                        this.selectedItem = admin;
+                        Debug.WriteLine(DateTime.Now.ToString("(HH:mm:ss)") + " " + "Selektovan UUID: " + admin.AdminUUID);
+                        break;
+                    }
+                }
+            }
+            else if(uuid.Length == 14 || uuid.Length == 16)
+            {
+                foreach (Kupac kupac in kupci)
+                {
+                    if (kupac.KupacUUID.Equals(uuid))
+                    {
+                        this.selectedItem = kupac;
+                        Debug.WriteLine(DateTime.Now.ToString("(HH:mm:ss)") + " " + "Selektovan UUID: " + kupac.KupacUUID);
+                        break;
+                    }
+                }
+            }
+        }
+
+        private void obrisiStavku(object sender, EventArgs e)
+        {
+            DialogResult konacno = MessageBox.Show("Da li ste sigurni da zelite da obrisete izabranu stavku? Obrisane stavke ne mogu da se povrate!", "Brisanje", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+            if (konacno == DialogResult.Yes)
+            {
+                LocalFileManager.JSONDelete(selectedItem);
+                if (selectedItem is Administrator)
+                {
+                    btnShowAdmins_Click(sender, e);
+                }
+                else if (selectedItem is Kupac)
+                {
+                    prikaziKorisnike(sender, e);
+                }
+            }
+        }
+
+        private void izmeniOdabrano(object sender, EventArgs e)
+        {
+            if (selectedItem is Administrator)
+            {
+
+            }
+            else if (selectedItem is Kupac)
+            {
+
+            }
         }
     }
 }

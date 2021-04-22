@@ -166,6 +166,7 @@ namespace TVPProjekat
             this.txtSifra.Name = "txtSifra";
             this.txtSifra.Size = new System.Drawing.Size(348, 20);
             this.txtSifra.TabIndex = 12;
+            this.txtSifra.UseSystemPasswordChar = true;
             // 
             // lblTelefon
             // 
@@ -201,6 +202,7 @@ namespace TVPProjekat
             this.btnRegister.TabIndex = 17;
             this.btnRegister.Text = "Registruj se";
             this.btnRegister.UseVisualStyleBackColor = true;
+            this.btnRegister.Click += new System.EventHandler(this.registrujKorisnika);
             // 
             // btnClear
             // 

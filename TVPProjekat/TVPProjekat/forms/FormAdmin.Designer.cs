@@ -142,6 +142,7 @@ namespace TVPProjekat
             this.btnObrisi.TabIndex = 9;
             this.btnObrisi.Text = "Obrisi stavku";
             this.btnObrisi.UseVisualStyleBackColor = true;
+            this.btnObrisi.Click += new System.EventHandler(this.obrisiStavku);
             // 
             // btnIzmeni
             // 
@@ -152,6 +153,7 @@ namespace TVPProjekat
             this.btnIzmeni.TabIndex = 10;
             this.btnIzmeni.Text = "Izmeni selektovano";
             this.btnIzmeni.UseVisualStyleBackColor = true;
+            this.btnIzmeni.Click += new System.EventHandler(this.izmeniOdabrano);
             // 
             // btnDodaj
             // 

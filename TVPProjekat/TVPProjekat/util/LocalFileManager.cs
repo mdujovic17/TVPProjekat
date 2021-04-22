@@ -84,15 +84,43 @@ namespace TVPProjekat
                     fs = new FileStream(directoryPath + (o as Administrator).AdminUUID + ".json", FileMode.Create, FileAccess.ReadWrite);
                     serializer = new DataContractJsonSerializer(typeof(Administrator));
                     serializer.WriteObject(fs, o);
+                    fs.Flush(); fs.Close();
                     break;
                 case "kupci":
                     fs = new FileStream(directoryPath + (o as Kupac).KupacUUID + ".json", FileMode.Create, FileAccess.ReadWrite);
                     serializer = new DataContractJsonSerializer(typeof(Kupac));
                     serializer.WriteObject(fs, o);
+                    fs.Flush(); fs.Close();
                     break;
                 case "filmovi":
                     break;
                 case "bioskopi":
+                    break;
+                default:
+                    Debug.WriteLine(DateTime.Now.ToString("(HH: mm:ss)") + " " + $"[GRESKA]: Folder {folder} ne postoji!");
+                    break;
+            }
+            
+        }
+
+        private static void JSONInvalidate(object o, string folder, string uuid)
+        {
+            FileStream fs;
+            DataContractJsonSerializer serializer;
+            string directoryPath = @"..\data\" + folder + @"\";
+            switch (folder)
+            {
+                case "administratori":
+                    fs = new FileStream(directoryPath + uuid + ".json", FileMode.Create, FileAccess.ReadWrite);
+                    serializer = new DataContractJsonSerializer(typeof(Administrator));
+                    serializer.WriteObject(fs, o);
+                    fs.Flush(); fs.Close();
+                    break;
+                case "kupci":
+                    fs = new FileStream(directoryPath + uuid + ".json", FileMode.Create, FileAccess.ReadWrite);
+                    serializer = new DataContractJsonSerializer(typeof(Kupac));
+                    serializer.WriteObject(fs, o);
+                    fs.Flush(); fs.Close();
                     break;
                 default:
                     Debug.WriteLine(DateTime.Now.ToString("(HH: mm:ss)") + " " + $"[GRESKA]: Folder {folder} ne postoji!");
@@ -132,8 +160,38 @@ namespace TVPProjekat
                     default:
                         break;
                 }
-
+                fs.Close();
             }
+        }
+
+        //Brise korisnicki fajl, ako je admin, kompletno brise korisnika, ako je kupac,
+        //Menja se UUID parametar na -1, i time se obavestava korisnik da je njegov nalog obrisan.
+        public static void JSONDelete(Korisnik korisnik)
+        {
+            string folder = "";
+            string uuid = "";
+            if (korisnik is Administrator)
+            {
+                folder = "administratori";
+                uuid = (korisnik as Administrator).AdminUUID;
+                if (folder != "" && uuid != "")
+                {
+                    string[] file = Directory.GetFiles(@"../data/" + folder, uuid + ".json");
+                    foreach (string fajl in file)
+                    {
+                        File.Delete(fajl);
+                    }
+                }
+            }
+            else if (korisnik is Kupac)
+            {
+                folder = "kupci";
+                uuid = (korisnik as Kupac).KupacUUID;
+                (korisnik as Kupac).KupacUUID = "-1";
+                JSONInvalidate(korisnik, folder, uuid);
+            }
+
+            
         }
 
         public static void JSONDeserialize(List<object> lista, string folder)

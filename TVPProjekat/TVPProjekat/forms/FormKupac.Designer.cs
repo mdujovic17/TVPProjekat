@@ -41,13 +41,15 @@ namespace TVPProjekat
             this.brojSedista = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.stripStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.btnOdjava = new System.Windows.Forms.Button();
+            this.stripUser = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 288);
+            this.label1.Location = new System.Drawing.Point(12, 191);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(85, 13);
             this.label1.TabIndex = 1;
@@ -55,7 +57,7 @@ namespace TVPProjekat
             // 
             // btnDetalji
             // 
-            this.btnDetalji.Location = new System.Drawing.Point(662, 373);
+            this.btnDetalji.Location = new System.Drawing.Point(662, 330);
             this.btnDetalji.Name = "btnDetalji";
             this.btnDetalji.Size = new System.Drawing.Size(126, 23);
             this.btnDetalji.TabIndex = 2;
@@ -64,7 +66,7 @@ namespace TVPProjekat
             // 
             // btnOtkazi
             // 
-            this.btnOtkazi.Location = new System.Drawing.Point(662, 402);
+            this.btnOtkazi.Location = new System.Drawing.Point(662, 359);
             this.btnOtkazi.Name = "btnOtkazi";
             this.btnOtkazi.Size = new System.Drawing.Size(126, 23);
             this.btnOtkazi.TabIndex = 3;
@@ -73,7 +75,7 @@ namespace TVPProjekat
             // 
             // btnRezervacija
             // 
-            this.btnRezervacija.Location = new System.Drawing.Point(662, 304);
+            this.btnRezervacija.Location = new System.Drawing.Point(662, 207);
             this.btnRezervacija.Name = "btnRezervacija";
             this.btnRezervacija.Size = new System.Drawing.Size(126, 23);
             this.btnRezervacija.TabIndex = 4;
@@ -89,9 +91,9 @@ namespace TVPProjekat
             this.datumVreme,
             this.brojSedista});
             this.lvRezervacije.HideSelection = false;
-            this.lvRezervacije.Location = new System.Drawing.Point(12, 304);
+            this.lvRezervacije.Location = new System.Drawing.Point(12, 207);
             this.lvRezervacije.Name = "lvRezervacije";
-            this.lvRezervacije.Size = new System.Drawing.Size(644, 121);
+            this.lvRezervacije.Size = new System.Drawing.Size(644, 218);
             this.lvRezervacije.TabIndex = 5;
             this.lvRezervacije.UseCompatibleStateImageBehavior = false;
             this.lvRezervacije.View = System.Windows.Forms.View.Details;
@@ -124,6 +126,7 @@ namespace TVPProjekat
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.stripUser,
             this.stripStatus});
             this.statusStrip1.Location = new System.Drawing.Point(0, 428);
             this.statusStrip1.Name = "statusStrip1";
@@ -136,13 +139,30 @@ namespace TVPProjekat
             this.stripStatus.Name = "stripStatus";
             this.stripStatus.Size = new System.Drawing.Size(84, 17);
             this.stripStatus.Text = "Status naloga: ";
-            this.stripStatus.Click += new System.EventHandler(this.toolStripStatusLabel1_Click);
+            this.stripStatus.Click += new System.EventHandler(this.nalogInfo);
+            // 
+            // btnOdjava
+            // 
+            this.btnOdjava.Location = new System.Drawing.Point(662, 402);
+            this.btnOdjava.Name = "btnOdjava";
+            this.btnOdjava.Size = new System.Drawing.Size(126, 23);
+            this.btnOdjava.TabIndex = 7;
+            this.btnOdjava.Text = "Odjavite se";
+            this.btnOdjava.UseVisualStyleBackColor = true;
+            this.btnOdjava.Click += new System.EventHandler(this.btnOdjava_Click);
+            // 
+            // stripUser
+            // 
+            this.stripUser.Name = "stripUser";
+            this.stripUser.Size = new System.Drawing.Size(71, 17);
+            this.stripUser.Text = "Dobrodosli, ";
             // 
             // FormKupac
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnOdjava);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.lvRezervacije);
             this.Controls.Add(this.btnRezervacija);
@@ -151,6 +171,8 @@ namespace TVPProjekat
             this.Controls.Add(this.label1);
             this.Name = "FormKupac";
             this.Text = "FormKupac";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.izlaz);
+            this.Load += new System.EventHandler(this.loadKupacPanel);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -171,5 +193,7 @@ namespace TVPProjekat
         private System.Windows.Forms.ColumnHeader brojSedista;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel stripStatus;
+        private System.Windows.Forms.Button btnOdjava;
+        private System.Windows.Forms.ToolStripStatusLabel stripUser;
     }
 }

@@ -94,7 +94,7 @@ namespace TVPProjekat.korisnik
 
         public string StrPol()
         {
-            if (this.Pol == 1)
+            if (this.Pol == 0)
             {
                 return "Muško";
             }
