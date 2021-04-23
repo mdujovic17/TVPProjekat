@@ -14,7 +14,8 @@ namespace TVPProjekat
 {
     public partial class FormLogin : Form
     {
-        public delegate Korisnik posaljiKorisnika(Korisnik korisnik);
+        private delegate Korisnik posaljiKorisnika(Korisnik korisnik);
+        private delegate void posaljiFormu(Form form);
 
         private bool provera = false;
 
@@ -68,10 +69,12 @@ namespace TVPProjekat
                             if (uuid != "-1")
                             {
                                 frmKupac = new FormKupac();
-                                posaljiKorisnika prijava = FormKupac.PrihvatiKorisnika;
+                                posaljiKorisnika prijava = new posaljiKorisnika(frmKupac.PrihvatiKorisnika);
+                                posaljiFormu posaljiFormu = new posaljiFormu(frmKupac.prihvatiFormu);
                                 provera = true;
+                                posaljiFormu(this);
                                 prijava(k1);
-                                frmKupac.frmLogin = this;
+                                
 
                                 frmKupac.Show();
                                 this.Hide();

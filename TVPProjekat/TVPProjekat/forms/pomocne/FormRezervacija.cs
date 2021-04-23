@@ -9,12 +9,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TVPProjekat.bioskop;
+using TVPProjekat.korisnik;
 
 namespace TVPProjekat.forms.pomocne
 {
     public partial class FormRezervacija : Form
     {
-        private static Form frmKupac;
+        private Form frmKupac;
+        private Korisnik kupac;
 
         double cena = 0.00;
 
@@ -23,6 +25,8 @@ namespace TVPProjekat.forms.pomocne
         List<Projekcija> projekcije;
 
         private Projekcija selectedItem;
+
+        private Rezervacija novaRezervacija;
         public FormRezervacija()
         {
             InitializeComponent();
@@ -31,6 +35,11 @@ namespace TVPProjekat.forms.pomocne
             filmovi = new List<Film>();
             projekcije = new List<Projekcija>();
             btnRezervisi.Enabled = false;
+        }
+
+        public void primiKupca(Korisnik korisnik)
+        {
+            kupac = korisnik;
         }
 
         public void listUpdate()
@@ -58,8 +67,11 @@ namespace TVPProjekat.forms.pomocne
             }
             foreach (Projekcija projekcija in projekcije)
             {
-                ListViewItem item = new ListViewItem(new[] { projekcija.Film.ImeFilma, projekcija.Film.Trajanje.ToString() + " min", projekcija.CenaKarte.ToString("0.00") + " RSD", projekcija.DatumProjekcije.ToString("dd/MM/yyyy") + " " + projekcija.VremeProjekcije.ToString("HH:mm"), "Sala " + projekcija.Sala.ToString(), projekcija.DostupnaMesta.ToString() });
-                lvProjekcije.Items.Add(item);
+                if (projekcija.DostupnaMesta != 0)
+                {
+                    ListViewItem item = new ListViewItem(new[] { projekcija.Film.ImeFilma, projekcija.Film.Trajanje.ToString() + " min", projekcija.CenaKarte.ToString("0.00") + " RSD", projekcija.DatumProjekcije.ToString("dd/MM/yyyy") + " " + projekcija.VremeProjekcije.ToString("HH:mm"), "Sala " + projekcija.Sala.ToString(), projekcija.DostupnaMesta.ToString() });
+                    lvProjekcije.Items.Add(item);
+                }
             }
             txtCena.Text = cena.ToString("0.00");
         }
@@ -85,7 +97,7 @@ namespace TVPProjekat.forms.pomocne
             racunajCenu(sender, e);
         }
 
-        public static void primiFormu(FormKupac forma)
+        public void primiFormu(FormKupac forma)
         {
             frmKupac = forma;
         }
@@ -100,35 +112,59 @@ namespace TVPProjekat.forms.pomocne
         private void filtriraj(object sender, EventArgs e)
         {
             listViewClear();
+            bool salaNotSelected = comboSale.SelectedIndex == -1;
+            bool imeFilmaNotSelected = comboNazivFilma.SelectedIndex == -1;
             foreach (Projekcija projekcija in projekcije)
             {
                 ListViewItem item = new ListViewItem(new[] { projekcija.Film.ImeFilma, projekcija.Film.Trajanje.ToString() + " min", projekcija.CenaKarte.ToString("0.00") + " RSD", projekcija.DatumProjekcije.ToString("dd/MM/yyyy") + " " + projekcija.VremeProjekcije.ToString("HH:mm"), "Sala " + projekcija.Sala.ToString(), projekcija.DostupnaMesta.ToString() });
                 
                 bool datum = datePocetniDatum.Value < projekcija.DatumProjekcije && dateKrajniDatum.Value > projekcija.DatumProjekcije;
-                bool sala = comboSale.SelectedIndex != -1 && projekcija.Sala == int.Parse(comboSale.SelectedItem.ToString().Replace("Sala ", ""));
-                bool imeFilma = comboNazivFilma.SelectedIndex != -1 && projekcija.Film.ImeFilma.Equals(comboNazivFilma.SelectedItem.ToString());
+                bool sala = !salaNotSelected && projekcija.Sala == int.Parse(comboSale.SelectedItem.ToString().Replace("Sala ", ""));
+                bool imeFilma = !imeFilmaNotSelected && projekcija.Film.ImeFilma.Equals(comboNazivFilma.SelectedItem.ToString());
 
                 if (datum)
                 {
-                    if (sala && !imeFilma)
+                    if (salaNotSelected)
                     {
-                        lvProjekcije.Items.Add(item);
+                        if (imeFilmaNotSelected)
+                        {
+                            lvProjekcije.Items.Add(item);
+                        }
+                        else
+                        {
+                            lvProjekcije.Items.Add(item);
+                        }
                     }
-                    else if (imeFilma && sala)
+                    else if (sala)
                     {
-                        lvProjekcije.Items.Add(item);
+                        if (imeFilmaNotSelected)
+                        {
+                            lvProjekcije.Items.Add(item);
+                        }
+                        else if (imeFilma)
+                        {
+                            lvProjekcije.Items.Add(item);
+                        }
                     }
-                    //else if (sala && imeFilma)
-                    //{
-                    //    lvProjekcije.Items.Add(item);
-                    //}
+                    
                 }
             }
         }
 
         private void rezervisi(object sender, EventArgs e)
         {
-
+            if (selectedItem.DostupnaMesta >= (int)numBrojMesta.Value)
+            {
+                novaRezervacija = new Rezervacija((kupac as Kupac).KupacUUID, selectedItem.Uid, (int)numBrojMesta.Value, double.Parse(txtCena.Text));
+                LocalFileManager.JSONSerialize(novaRezervacija, "rezervacije");
+                selectedItem.DostupnaMesta -= (int)numBrojMesta.Value;
+                LocalFileManager.JSONSerialize(selectedItem, "projekcije");
+                MessageBox.Show("Uspesno ste rezervisali projekciju", "Rezervacija", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Projekcija nema dovoljno slobodnih mesta!", "Rezervacija", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void listViewClear()
@@ -157,6 +193,13 @@ namespace TVPProjekat.forms.pomocne
         {
             listViewClear();
             ucitajPodatke(sender, e);
+        }
+
+        private void izadji(object sender, EventArgs e)
+        {
+            this.Dispose();
+            this.Close();
+            frmKupac.Show();
         }
     }
 }

@@ -51,6 +51,7 @@ namespace TVPProjekat.forms.pomocne
             this.label7 = new System.Windows.Forms.Label();
             this.btnFilter = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
+            this.btnOtkazi = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numBrojMesta)).BeginInit();
             this.SuspendLayout();
             // 
@@ -146,7 +147,7 @@ namespace TVPProjekat.forms.pomocne
             // 
             this.btnRezervisi.Location = new System.Drawing.Point(384, 285);
             this.btnRezervisi.Name = "btnRezervisi";
-            this.btnRezervisi.Size = new System.Drawing.Size(310, 23);
+            this.btnRezervisi.Size = new System.Drawing.Size(236, 23);
             this.btnRezervisi.TabIndex = 5;
             this.btnRezervisi.Text = "Rezerviši";
             this.btnRezervisi.UseVisualStyleBackColor = true;
@@ -238,11 +239,22 @@ namespace TVPProjekat.forms.pomocne
             this.btnReset.UseVisualStyleBackColor = true;
             this.btnReset.Click += new System.EventHandler(this.resetFilter);
             // 
+            // btnOtkazi
+            // 
+            this.btnOtkazi.Location = new System.Drawing.Point(626, 285);
+            this.btnOtkazi.Name = "btnOtkazi";
+            this.btnOtkazi.Size = new System.Drawing.Size(68, 23);
+            this.btnOtkazi.TabIndex = 17;
+            this.btnOtkazi.Text = "Otkaži";
+            this.btnOtkazi.UseVisualStyleBackColor = true;
+            this.btnOtkazi.Click += new System.EventHandler(this.izadji);
+            // 
             // FormRezervacija
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(706, 318);
+            this.Controls.Add(this.btnOtkazi);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.btnFilter);
             this.Controls.Add(this.label7);
@@ -293,5 +305,6 @@ namespace TVPProjekat.forms.pomocne
         private System.Windows.Forms.ColumnHeader clmBrojDostupnihSedista;
         private System.Windows.Forms.Button btnFilter;
         private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.Button btnOtkazi;
     }
 }

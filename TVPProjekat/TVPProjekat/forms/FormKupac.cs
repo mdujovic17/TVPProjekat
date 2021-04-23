@@ -16,14 +16,15 @@ namespace TVPProjekat
 {
     public partial class FormKupac : Form
     {
-        public delegate void Osvezi(bool osvezi);
-        public delegate void posaljiKorisnika(Korisnik korisnik);
-        public delegate void posaljiFormu(FormKupac formKupac);
+        private delegate void Osvezi(bool osvezi);
+        private delegate void posaljiKorisnika(Korisnik korisnik);
+        private delegate void posaljiFormu(FormKupac formKupac);
 
-        private static Kupac prijavljenKupac;
-        public Form frmLogin;
-        private Form frmRezervacija;
-        private Form frmDetalji;
+        private Kupac prijavljenKupac;
+        private FormLogin frmLogin;
+        private FormRezervacija frmRezervacija;
+        private FormDetaljiNaloga frmDetalji;
+
         private List<Rezervacija> listaRezervacija;
         private List<Film> listaFilmova;
         private List<Projekcija> listaProjekcija;
@@ -36,11 +37,15 @@ namespace TVPProjekat
             InitializeComponent();
             osvezavanje(true);
         }
-        public static Korisnik PrihvatiKorisnika(Korisnik kupac)
+        public Korisnik PrihvatiKorisnika(Korisnik kupac)
         {
             prijavljenKupac = kupac as Kupac;
             Debug.WriteLine(DateTime.Now.ToString("(HH:mm:ss)") + " " + "[INFO]: Prijavljivanje kupca sa UUID: " + prijavljenKupac.KupacUUID);
             return kupac;
+        }
+        public void prihvatiFormu(Form formLogin)
+        {
+            frmLogin = formLogin as FormLogin;
         }
         private void btnOdjava_Click(object sender, EventArgs e)
         {
@@ -73,9 +78,11 @@ namespace TVPProjekat
         }
         private void btnRezervacija_Click(object sender, EventArgs e)
         {
-            posaljiFormu posalji = FormRezervacija.primiFormu;
             frmRezervacija = new FormRezervacija();
+            posaljiFormu posalji = new posaljiFormu(frmRezervacija.primiFormu);
+            posaljiKorisnika posaljiKorisnika = new posaljiKorisnika(frmRezervacija.primiKupca);
             posalji(this);
+            posaljiKorisnika(prijavljenKupac);
             frmRezervacija.Show();
             this.Hide();
         }
@@ -91,22 +98,38 @@ namespace TVPProjekat
 
             string imeFilma = "", sala = "", datumIVreme = "";
 
-            for (int i = 0; i < listaRezervacija.Count; i++)
+            foreach (Rezervacija rezervacija in listaRezervacija)
             {
-                Rezervacija r = listaRezervacija[i];
-                foreach (Projekcija projekcija in listaProjekcija)
+                if (rezervacija.KorisnickiID == prijavljenKupac.KupacUUID)
                 {
-                    if (r.ProjekcijaID.Equals(projekcija.Uid))
+                    foreach (Projekcija projekcija in listaProjekcija)
                     {
-                        imeFilma = projekcija.Film.ImeFilma;
-                        sala = "Sala " + projekcija.Sala;
-                        datumIVreme = projekcija.DatumProjekcije.ToString("dd/MM/yyyy") + " " + projekcija.VremeProjekcije.ToString("HH:mm");
-                        break;
+                        if (rezervacija.ProjekcijaID == projekcija.Uid)
+                        {
+                            ListViewItem item = new ListViewItem(new[] { rezervacija.KorisnickiID + "-" + rezervacija.ProjekcijaID, projekcija.Film.ImeFilma, "Sala " + projekcija.Sala, projekcija.DatumProjekcije.ToString("dd/MM/yyyy") + " " + projekcija.VremeProjekcije.ToString("HH:mm"), rezervacija.BrojMesta.ToString(), rezervacija.Cena.ToString("0.00") });
+                            lvRezervacije.Items.Add(item);
+                            break;
+                        }
                     }
+                    
                 }
-                ListViewItem item = new ListViewItem(new[] { r.KorisnickiID + "-" + r.ProjekcijaID, imeFilma, sala, datumIVreme, r.BrojMesta.ToString(), r.Cena.ToString("0.00") });
-                lvRezervacije.Items.Add(item);
             }
+
+            //for (int i = 0; i < listaRezervacija.Count; i++)
+            //{
+            //    Rezervacija r = listaRezervacija[i];
+            //    foreach (Projekcija projekcija in listaProjekcija)
+            //    {
+            //        if (r.ProjekcijaID.Equals(projekcija.Uid))
+            //        {
+            //            imeFilma = projekcija.Film.ImeFilma;
+            //            sala = "Sala " + projekcija.Sala;
+            //            datumIVreme = projekcija.DatumProjekcije.ToString("dd/MM/yyyy") + " " + projekcija.VremeProjekcije.ToString("HH:mm");
+            //            break;
+            //        }
+            //    }
+                
+            //}
         }
         private void otkaziRezervaciju(object sender, EventArgs e)
         {
