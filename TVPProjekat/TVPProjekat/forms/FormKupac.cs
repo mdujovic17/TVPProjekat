@@ -28,20 +28,20 @@ namespace TVPProjekat
         private List<Film> listaFilmova;
         private List<Projekcija> listaProjekcija;
 
+        private Rezervacija selectedItem;
+
         Osvezi osvezavanje = FormLogin.osvezi;
         public FormKupac()
         {
             InitializeComponent();
             osvezavanje(true);
         }
-
         public static Korisnik PrihvatiKorisnika(Korisnik kupac)
         {
             prijavljenKupac = kupac as Kupac;
             Debug.WriteLine(DateTime.Now.ToString("(HH:mm:ss)") + " " + "[INFO]: Prijavljivanje kupca sa UUID: " + prijavljenKupac.KupacUUID);
             return kupac;
         }
-
         private void btnOdjava_Click(object sender, EventArgs e)
         {
             prijavljenKupac = null;
@@ -56,24 +56,21 @@ namespace TVPProjekat
             this.Dispose(); //Potrebno da bi se svi resursi ove forme oslobodili, u suprotnom izaziva StackOverflowExepction
             this.Close();
         }
-
         private void loadKupacPanel(object sender, EventArgs e)
         {
             this.stripUser.Text += prijavljenKupac.Ime;
             this.stripStatus.Text += "Kupac";
             prikaziListu(sender, e);
         }
-
         private void izlaz(object sender, FormClosedEventArgs e)
         {
+            this.Dispose();
             frmLogin.Close();
         }
-
         private void nalogInfo(object sender, EventArgs e)
         {
             MessageBox.Show($"Korisnicko ime: {prijavljenKupac.KorisnickoIme}\nE-Mail: {prijavljenKupac.Email}\nIme i prezime: {prijavljenKupac.Ime} {prijavljenKupac.Prezime}\nBroj telefona: {prijavljenKupac.Telefon}\nPol: {prijavljenKupac.StrPol()}\nDatum rođenja: {prijavljenKupac.DatumRodjenja.ToString("dd/MM/yyyy")}\nUUID: {prijavljenKupac.KupacUUID}");
         }
-
         private void btnRezervacija_Click(object sender, EventArgs e)
         {
             posaljiFormu posalji = FormRezervacija.primiFormu;
@@ -82,7 +79,6 @@ namespace TVPProjekat
             frmRezervacija.Show();
             this.Hide();
         }
-
         private void prikaziListu(object sender, EventArgs e)
         {
             listaRezervacija = new List<Rezervacija>();
@@ -112,12 +108,30 @@ namespace TVPProjekat
                 lvRezervacije.Items.Add(item);
             }
         }
-
         private void otkaziRezervaciju(object sender, EventArgs e)
         {
+            DialogResult msg = MessageBox.Show("Da li ste sigurni da zelite da otkazete rezervaciju?", "Otkazivanje rezervacije", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
+            if (msg == DialogResult.Yes)
+            {
+                LocalFileManager.JSONDelete(selectedItem);
+            }
         }
-
+        private void kontrola(string uuid)
+        {
+            if (uuid.Length == 20 || uuid.Length == 21 || uuid.Length == 22)
+            {
+                foreach (Rezervacija rezervacija in listaRezervacija)
+                {
+                    if ((rezervacija.KorisnickiID + "-" + rezervacija.ProjekcijaID).Equals(uuid))
+                    {
+                        selectedItem = rezervacija;
+                        Debug.WriteLine(DateTime.Now.ToString("(HH:mm:ss)") + " " + "Selektovana rezervacija sa UUID: " + (rezervacija.KorisnickiID + "-" + rezervacija.ProjekcijaID));
+                        break;
+                    }
+                }
+            }
+        }
         private void detaljiNaloga(object sender, EventArgs e)
         {
             posaljiKorisnika posalji = FormDetaljiNaloga.prihvatiKorisnika;
@@ -125,6 +139,25 @@ namespace TVPProjekat
             frmDetalji = new FormDetaljiNaloga();
             posalji(prijavljenKupac);
             frmDetalji.Show();
+        }
+
+        private void selektujObjekat(object sender, EventArgs e)
+        {
+            string selektovanUUID = "";
+            foreach (ListViewItem item in lvRezervacije.SelectedItems)
+            {
+                selektovanUUID = item.SubItems[0].Text; //Uzima UUID
+            }
+            kontrola(selektovanUUID);
+
+            if (selektovanUUID.Equals(""))
+            {
+                btnOtkazi.Enabled = false;
+            }
+            else
+            {
+                btnOtkazi.Enabled = true;
+            }
         }
     }
 }

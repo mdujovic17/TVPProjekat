@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace TVPProjekat.bioskop
 {
     [DataContract]
-    class Projekcija
+    public class Projekcija
     {
         [DataMember]
         private Film film;

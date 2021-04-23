@@ -38,12 +38,12 @@ namespace TVPProjekat
             this.bioskop = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.datumVreme = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.brojSedista = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.clmCena = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.stripUser = new System.Windows.Forms.ToolStripStatusLabel();
             this.stripStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.btnOdjava = new System.Windows.Forms.Button();
             this.btnNalog = new System.Windows.Forms.Button();
-            this.clmCena = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnOsvezi = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -59,6 +59,7 @@ namespace TVPProjekat
             // 
             // btnOtkazi
             // 
+            this.btnOtkazi.Enabled = false;
             this.btnOtkazi.Location = new System.Drawing.Point(662, 82);
             this.btnOtkazi.Name = "btnOtkazi";
             this.btnOtkazi.Size = new System.Drawing.Size(126, 23);
@@ -93,6 +94,7 @@ namespace TVPProjekat
             this.lvRezervacije.TabIndex = 5;
             this.lvRezervacije.UseCompatibleStateImageBehavior = false;
             this.lvRezervacije.View = System.Windows.Forms.View.Details;
+            this.lvRezervacije.SelectedIndexChanged += new System.EventHandler(this.selektujObjekat);
             // 
             // idRezervacije
             // 
@@ -118,6 +120,11 @@ namespace TVPProjekat
             // 
             this.brojSedista.Text = "Broj sedista";
             this.brojSedista.Width = 68;
+            // 
+            // clmCena
+            // 
+            this.clmCena.Text = "Cena";
+            this.clmCena.Width = 74;
             // 
             // statusStrip1
             // 
@@ -162,11 +169,6 @@ namespace TVPProjekat
             this.btnNalog.Text = "Detalji naloga";
             this.btnNalog.UseVisualStyleBackColor = true;
             this.btnNalog.Click += new System.EventHandler(this.detaljiNaloga);
-            // 
-            // clmCena
-            // 
-            this.clmCena.Text = "Cena";
-            this.clmCena.Width = 74;
             // 
             // btnOsvezi
             // 

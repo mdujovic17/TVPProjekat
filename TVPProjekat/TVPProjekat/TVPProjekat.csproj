@@ -112,11 +112,29 @@
     <Compile Include="forms\pomocne\FormDodajSalu.Designer.cs">
       <DependentUpon>FormDodajSalu.cs</DependentUpon>
     </Compile>
+    <Compile Include="forms\pomocne\FormIzmenaFilm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\pomocne\FormIzmenaFilm.Designer.cs">
+      <DependentUpon>FormIzmenaFilm.cs</DependentUpon>
+    </Compile>
     <Compile Include="forms\pomocne\FormIzmenaKorisnik.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\pomocne\FormIzmenaKorisnik.Designer.cs">
       <DependentUpon>FormIzmenaKorisnik.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\pomocne\FormIzmenaProjekcija.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\pomocne\FormIzmenaProjekcija.Designer.cs">
+      <DependentUpon>FormIzmenaProjekcija.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\pomocne\FormIzmenaSala.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\pomocne\FormIzmenaSala.Designer.cs">
+      <DependentUpon>FormIzmenaSala.cs</DependentUpon>
     </Compile>
     <Compile Include="forms\pomocne\FormRegistracija.cs">
       <SubType>Form</SubType>
@@ -167,8 +185,17 @@
     <EmbeddedResource Include="forms\pomocne\FormDodajSalu.resx">
       <DependentUpon>FormDodajSalu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\pomocne\FormIzmenaFilm.resx">
+      <DependentUpon>FormIzmenaFilm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\pomocne\FormIzmenaKorisnik.resx">
       <DependentUpon>FormIzmenaKorisnik.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\pomocne\FormIzmenaProjekcija.resx">
+      <DependentUpon>FormIzmenaProjekcija.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\pomocne\FormIzmenaSala.resx">
+      <DependentUpon>FormIzmenaSala.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\pomocne\FormRegistracija.resx">
       <DependentUpon>FormRegistracija.cs</DependentUpon>

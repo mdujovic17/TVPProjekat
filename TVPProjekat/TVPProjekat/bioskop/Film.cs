@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace TVPProjekat.bioskop
 {
     [DataContract]
-    class Film
+    public class Film
     {
         public enum granicaGodina { G = 0, PG = 1, PG13 = 2, R = 3, NC17 = 4 };
         [DataMember]

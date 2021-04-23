@@ -43,6 +43,7 @@ namespace TVPProjekat
         {
             string tempUsername, tempPassword;
             string uuid;
+            bool postoji = false;
             foreach (Korisnik k in listaKorisnika)
             {
                 Kupac k1 = k as Kupac;
@@ -51,7 +52,7 @@ namespace TVPProjekat
                 if (username.Equals(k.KorisnickoIme) || username.Equals(k.Email))
                 {
                     tempUsername = username;
-
+                    postoji = true;
                     if (password != Korisnik.desifrujLozinku(k.Sifra))
                     {
                         MessageBox.Show("Uneli ste pogresno korisnicko ime ili lozinku!", "Pogresno uneti podaci", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -96,6 +97,10 @@ namespace TVPProjekat
 
                     break;
                 }
+            }
+            if (!postoji)
+            {
+                MessageBox.Show("Nalog ne postoji!", "Pogresno uneti podaci", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

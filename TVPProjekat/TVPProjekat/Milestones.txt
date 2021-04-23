@@ -40,6 +40,7 @@ X:4; O:11; ?:7;
 				[?] FormIzmenaKorisnik
 					[?] Provera forme
 			[O] Brisanje
+
 		[X] Kupci
 			[?] Dodavanje
 				[?] FormDodajKupca
@@ -47,9 +48,10 @@ X:4; O:11; ?:7;
 			[?] Izmene
 				[?] FormIzmenaKorisnik
 					[?] Provera forme
+				[X] Detalji o rezervacijama
+					[X] FormDetaljiRezervacije
 			[O] Brisanje
-			[X] Detalji o rezervacijama
-				[X] FormDetaljiRezervacije
+
 		[X] Sale
 			[?] Dodavanje
 				[?] FormDodajSalu
@@ -58,21 +60,25 @@ X:4; O:11; ?:7;
 				[x] FormIzmenaSale
 					[x] Provera forme
 			[O] Brisanje
+
 		[X] Repertoar
 			[?] Dodavanje
 				[?] FormDodajFilm
 					[?] Provera forme
 			[x] Izmene
-				[X] FormIzmenaFilma
+				[?] FormIzmenaFilma
 					[x] Provera forme
 			[O] Brisanje
+				[O] Blokada brisanja
+
 		[X] Projekcije
 			[x] Dodavanje
 				[?] FormDodajProjekciju
 					[?] Provera forme
 			[x] Izmene
-				[X] FormIzmenaProjekcije
+				[?] FormIzmenaProjekcije
 					[x] Provera forme
+					[O] Broj sale nakon izmene!
 			[O] Brisanje
 				
 	[X] CSV

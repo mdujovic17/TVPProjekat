@@ -124,7 +124,6 @@ namespace TVPProjekat
                 serializer.WriteObject(fs, o);
                 fs.Flush(); fs.Close();
             }
-            
         }
 
         /* Koristi se za deserijalizaciju podataka tipa objekta Korisnik upisanih u JSON oblik.
@@ -212,18 +211,23 @@ namespace TVPProjekat
         public static void JSONDeserialize(List<Rezervacija> lista, string folder) 
         {
             DirectoryInfo directory = new DirectoryInfo(@"..\data\" + folder + @"\");
-            FileInfo[] files = directory.GetFiles("*.json");
-            FileStream fs;
-            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(Rezervacija));
-
-            foreach (FileInfo fajl in files)
+            if (directory.Exists && directory.GetFiles() != null)
             {
-                fs = new FileStream(fajl.FullName, FileMode.Open, FileAccess.Read);
-                Rezervacija rezervacija = (Rezervacija)serializer.ReadObject(fs);
-                lista.Add(rezervacija);
-                Debug.WriteLine(DateTime.Now.ToString("(HH:mm:ss)") + " " + $"[INFO]: Deserijalizacija objekta sa UUID: {rezervacija.KorisnickiID} - {rezervacija.ProjekcijaID} + sa lokacije {fajl.FullName}");
-                fs.Close();
+                FileInfo[] files = directory.GetFiles("*");
+                FileStream fs;
+                DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(Rezervacija));
+
+                foreach (FileInfo fajl in files)
+                {
+                    fs = new FileStream(fajl.FullName, FileMode.Open, FileAccess.Read);
+                    Rezervacija rezervacija = (Rezervacija)serializer.ReadObject(fs);
+                    lista.Add(rezervacija);
+                    Debug.WriteLine(DateTime.Now.ToString("(HH:mm:ss)") + " " + $"[INFO]: Deserijalizacija objekta sa UUID: {rezervacija.KorisnickiID} - {rezervacija.ProjekcijaID} + sa lokacije {fajl.FullName}");
+                    fs.Close();
+                }
             }
+            
+            
         }
         //Brise fajl ciji se id podudara sa imenom fajla, ako je kupac, menja se UUID
         //parametar na -1, i time se obavestava korisnik da je njegov nalog obrisan.
@@ -265,6 +269,34 @@ namespace TVPProjekat
                 foreach (string fajl in file)
                 {
                     File.Delete(fajl);
+                }
+            }
+        }
+
+        //Brise sve serijalizovane objekte ciji je ID invalidan
+        //TODO
+        public static void DeleteAllInvalidated()
+        {
+            List<Korisnik> listA = new List<Korisnik>();
+            List<Film> listB = new List<Film>();
+            List<Projekcija> listC = new List<Projekcija>();
+            List<Sala> listD = new List<Sala>();
+            List<Rezervacija> listE = new List<Rezervacija>();
+            DirectoryInfo directory;
+            string[] folderi = { "administratori", "kupci", "filmovi", "sale", "projekcije", "rezervacije" };
+            string[] files;
+            foreach (string folder in folderi)
+            {
+                directory = new DirectoryInfo(@"..\data\" + folder + @"\");
+                if (directory.Exists && directory.GetFiles() != null)
+                {
+                    
+                    files = Directory.GetFiles($@"..\data\{folder}\*");
+                    JSONDeserialize(listA, folder);
+                    JSONDeserialize(listB, folder);
+                    JSONDeserialize(listC, folder);
+                    JSONDeserialize(listD, folder);
+                    JSONDeserialize(listE, folder);
                 }
             }
         }

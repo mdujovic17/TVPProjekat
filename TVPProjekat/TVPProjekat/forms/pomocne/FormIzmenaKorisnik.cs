@@ -14,19 +14,27 @@ namespace TVPProjekat.forms.pomocne
 {
     public partial class FormIzmenaKorisnik : Form
     {
-        private delegate void prikaziIzmeneNaListi(object sender, EventArgs events);
+        private delegate void prikaziIzmeneNaListi();
+        private delegate void azurirajPrikaz(object sender, EventArgs e);
         prikaziIzmeneNaListi prikaz;
+        azurirajPrikaz azuriraj;
+
         private static Korisnik korisnikZaIzmenu;
-        public Form frmAdmin;
         private static string prikrivenaLozinka;
+
+        private FormAdmin frmAdmin;
+        
         public FormIzmenaKorisnik()
         {
             InitializeComponent();
         }
 
+        public void prihvatiFormu(FormAdmin form)
+        {
+            frmAdmin = form;
+        }
 
-
-        public static Korisnik prihvatiKorisnika(Korisnik korisnik, string shadowPass)
+        public Korisnik prihvatiKorisnika(Korisnik korisnik, string shadowPass)
         {
             prikrivenaLozinka = shadowPass;
             return korisnikZaIzmenu = korisnik; 
@@ -52,17 +60,27 @@ namespace TVPProjekat.forms.pomocne
                 if (korisnikZaIzmenu is Administrator)
                 {
                     LocalFileManager.JSONSerialize(korisnikZaIzmenu, "administratori");
+                    prikaz = new prikaziIzmeneNaListi(frmAdmin.listUpdate);
+                    azuriraj = new azurirajPrikaz(frmAdmin.viewUpdate);
+
+                    prikaz();
+                    azuriraj(sender, e);
 
                 }
                 else if (korisnikZaIzmenu is Kupac)
                 {
                     LocalFileManager.JSONSerialize(korisnikZaIzmenu, "kupci");
+                    prikaz = new prikaziIzmeneNaListi(frmAdmin.listUpdate);
+                    azuriraj = new azurirajPrikaz(frmAdmin.viewUpdate);
+
+                    prikaz();
+                    azuriraj(sender, e);
                 }
 
                 this.Dispose();
                 this.Close();
 
-                MessageBox.Show("Potrebno je osveziti listu da bi ste videli izmene.", "Izmena podataka", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show("Potrebno je osveziti listu da bi ste videli izmene.", "Izmena podataka", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

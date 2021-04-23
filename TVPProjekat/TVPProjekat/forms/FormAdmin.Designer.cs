@@ -238,6 +238,7 @@ namespace TVPProjekat
             this.Name = "FormAdmin";
             this.Text = "Administratorski panel";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.zatvoriProgram);
+            this.Load += new System.EventHandler(this.loadAdminPanel);
             this.statusnaLinija.ResumeLayout(false);
             this.statusnaLinija.PerformLayout();
             this.ResumeLayout(false);

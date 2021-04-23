@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace TVPProjekat.bioskop
 {
     [DataContract]
-    class Sala
+    public class Sala
     {
         [DataMember]
         private string uid;

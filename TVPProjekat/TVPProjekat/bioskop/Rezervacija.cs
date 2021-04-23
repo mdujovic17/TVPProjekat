@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace TVPProjekat.bioskop
 {
     [DataContract]
-    class Rezervacija
+    public class Rezervacija
     {
         [DataMember]
         private string korisnickiID;
