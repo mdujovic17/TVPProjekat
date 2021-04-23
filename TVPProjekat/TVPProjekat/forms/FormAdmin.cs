@@ -23,8 +23,7 @@ namespace TVPProjekat
 
         private delegate void posaljiFormu(FormAdmin formAdmin);
         private delegate void Osvezi(bool osvezi);
-        
-        Osvezi osvezavanje = FormLogin.osvezi;
+
         posaljiKorisnika posaljiK;
         posaljiFilm posaljiF;
         posaljiSalu posaljiS;
@@ -60,7 +59,6 @@ namespace TVPProjekat
         public FormAdmin()
         {
             InitializeComponent();
-            osvezavanje(true);
             lvAdminPrikaz.View = View.Details;
 
             administratori = new List<Korisnik>();
@@ -135,7 +133,6 @@ namespace TVPProjekat
             {
                 administratori.Clear();
             }
-            osvezavanje(false);
 
             frmLogin.Show();
             this.Dispose(); //Potrebno da bi se svi resursi ove forme oslobodili, u suprotnom izaziva StackOverflowExepction

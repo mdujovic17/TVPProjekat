@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TVPProjekat.forms.pomocne;
 using TVPProjekat.korisnik;
 
 namespace TVPProjekat
@@ -17,13 +18,14 @@ namespace TVPProjekat
         private delegate Korisnik posaljiKorisnika(Korisnik korisnik);
         private delegate void posaljiFormu(Form form);
 
-        private bool provera = false;
+        posaljiFormu posaljiFrm;
 
-        private static bool prikaz = true;
+        private bool prikaz = true;
 
         FormRegistracija formaZaRegistraciju;
         FormKupac frmKupac;
         FormAdmin frmAdmin;
+        FormLozinkaReset frmReset;
 
         List<Korisnik> listaKorisnika;
         //List<Korisnik> listaLozinki;
@@ -57,7 +59,6 @@ namespace TVPProjekat
                     if (password != Korisnik.desifrujLozinku(k.Sifra))
                     {
                         MessageBox.Show("Uneli ste pogresno korisnicko ime ili lozinku!", "Pogresno uneti podaci", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        provera = false;
                         break;
                     }
                     else
@@ -70,14 +71,12 @@ namespace TVPProjekat
                             {
                                 frmKupac = new FormKupac();
                                 posaljiKorisnika prijava = new posaljiKorisnika(frmKupac.PrihvatiKorisnika);
-                                posaljiFormu posaljiFormu = new posaljiFormu(frmKupac.prihvatiFormu);
-                                provera = true;
-                                posaljiFormu(this);
+                                posaljiFrm = new posaljiFormu(frmKupac.prihvatiFormu);
+                                posaljiFrm(this);
                                 prijava(k1);
-                                
-
                                 frmKupac.Show();
                                 this.Hide();
+                                prikaz = false;
                             }
                             else
                             {
@@ -89,12 +88,11 @@ namespace TVPProjekat
                         {
                             frmAdmin = new FormAdmin();
                             posaljiKorisnika prijava = FormAdmin.PrihvatiKorisnika;
-                            provera = true;
                             prijava(a1);
                             frmAdmin.frmLogin = this;
-
                             frmAdmin.Show();
                             this.Hide();
+                            prikaz = false;
                         }
                     }
 
@@ -103,7 +101,7 @@ namespace TVPProjekat
             }
             if (!postoji)
             {
-                MessageBox.Show("Nalog ne postoji!", "Pogresno uneti podaci", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Uneli ste pogresno korisnicko ime ili lozinku!", "Pogresno uneti podaci", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -124,11 +122,6 @@ namespace TVPProjekat
         private void prijava(object sender, EventArgs e)
         {
             prijaviKorisnika(txtUsername.Text, txtPassword.Text);
-
-            if (provera)
-            {
-                
-            }
         }
 
         //Ako se neki od korisnika odjavi, ucitavaju se baze administratora i korisnika
@@ -140,14 +133,25 @@ namespace TVPProjekat
                 Debug.WriteLine(DateTime.Now.ToString("(HH:mm:ss)") + " " + "[INFO]: Osvezavanje baze...");
                 listaKorisnika.Clear();
                 UcitajBazu(sender, e);
+                prikaz = true;
             }
         }
 
-        //Kontrolise osvezavanje baze, poziva se preko delegata iz drugih formi.
-        //True vrednost blokira osvezavanje, False dozvoljava.
-        public static void osvezi(bool test)
+        private void zabLozinka(object sender, EventArgs e)
         {
-            prikaz = test;
+            if (!txtUsername.Text.Equals("markod") && !txtUsername.Text.Equals("admin") && !txtUsername.Text.Equals("dujovicm@gmail.com"))
+            {
+                frmReset = new FormLozinkaReset();
+                posaljiFrm = new posaljiFormu(frmReset.prihvatiFormu);
+                posaljiFrm(this);
+                this.Hide();
+                prikaz = false;
+                frmReset.Show();
+            }
+            else
+            {
+                MessageBox.Show("Sifra se ne moze resetovati za podrazumenvane naloge!", ":)", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
         }
     }
 }

@@ -136,6 +136,12 @@
     <Compile Include="forms\pomocne\FormIzmenaSala.Designer.cs">
       <DependentUpon>FormIzmenaSala.cs</DependentUpon>
     </Compile>
+    <Compile Include="forms\pomocne\FormLozinkaReset.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\pomocne\FormLozinkaReset.Designer.cs">
+      <DependentUpon>FormLozinkaReset.cs</DependentUpon>
+    </Compile>
     <Compile Include="forms\pomocne\FormRegistracija.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -196,6 +202,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\pomocne\FormIzmenaSala.resx">
       <DependentUpon>FormIzmenaSala.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\pomocne\FormLozinkaReset.resx">
+      <DependentUpon>FormLozinkaReset.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\pomocne\FormRegistracija.resx">
       <DependentUpon>FormRegistracija.cs</DependentUpon>

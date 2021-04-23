@@ -23,3 +23,4 @@ C:\source\TVPProjekat\TVPProjekat\TVPProjekat\obj\Debug\TVPProjekat.forms.pomocn
 C:\source\TVPProjekat\TVPProjekat\TVPProjekat\obj\Debug\TVPProjekat.forms.pomocne.FormIzmenaFilm.resources
 C:\source\TVPProjekat\TVPProjekat\TVPProjekat\obj\Debug\TVPProjekat.forms.pomocne.FormIzmenaProjekcija.resources
 C:\source\TVPProjekat\TVPProjekat\TVPProjekat\obj\Debug\TVPProjekat.forms.pomocne.FormIzmenaSala.resources
+C:\source\TVPProjekat\TVPProjekat\TVPProjekat\obj\Debug\TVPProjekat.forms.pomocne.FormLozinkaReset.resources

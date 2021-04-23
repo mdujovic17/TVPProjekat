@@ -30,13 +30,10 @@ namespace TVPProjekat
         private List<Projekcija> listaProjekcija;
 
         private Rezervacija selectedItem;
-
-        Osvezi osvezavanje = FormLogin.osvezi;
         public FormKupac()
         {
             InitializeComponent();
             listUpdate();
-            osvezavanje(true);
         }
         public void listUpdate()
         {
@@ -65,8 +62,6 @@ namespace TVPProjekat
             {
                 listaRezervacija = null;
             }
-
-            osvezavanje(false);
 
             frmLogin.Show();
             this.Dispose(); //Potrebno da bi se svi resursi ove forme oslobodili, u suprotnom izaziva StackOverflowExepction

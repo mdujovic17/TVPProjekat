@@ -35,6 +35,7 @@ namespace TVPProjekat
             this.btnRegistracija = new System.Windows.Forms.Button();
             this.lblUsername = new System.Windows.Forms.Label();
             this.lblSifra = new System.Windows.Forms.Label();
+            this.btnZaboravljenaLozinka = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtUsername
@@ -66,7 +67,7 @@ namespace TVPProjekat
             // 
             this.btnRegistracija.Location = new System.Drawing.Point(137, 93);
             this.btnRegistracija.Name = "btnRegistracija";
-            this.btnRegistracija.Size = new System.Drawing.Size(121, 23);
+            this.btnRegistracija.Size = new System.Drawing.Size(121, 46);
             this.btnRegistracija.TabIndex = 3;
             this.btnRegistracija.Text = "Registracija";
             this.btnRegistracija.UseVisualStyleBackColor = true;
@@ -90,11 +91,22 @@ namespace TVPProjekat
             this.lblSifra.TabIndex = 5;
             this.lblSifra.Text = "Šifra";
             // 
+            // btnZaboravljenaLozinka
+            // 
+            this.btnZaboravljenaLozinka.Location = new System.Drawing.Point(12, 116);
+            this.btnZaboravljenaLozinka.Name = "btnZaboravljenaLozinka";
+            this.btnZaboravljenaLozinka.Size = new System.Drawing.Size(119, 23);
+            this.btnZaboravljenaLozinka.TabIndex = 6;
+            this.btnZaboravljenaLozinka.Text = "Zaboravljena lozinka";
+            this.btnZaboravljenaLozinka.UseVisualStyleBackColor = true;
+            this.btnZaboravljenaLozinka.Click += new System.EventHandler(this.zabLozinka);
+            // 
             // FormLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(270, 129);
+            this.ClientSize = new System.Drawing.Size(270, 151);
+            this.Controls.Add(this.btnZaboravljenaLozinka);
             this.Controls.Add(this.lblSifra);
             this.Controls.Add(this.lblUsername);
             this.Controls.Add(this.btnRegistracija);
@@ -119,6 +131,7 @@ namespace TVPProjekat
         private System.Windows.Forms.Button btnRegistracija;
         private System.Windows.Forms.Label lblUsername;
         private System.Windows.Forms.Label lblSifra;
+        private System.Windows.Forms.Button btnZaboravljenaLozinka;
     }
 }
 
