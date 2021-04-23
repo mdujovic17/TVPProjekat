@@ -58,12 +58,20 @@ namespace TVPProjekat.forms.pomocne
                             {
                                 if (kupac.DatumRodjenja.ToString("dd/MM/yyyy").Equals(dateDatum.Value.ToString("dd/MM/yyyy")))
                                 {
-                                    korisnik = kupac;
-                                    (korisnik as Kupac).Sifra = Korisnik.sifrujLozinku(txtNovaLozinka.Text);
-                                    LocalFileManager.JSONSerialize(korisnik, "kupci");
-                                    MessageBox.Show("Uspesno resetovana lozinka");
-                                    otkazi(sender, e);
-                                    break;
+                                    if (txtNovaLozinka.Text.Equals(txtPonovoLozinka.Text))
+                                    {
+                                        korisnik = kupac;
+                                        (korisnik as Kupac).Sifra = Korisnik.sifrujLozinku(txtNovaLozinka.Text);
+                                        LocalFileManager.JSONSerialize(korisnik, "kupci");
+                                        MessageBox.Show("Uspesno resetovana lozinka");
+                                        otkazi(sender, e);
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Lozinke nisu iste!", "Provera", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        break;
+                                    }
                                 }
                                 else
                                 {
@@ -78,12 +86,20 @@ namespace TVPProjekat.forms.pomocne
                             {
                                 if (administrator.DatumRodjenja.ToString("dd/MM/yyyy").Equals(dateDatum.Value.ToString("dd/MM/yyyy")))
                                 {
-                                    korisnik = administrator;
-                                    (korisnik as Administrator).Sifra = Korisnik.sifrujLozinku(txtNovaLozinka.Text);
-                                    LocalFileManager.JSONSerialize(korisnik, "administratori");
-                                    MessageBox.Show("Uspesno resetovana lozinka");
-                                    otkazi(sender, e);
-                                    break;
+                                    if (txtNovaLozinka.Text.Equals(txtPonovoLozinka.Text) && ProveraForme.proveraSifre(txtNovaLozinka.Text))
+                                    {
+                                        korisnik = administrator;
+                                        (korisnik as Administrator).Sifra = Korisnik.sifrujLozinku(txtNovaLozinka.Text);
+                                        LocalFileManager.JSONSerialize(korisnik, "administratori");
+                                        MessageBox.Show("Uspesno resetovana lozinka");
+                                        otkazi(sender, e);
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Lozinke nisu iste!", "Provera", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        break;
+                                    }
                                 }
                                 else
                                 {
