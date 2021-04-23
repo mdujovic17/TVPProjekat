@@ -23,15 +23,19 @@ namespace TVPProjekat.forms.pomocne
         {
             if (this.chkOtkljucaj.Checked)
             {
-                txtEmail.Enabled = true;
-                txtIme.Enabled = true;
-                txtPrezime.Enabled = true;
-                txtTelefon.Enabled = true;
-                txtNovaLozinka.Enabled = true;
-                txtPonovnaLozinka.Enabled = true;
-                comboPol.Enabled = true;
-                dateDatum.Enabled = true;
-                btnPrihvati.Enabled = true;
+                if (infoKorisnik.KorisnickoIme != "markod") //Default nalog, ne moze da se obrise ili izmeni
+                {
+                    txtEmail.Enabled = true;
+                    txtIme.Enabled = true;
+                    txtPrezime.Enabled = true;
+                    txtTelefon.Enabled = true;
+                    txtNovaLozinka.Enabled = true;
+                    txtPonovnaLozinka.Enabled = true;
+                    comboPol.Enabled = true;
+                    dateDatum.Enabled = true;
+                    btnPrihvati.Enabled = true;
+                    btnObrisiNalog.Enabled = true;
+                }
             }
             else
             {
@@ -44,6 +48,7 @@ namespace TVPProjekat.forms.pomocne
                 comboPol.Enabled = false;
                 dateDatum.Enabled = false;
                 btnPrihvati.Enabled = false;
+                btnObrisiNalog.Enabled = false;
             }
         }
 
@@ -63,6 +68,10 @@ namespace TVPProjekat.forms.pomocne
             lblTelefon.Text = infoKorisnik.Telefon;
             lblDatumRodjenja.Text = infoKorisnik.DatumRodjenja.ToString("dd/MM/yyyy");
             lblPol.Text = infoKorisnik.StrPol();
+            if (infoKorisnik.KorisnickoIme.Equals("markod"))
+            {
+                chkOtkljucaj.Enabled = false; //Blokira izmene default naloga za kupca
+            }
         }
 
         private void zatvori(object sender, EventArgs e)

@@ -30,41 +30,41 @@ namespace TVPProjekat.forms.pomocne
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lblIme = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lblPrezime = new System.Windows.Forms.Label();
+            this.lblPol = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.lblDatumRodjenja = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lblTelefon = new System.Windows.Forms.Label();
+            this.labelTelefon = new System.Windows.Forms.Label();
             this.lblEmail = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.lblKorisnickoIme = new System.Windows.Forms.Label();
             this.fdsa = new System.Windows.Forms.Label();
-            this.labelTelefon = new System.Windows.Forms.Label();
-            this.lblTelefon = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.lblDatumRodjenja = new System.Windows.Forms.Label();
-            this.lblPol = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.lblPrezime = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblIme = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.chkOtkljucaj = new System.Windows.Forms.CheckBox();
             this.btnPrihvati = new System.Windows.Forms.Button();
             this.btnIzlaz = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.txtIme = new System.Windows.Forms.TextBox();
-            this.txtPrezime = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txtEmail = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
+            this.btnObrisiNalog = new System.Windows.Forms.Button();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.txtPonovnaLozinka = new System.Windows.Forms.TextBox();
+            this.txtNovaLozinka = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.comboPol = new System.Windows.Forms.ComboBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.dateDatum = new System.Windows.Forms.DateTimePicker();
             this.label10 = new System.Windows.Forms.Label();
             this.txtTelefon = new System.Windows.Forms.TextBox();
-            this.dateDatum = new System.Windows.Forms.DateTimePicker();
-            this.label11 = new System.Windows.Forms.Label();
-            this.comboPol = new System.Windows.Forms.ComboBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.txtNovaLozinka = new System.Windows.Forms.TextBox();
-            this.txtPonovnaLozinka = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.btnObrisiNalog = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtEmail = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtPrezime = new System.Windows.Forms.TextBox();
+            this.txtIme = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -92,41 +92,59 @@ namespace TVPProjekat.forms.pomocne
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Osnovne informacije";
             // 
-            // label1
+            // lblPol
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 22);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(30, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Ime: ";
+            this.lblPol.AutoSize = true;
+            this.lblPol.Location = new System.Drawing.Point(94, 157);
+            this.lblPol.Name = "lblPol";
+            this.lblPol.Size = new System.Drawing.Size(35, 13);
+            this.lblPol.TabIndex = 14;
+            this.lblPol.Text = "label2";
             // 
-            // lblIme
+            // label7
             // 
-            this.lblIme.AutoSize = true;
-            this.lblIme.Location = new System.Drawing.Point(93, 22);
-            this.lblIme.Name = "lblIme";
-            this.lblIme.Size = new System.Drawing.Size(35, 13);
-            this.lblIme.TabIndex = 2;
-            this.lblIme.Text = "label2";
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(7, 157);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(25, 13);
+            this.label7.TabIndex = 13;
+            this.label7.Text = "Pol:";
             // 
-            // label2
+            // lblDatumRodjenja
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 45);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(50, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Prezime: ";
+            this.lblDatumRodjenja.AutoSize = true;
+            this.lblDatumRodjenja.Location = new System.Drawing.Point(94, 134);
+            this.lblDatumRodjenja.Name = "lblDatumRodjenja";
+            this.lblDatumRodjenja.Size = new System.Drawing.Size(35, 13);
+            this.lblDatumRodjenja.TabIndex = 12;
+            this.lblDatumRodjenja.Text = "label2";
             // 
-            // lblPrezime
+            // label3
             // 
-            this.lblPrezime.AutoSize = true;
-            this.lblPrezime.Location = new System.Drawing.Point(94, 45);
-            this.lblPrezime.Name = "lblPrezime";
-            this.lblPrezime.Size = new System.Drawing.Size(35, 13);
-            this.lblPrezime.TabIndex = 4;
-            this.lblPrezime.Text = "label2";
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(7, 134);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(80, 13);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "Datum rođenja:";
+            // 
+            // lblTelefon
+            // 
+            this.lblTelefon.AutoSize = true;
+            this.lblTelefon.Location = new System.Drawing.Point(94, 112);
+            this.lblTelefon.Name = "lblTelefon";
+            this.lblTelefon.Size = new System.Drawing.Size(35, 13);
+            this.lblTelefon.TabIndex = 10;
+            this.lblTelefon.Text = "label2";
+            // 
+            // labelTelefon
+            // 
+            this.labelTelefon.AutoSize = true;
+            this.labelTelefon.Location = new System.Drawing.Point(5, 112);
+            this.labelTelefon.Name = "labelTelefon";
+            this.labelTelefon.Size = new System.Drawing.Size(46, 13);
+            this.labelTelefon.TabIndex = 9;
+            this.labelTelefon.Text = "Telefon:";
             // 
             // lblEmail
             // 
@@ -164,59 +182,41 @@ namespace TVPProjekat.forms.pomocne
             this.fdsa.TabIndex = 5;
             this.fdsa.Text = "Korisnicko ime: ";
             // 
-            // labelTelefon
+            // lblPrezime
             // 
-            this.labelTelefon.AutoSize = true;
-            this.labelTelefon.Location = new System.Drawing.Point(5, 112);
-            this.labelTelefon.Name = "labelTelefon";
-            this.labelTelefon.Size = new System.Drawing.Size(46, 13);
-            this.labelTelefon.TabIndex = 9;
-            this.labelTelefon.Text = "Telefon:";
+            this.lblPrezime.AutoSize = true;
+            this.lblPrezime.Location = new System.Drawing.Point(94, 45);
+            this.lblPrezime.Name = "lblPrezime";
+            this.lblPrezime.Size = new System.Drawing.Size(35, 13);
+            this.lblPrezime.TabIndex = 4;
+            this.lblPrezime.Text = "label2";
             // 
-            // lblTelefon
+            // label2
             // 
-            this.lblTelefon.AutoSize = true;
-            this.lblTelefon.Location = new System.Drawing.Point(94, 112);
-            this.lblTelefon.Name = "lblTelefon";
-            this.lblTelefon.Size = new System.Drawing.Size(35, 13);
-            this.lblTelefon.TabIndex = 10;
-            this.lblTelefon.Text = "label2";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(7, 45);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(50, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Prezime: ";
             // 
-            // label3
+            // lblIme
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(7, 134);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(80, 13);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "Datum rođenja:";
+            this.lblIme.AutoSize = true;
+            this.lblIme.Location = new System.Drawing.Point(93, 22);
+            this.lblIme.Name = "lblIme";
+            this.lblIme.Size = new System.Drawing.Size(35, 13);
+            this.lblIme.TabIndex = 2;
+            this.lblIme.Text = "label2";
             // 
-            // lblDatumRodjenja
+            // label1
             // 
-            this.lblDatumRodjenja.AutoSize = true;
-            this.lblDatumRodjenja.Location = new System.Drawing.Point(94, 134);
-            this.lblDatumRodjenja.Name = "lblDatumRodjenja";
-            this.lblDatumRodjenja.Size = new System.Drawing.Size(35, 13);
-            this.lblDatumRodjenja.TabIndex = 12;
-            this.lblDatumRodjenja.Text = "label2";
-            // 
-            // lblPol
-            // 
-            this.lblPol.AutoSize = true;
-            this.lblPol.Location = new System.Drawing.Point(94, 157);
-            this.lblPol.Name = "lblPol";
-            this.lblPol.Size = new System.Drawing.Size(35, 13);
-            this.lblPol.TabIndex = 14;
-            this.lblPol.Text = "label2";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(7, 157);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(25, 13);
-            this.label7.TabIndex = 13;
-            this.label7.Text = "Pol:";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(30, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Ime: ";
             // 
             // chkOtkljucaj
             // 
@@ -277,56 +277,88 @@ namespace TVPProjekat.forms.pomocne
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Izmena informacija";
             // 
-            // txtIme
+            // btnObrisiNalog
             // 
-            this.txtIme.Enabled = false;
-            this.txtIme.Location = new System.Drawing.Point(11, 60);
-            this.txtIme.Name = "txtIme";
-            this.txtIme.Size = new System.Drawing.Size(100, 20);
-            this.txtIme.TabIndex = 2;
+            this.btnObrisiNalog.Enabled = false;
+            this.btnObrisiNalog.Location = new System.Drawing.Point(9, 183);
+            this.btnObrisiNalog.Name = "btnObrisiNalog";
+            this.btnObrisiNalog.Size = new System.Drawing.Size(75, 23);
+            this.btnObrisiNalog.TabIndex = 18;
+            this.btnObrisiNalog.Text = "Obrisi nalog!";
+            this.btnObrisiNalog.UseVisualStyleBackColor = true;
+            this.btnObrisiNalog.Click += new System.EventHandler(this.obrisiNalog);
             // 
-            // txtPrezime
+            // label14
             // 
-            this.txtPrezime.Enabled = false;
-            this.txtPrezime.Location = new System.Drawing.Point(117, 60);
-            this.txtPrezime.Name = "txtPrezime";
-            this.txtPrezime.Size = new System.Drawing.Size(100, 20);
-            this.txtPrezime.TabIndex = 3;
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(244, 131);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(117, 13);
+            this.label14.TabIndex = 17;
+            this.label14.Text = "Ponovo unesite lozinku";
             // 
-            // label6
+            // label13
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(7, 45);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(24, 13);
-            this.label6.TabIndex = 4;
-            this.label6.Text = "Ime";
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(241, 87);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(69, 13);
+            this.label13.TabIndex = 16;
+            this.label13.Text = "Nova lozinka";
             // 
-            // label8
+            // txtPonovnaLozinka
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(114, 44);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(44, 13);
-            this.label8.TabIndex = 5;
-            this.label8.Text = "Prezime";
+            this.txtPonovnaLozinka.Enabled = false;
+            this.txtPonovnaLozinka.Location = new System.Drawing.Point(244, 147);
+            this.txtPonovnaLozinka.Name = "txtPonovnaLozinka";
+            this.txtPonovnaLozinka.Size = new System.Drawing.Size(199, 20);
+            this.txtPonovnaLozinka.TabIndex = 15;
             // 
-            // txtEmail
+            // txtNovaLozinka
             // 
-            this.txtEmail.Enabled = false;
-            this.txtEmail.Location = new System.Drawing.Point(10, 103);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(207, 20);
-            this.txtEmail.TabIndex = 6;
+            this.txtNovaLozinka.Enabled = false;
+            this.txtNovaLozinka.Location = new System.Drawing.Point(244, 103);
+            this.txtNovaLozinka.Name = "txtNovaLozinka";
+            this.txtNovaLozinka.Size = new System.Drawing.Size(199, 20);
+            this.txtNovaLozinka.TabIndex = 14;
             // 
-            // label9
+            // label12
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(8, 87);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(36, 13);
-            this.label9.TabIndex = 7;
-            this.label9.Text = "E-Mail";
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(347, 45);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(22, 13);
+            this.label12.TabIndex = 13;
+            this.label12.Text = "Pol";
+            // 
+            // comboPol
+            // 
+            this.comboPol.Enabled = false;
+            this.comboPol.FormattingEnabled = true;
+            this.comboPol.Location = new System.Drawing.Point(347, 59);
+            this.comboPol.Name = "comboPol";
+            this.comboPol.Size = new System.Drawing.Size(96, 21);
+            this.comboPol.TabIndex = 12;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(241, 45);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(77, 13);
+            this.label11.TabIndex = 11;
+            this.label11.Text = "Datum rođenja";
+            // 
+            // dateDatum
+            // 
+            this.dateDatum.CustomFormat = "dd/MM/yyyy";
+            this.dateDatum.Enabled = false;
+            this.dateDatum.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateDatum.Location = new System.Drawing.Point(244, 60);
+            this.dateDatum.Name = "dateDatum";
+            this.dateDatum.ShowUpDown = true;
+            this.dateDatum.Size = new System.Drawing.Size(97, 20);
+            this.dateDatum.TabIndex = 10;
             // 
             // label10
             // 
@@ -345,87 +377,56 @@ namespace TVPProjekat.forms.pomocne
             this.txtTelefon.Size = new System.Drawing.Size(207, 20);
             this.txtTelefon.TabIndex = 8;
             // 
-            // dateDatum
+            // label9
             // 
-            this.dateDatum.CustomFormat = "dd/MM/yyyy";
-            this.dateDatum.Enabled = false;
-            this.dateDatum.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateDatum.Location = new System.Drawing.Point(244, 60);
-            this.dateDatum.Name = "dateDatum";
-            this.dateDatum.ShowUpDown = true;
-            this.dateDatum.Size = new System.Drawing.Size(97, 20);
-            this.dateDatum.TabIndex = 10;
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(8, 87);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(36, 13);
+            this.label9.TabIndex = 7;
+            this.label9.Text = "E-Mail";
             // 
-            // label11
+            // txtEmail
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(241, 45);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(77, 13);
-            this.label11.TabIndex = 11;
-            this.label11.Text = "Datum rođenja";
+            this.txtEmail.Enabled = false;
+            this.txtEmail.Location = new System.Drawing.Point(10, 103);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(207, 20);
+            this.txtEmail.TabIndex = 6;
             // 
-            // comboPol
+            // label8
             // 
-            this.comboPol.Enabled = false;
-            this.comboPol.FormattingEnabled = true;
-            this.comboPol.Location = new System.Drawing.Point(347, 59);
-            this.comboPol.Name = "comboPol";
-            this.comboPol.Size = new System.Drawing.Size(96, 21);
-            this.comboPol.TabIndex = 12;
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(114, 44);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(44, 13);
+            this.label8.TabIndex = 5;
+            this.label8.Text = "Prezime";
             // 
-            // label12
+            // label6
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(347, 45);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(22, 13);
-            this.label12.TabIndex = 13;
-            this.label12.Text = "Pol";
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(7, 45);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(24, 13);
+            this.label6.TabIndex = 4;
+            this.label6.Text = "Ime";
             // 
-            // txtNovaLozinka
+            // txtPrezime
             // 
-            this.txtNovaLozinka.Enabled = false;
-            this.txtNovaLozinka.Location = new System.Drawing.Point(244, 103);
-            this.txtNovaLozinka.Name = "txtNovaLozinka";
-            this.txtNovaLozinka.Size = new System.Drawing.Size(199, 20);
-            this.txtNovaLozinka.TabIndex = 14;
+            this.txtPrezime.Enabled = false;
+            this.txtPrezime.Location = new System.Drawing.Point(117, 60);
+            this.txtPrezime.Name = "txtPrezime";
+            this.txtPrezime.Size = new System.Drawing.Size(100, 20);
+            this.txtPrezime.TabIndex = 3;
             // 
-            // txtPonovnaLozinka
+            // txtIme
             // 
-            this.txtPonovnaLozinka.Enabled = false;
-            this.txtPonovnaLozinka.Location = new System.Drawing.Point(244, 147);
-            this.txtPonovnaLozinka.Name = "txtPonovnaLozinka";
-            this.txtPonovnaLozinka.Size = new System.Drawing.Size(199, 20);
-            this.txtPonovnaLozinka.TabIndex = 15;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(241, 87);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(69, 13);
-            this.label13.TabIndex = 16;
-            this.label13.Text = "Nova lozinka";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(244, 131);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(117, 13);
-            this.label14.TabIndex = 17;
-            this.label14.Text = "Ponovo unesite lozinku";
-            // 
-            // btnObrisiNalog
-            // 
-            this.btnObrisiNalog.Location = new System.Drawing.Point(9, 183);
-            this.btnObrisiNalog.Name = "btnObrisiNalog";
-            this.btnObrisiNalog.Size = new System.Drawing.Size(75, 23);
-            this.btnObrisiNalog.TabIndex = 18;
-            this.btnObrisiNalog.Text = "Obrisi nalog!";
-            this.btnObrisiNalog.UseVisualStyleBackColor = true;
-            this.btnObrisiNalog.Click += new System.EventHandler(this.obrisiNalog);
+            this.txtIme.Enabled = false;
+            this.txtIme.Location = new System.Drawing.Point(11, 60);
+            this.txtIme.Name = "txtIme";
+            this.txtIme.Size = new System.Drawing.Size(100, 20);
+            this.txtIme.TabIndex = 2;
             // 
             // FormDetaljiNaloga
             // 

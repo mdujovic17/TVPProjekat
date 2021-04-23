@@ -82,8 +82,8 @@ X:4; O:11; ?:7;
 			[O] Brisanje
 				
 	[X] CSV
-		[X] Export
-		[X] Import
+		[X] Export 
+		[X] Import REMOVED
 		
 	[X] Statusna linija
 	[O] Odjava
