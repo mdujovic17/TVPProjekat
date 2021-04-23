@@ -51,6 +51,7 @@ namespace TVPProjekat.forms.pomocne
             this.btnOtkazi.TabIndex = 19;
             this.btnOtkazi.Text = "Otkaži";
             this.btnOtkazi.UseVisualStyleBackColor = true;
+            this.btnOtkazi.Click += new System.EventHandler(this.otkaziIzmene);
             // 
             // btnPotvrdi
             // 
@@ -60,6 +61,7 @@ namespace TVPProjekat.forms.pomocne
             this.btnPotvrdi.TabIndex = 18;
             this.btnPotvrdi.Text = "Potvrdi";
             this.btnPotvrdi.UseVisualStyleBackColor = true;
+            this.btnPotvrdi.Click += new System.EventHandler(this.potvrdiIzmene);
             // 
             // label4
             // 
@@ -170,6 +172,7 @@ namespace TVPProjekat.forms.pomocne
             this.Controls.Add(this.txtIme);
             this.Name = "FormIzmenaFilm";
             this.Text = "FormIzmenaFilm";
+            this.Load += new System.EventHandler(this.popuniFormu);
             this.ResumeLayout(false);
             this.PerformLayout();
 
