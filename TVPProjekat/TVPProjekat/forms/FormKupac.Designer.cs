@@ -87,6 +87,7 @@ namespace TVPProjekat
             this.datumVreme,
             this.brojSedista,
             this.clmCena});
+            this.lvRezervacije.FullRowSelect = true;
             this.lvRezervacije.HideSelection = false;
             this.lvRezervacije.Location = new System.Drawing.Point(12, 24);
             this.lvRezervacije.Name = "lvRezervacije";

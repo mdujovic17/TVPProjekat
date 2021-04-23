@@ -260,6 +260,11 @@ namespace TVPProjekat
                 (o as Kupac).KupacUUID = "-1";
                 JSONInvalidate(o, folder, uuid);
             }
+            else if (o is Rezervacija)
+            {
+                folder = "rezervacije";
+                uuid = (o as Rezervacija).KorisnickiID + "-" + (o as Rezervacija).ProjekcijaID;
+            }
 
             if (folder != "" && uuid != "")
             {

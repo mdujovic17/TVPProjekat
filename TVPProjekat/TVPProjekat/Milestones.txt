@@ -3,22 +3,23 @@
 X:9; O:5; ?:0;
 [X] FormKupac
 	[O] Osvezavanje
-	[X] Nove rezervacije
-		[X] FormRezervacija
-			[X] Filteri
+	[O] Nove rezervacije
+		[O] FormRezervacija
+			[O] Filteri
 				[O] Ogranicenje pocetnog datuma
 				[O] Liste
-				[X] Filtriranje projekcija
-			[X] Cena
-			[X] Osvezavanje projekcija
-			[X] Sedista
-				[X] Ogranicenje max i min broja
-			[X] Rezervisanje
+				[O] Filtriranje projekcija
+			[O] Cena
+			[O] Osvezavanje projekcija
+			[O] Sedista
+				[O] Ogranicenje max i min broja
+			[O] Rezervisanje
 		[X] FormDetaljiNaloga
 			[O] Prikaz informacija
 			[X] Izmena informacija
-	[X] Prikaz rezervacija
-	[X] Otkazivanje
+			[O] Brisanje naloga
+	[O] Prikaz rezervacija
+	[O] Otkazivanje
 	[O] Statusna linija
 	[O] Odjava
 

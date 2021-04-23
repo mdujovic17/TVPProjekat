@@ -35,7 +35,18 @@ namespace TVPProjekat
         public FormKupac()
         {
             InitializeComponent();
+            listUpdate();
             osvezavanje(true);
+        }
+        public void listUpdate()
+        {
+            listaRezervacija = new List<Rezervacija>();
+            listaFilmova = new List<Film>();
+            listaProjekcija = new List<Projekcija>();
+
+            LocalFileManager.JSONDeserialize(listaRezervacija, "rezervacije");
+            LocalFileManager.JSONDeserialize(listaFilmova, "filmovi");
+            LocalFileManager.JSONDeserialize(listaProjekcija, "projekcije");
         }
         public Korisnik PrihvatiKorisnika(Korisnik kupac)
         {
@@ -86,17 +97,15 @@ namespace TVPProjekat
             frmRezervacija.Show();
             this.Hide();
         }
+        private void listViewClear()
+        {
+            lvRezervacije.Items.Clear();
+        }
         private void prikaziListu(object sender, EventArgs e)
         {
-            listaRezervacija = new List<Rezervacija>();
-            listaFilmova = new List<Film>();
-            listaProjekcija = new List<Projekcija>();
+            listViewClear();
 
-            LocalFileManager.JSONDeserialize(listaRezervacija, "rezervacije");
-            LocalFileManager.JSONDeserialize(listaFilmova, "filmovi");
-            LocalFileManager.JSONDeserialize(listaProjekcija, "projekcije");
-
-            string imeFilma = "", sala = "", datumIVreme = "";
+            listUpdate();
 
             foreach (Rezervacija rezervacija in listaRezervacija)
             {
@@ -114,22 +123,6 @@ namespace TVPProjekat
                     
                 }
             }
-
-            //for (int i = 0; i < listaRezervacija.Count; i++)
-            //{
-            //    Rezervacija r = listaRezervacija[i];
-            //    foreach (Projekcija projekcija in listaProjekcija)
-            //    {
-            //        if (r.ProjekcijaID.Equals(projekcija.Uid))
-            //        {
-            //            imeFilma = projekcija.Film.ImeFilma;
-            //            sala = "Sala " + projekcija.Sala;
-            //            datumIVreme = projekcija.DatumProjekcije.ToString("dd/MM/yyyy") + " " + projekcija.VremeProjekcije.ToString("HH:mm");
-            //            break;
-            //        }
-            //    }
-                
-            //}
         }
         private void otkaziRezervaciju(object sender, EventArgs e)
         {
@@ -138,20 +131,18 @@ namespace TVPProjekat
             if (msg == DialogResult.Yes)
             {
                 LocalFileManager.JSONDelete(selectedItem);
+                listUpdate();
             }
         }
         private void kontrola(string uuid)
         {
-            if (uuid.Length == 20 || uuid.Length == 21 || uuid.Length == 22)
+            foreach (Rezervacija rezervacija in listaRezervacija)
             {
-                foreach (Rezervacija rezervacija in listaRezervacija)
+                if ((rezervacija.KorisnickiID + "-" + rezervacija.ProjekcijaID).Equals(uuid))
                 {
-                    if ((rezervacija.KorisnickiID + "-" + rezervacija.ProjekcijaID).Equals(uuid))
-                    {
-                        selectedItem = rezervacija;
-                        Debug.WriteLine(DateTime.Now.ToString("(HH:mm:ss)") + " " + "Selektovana rezervacija sa UUID: " + (rezervacija.KorisnickiID + "-" + rezervacija.ProjekcijaID));
-                        break;
-                    }
+                    selectedItem = rezervacija;
+                    Debug.WriteLine(DateTime.Now.ToString("(HH:mm:ss)") + " " + "Selektovana rezervacija sa UUID: " + (rezervacija.KorisnickiID + "-" + rezervacija.ProjekcijaID));
+                    break;
                 }
             }
         }
@@ -163,7 +154,6 @@ namespace TVPProjekat
             posalji(prijavljenKupac);
             frmDetalji.Show();
         }
-
         private void selektujObjekat(object sender, EventArgs e)
         {
             string selektovanUUID = "";
