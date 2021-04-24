@@ -547,7 +547,21 @@ namespace TVPProjekat
                         }
                         else if (selectedItem is Projekcija)
                         {
-                            //
+                            bool brk = false;
+                            foreach (Rezervacija rezervacija in rezervacije)
+                            {
+                                
+                                if (rezervacija.ProjekcijaID.Equals((selectedItem as Projekcija).Uid))
+                                {
+                                    tempProjekcija = projekcija;
+                                    brk = true;
+                                    break;
+                                }
+                            }
+                            if (brk)
+                            {
+                                break;
+                            }
                         }
                     }
                     if (tempProjekcija != null)
