@@ -41,7 +41,6 @@ namespace TVPProjekat
             this.btnObrisi = new System.Windows.Forms.Button();
             this.btnIzmeni = new System.Windows.Forms.Button();
             this.btnDodaj = new System.Windows.Forms.Button();
-            this.btnExportCSV = new System.Windows.Forms.Button();
             this.btnLogout = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.btnDetalji = new System.Windows.Forms.Button();
@@ -167,15 +166,6 @@ namespace TVPProjekat
             this.btnDodaj.UseVisualStyleBackColor = true;
             this.btnDodaj.Click += new System.EventHandler(this.dodajStavku);
             // 
-            // btnExportCSV
-            // 
-            this.btnExportCSV.Location = new System.Drawing.Point(747, 342);
-            this.btnExportCSV.Name = "btnExportCSV";
-            this.btnExportCSV.Size = new System.Drawing.Size(141, 25);
-            this.btnExportCSV.TabIndex = 12;
-            this.btnExportCSV.Text = "Eksportuj u CSV";
-            this.btnExportCSV.UseVisualStyleBackColor = true;
-            // 
             // btnLogout
             // 
             this.btnLogout.Location = new System.Drawing.Point(747, 373);
@@ -215,7 +205,6 @@ namespace TVPProjekat
             this.Controls.Add(this.btnDetalji);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnLogout);
-            this.Controls.Add(this.btnExportCSV);
             this.Controls.Add(this.btnDodaj);
             this.Controls.Add(this.btnIzmeni);
             this.Controls.Add(this.btnObrisi);
@@ -249,7 +238,6 @@ namespace TVPProjekat
         private System.Windows.Forms.Button btnObrisi;
         private System.Windows.Forms.Button btnIzmeni;
         private System.Windows.Forms.Button btnDodaj;
-        private System.Windows.Forms.Button btnExportCSV;
         private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.ToolStripStatusLabel statusUUID;
         private System.Windows.Forms.Button button1;

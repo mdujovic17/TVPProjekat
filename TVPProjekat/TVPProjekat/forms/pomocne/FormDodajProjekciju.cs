@@ -42,12 +42,12 @@ namespace TVPProjekat.forms.pomocne
                 }
                 foreach (Sala sala in sale)
                 {
-                    if ((comboSala.SelectedIndex + 1).ToString().Equals(sala.BrojSale.ToString()))
+                    if (comboSala.SelectedItem.ToString().Replace("Sala", "").Equals(sala.BrojSale.ToString()))
                     {
                         brojDosupnihMesta = sala.UkupanBrojSedista;
                     }
                 }
-                novaProjekcija = new Projekcija(film, comboSala.SelectedIndex + 1, brojDosupnihMesta, dateTimePicker1.Value, timeVreme.Value, double.Parse(txtCena.Text));
+                novaProjekcija = new Projekcija(film, int.Parse(comboSala.SelectedItem.ToString().Replace("Sala", "")), brojDosupnihMesta, dateTimePicker1.Value, timeVreme.Value, double.Parse(txtCena.Text));
                 LocalFileManager.JSONSerialize(novaProjekcija, "projekcije");
 
                 this.Dispose();

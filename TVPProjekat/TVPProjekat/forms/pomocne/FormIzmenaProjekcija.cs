@@ -72,6 +72,7 @@ namespace TVPProjekat.forms.pomocne
                     if (sala.BrojSale == int.Parse(comboSala.SelectedItem.ToString().Replace("Sala ", "")))
                     {
                         projekcijaZaIzmenu.Sala = int.Parse(comboSala.SelectedItem.ToString().Replace("Sala ", ""));
+                        projekcijaZaIzmenu.DostupnaMesta = sala.UkupanBrojSedista;
                     }
                 }
                 projekcijaZaIzmenu.DatumProjekcije = dateDatum.Value;
