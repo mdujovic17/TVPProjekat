@@ -98,7 +98,6 @@ namespace TVPProjekat
             LocalFileManager.JSONDeserialize(projekcije, "projekcije");
             LocalFileManager.JSONDeserialize(rezervacije, "rezervacijce");
         }
-
         public void viewUpdate(object sender, EventArgs e)
         {
             if (activeAdminList)
@@ -406,13 +405,11 @@ namespace TVPProjekat
                 frmDodajProjekciju.Show();
             }
         }
-
         /*Klikom na dugme poziva predvidjenu metodu u zavisnosti od tipa prikazane liste*/
         private void dodajStavku(object sender, EventArgs e)
         {
             dodajOdabrano();
         }
-
         private void btnDetalji_Click(object sender, EventArgs e)
         {
             frmDetaljiRezervacije = new FormDetaljiRezervacije();
@@ -424,7 +421,6 @@ namespace TVPProjekat
             frmDetaljiRezervacije.Show();
             this.Hide();
         }
-
         private void obrisiInvalid(object sender, EventArgs e)
         {
             DialogResult res = MessageBox.Show("Da li ste sigurni da zelite da obriste sve invalidne podatke?", "Brisanje", MessageBoxButtons.YesNo);
@@ -433,7 +429,6 @@ namespace TVPProjekat
                 LocalFileManager.DeleteAllInvalidated();
             }
         }
-
         //Iskljucuje ili ukljucuje btnDodaj na formi ako je bar jedna lista prikazana
         private void changeUpdate(object sender, EventArgs e)
         {
