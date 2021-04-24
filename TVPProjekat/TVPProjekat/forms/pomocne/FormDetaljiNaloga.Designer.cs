@@ -238,6 +238,7 @@ namespace TVPProjekat.forms.pomocne
             this.btnPrihvati.TabIndex = 2;
             this.btnPrihvati.Text = "Prihvati";
             this.btnPrihvati.UseVisualStyleBackColor = true;
+            this.btnPrihvati.Click += new System.EventHandler(this.btnPrihvati_Click);
             // 
             // btnIzlaz
             // 

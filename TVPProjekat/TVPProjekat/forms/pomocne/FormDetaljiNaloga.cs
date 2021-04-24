@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TVPProjekat.korisnik;
+using TVPProjekat.util;
 
 namespace TVPProjekat.forms.pomocne
 {
@@ -99,6 +100,20 @@ namespace TVPProjekat.forms.pomocne
                 odjaviSe(sender, e);
                 MessageBox.Show("Vas nalog je uspesno obrisan");
                 
+            }
+        }
+
+        private void btnPrihvati_Click(object sender, EventArgs e)
+        {
+            if (ProveraForme.proveraImena(txtIme.Text) && ProveraForme.proveraImena(txtPrezime.Text) && ProveraForme.proveraEMaila(txtEmail.Text) && ProveraForme.proveraBrojaTelefona(txtTelefon.Text) && ProveraForme.proveraDatumaRodjenja(dateDatum.Value) && ProveraForme.proveraSifre(txtNovaLozinka.Text) && (txtPonovnaLozinka.Text.Equals(txtNovaLozinka.Text)) && ProveraForme.proveraPola(comboPol.SelectedIndex))
+            {
+                infoKorisnik.Ime = txtIme.Text;
+                infoKorisnik.Prezime = txtPrezime.Text;
+                infoKorisnik.Email = txtEmail.Text;
+                infoKorisnik.Telefon = txtTelefon.Text;
+                infoKorisnik.DatumRodjenja = dateDatum.Value;
+                infoKorisnik.Pol = comboPol.SelectedIndex;
+                infoKorisnik.Sifra = Korisnik.sifrujLozinku(txtNovaLozinka.Text);
             }
         }
     }
