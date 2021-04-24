@@ -20,8 +20,11 @@ namespace TVPProjekat.forms.pomocne
 
         FormAdmin frmAdmin;
         Sala salaZaIzmenu;
+        List<Projekcija> projekcijas;
         public FormIzmenaSala()
         {
+            projekcijas = new List<Projekcija>();
+            LocalFileManager.JSONDeserialize(projekcijas, "projekcije");
             InitializeComponent();
         }
         public void prihvatiFormu(FormAdmin form)
@@ -42,7 +45,14 @@ namespace TVPProjekat.forms.pomocne
                 salaZaIzmenu.UkupanBrojSedista = int.Parse(txtBrojSedista.Text);
 
                 LocalFileManager.JSONSerialize(salaZaIzmenu, "sale");
-
+                foreach (Projekcija projekcija in projekcijas)
+                {
+                    if (projekcija.Sala.Uid.Equals(salaZaIzmenu.Uid))
+                    {
+                        projekcija.Sala = salaZaIzmenu;
+                        LocalFileManager.JSONSerialize(projekcija, "projekcije");
+                    }
+                }
                 prikaz = new prikaziIzmeneNaListi(frmAdmin.listUpdate);
                 azuriraj = new azurirajPrikaz(frmAdmin.viewUpdate);
 

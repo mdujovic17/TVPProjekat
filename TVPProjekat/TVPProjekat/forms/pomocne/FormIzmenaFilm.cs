@@ -21,9 +21,13 @@ namespace TVPProjekat.forms.pomocne
 
         private Film filmZaIzmenu;
         private FormAdmin frmAdmin;
+
+        private List<Projekcija> projekcije;
         public FormIzmenaFilm()
         {
+            projekcije = new List<Projekcija>();
             InitializeComponent();
+            LocalFileManager.JSONDeserialize(projekcije, "projekcije");
         }
         public void prihvatiFormu(FormAdmin form)
         {
@@ -45,6 +49,15 @@ namespace TVPProjekat.forms.pomocne
                 filmZaIzmenu.Granica = comboGodine.SelectedIndex;
 
                 LocalFileManager.JSONSerialize(filmZaIzmenu, "filmovi");
+
+                foreach (Projekcija item in projekcije)
+                {
+                    if (item.Film.Id.Equals(filmZaIzmenu.Id))
+                    {
+                        item.Film = filmZaIzmenu;
+                        LocalFileManager.JSONSerialize(item, "projekcije");
+                    }
+                }
 
                 prikaz = new prikaziIzmeneNaListi(frmAdmin.listUpdate);
                 azuriraj = new azurirajPrikaz(frmAdmin.viewUpdate);

@@ -56,7 +56,7 @@ namespace TVPProjekat.forms.pomocne
 
         private void potvrdiIzmene(object sender, EventArgs e)
         {
-            if (comboSala.SelectedIndex != -1 && comboFilm.SelectedIndex != -1 && dateDatum.Value > DateTime.Now && timeVreme.Value > DateTime.Now && double.Parse(txtCena.Text) > 0)
+            if (comboSala.SelectedIndex != -1 && comboFilm.SelectedIndex != -1 && dateDatum.Value > DateTime.Now && double.Parse(txtCena.Text) > 0)
             {
                 foreach (Film film in filmovi)
                 {
@@ -65,13 +65,13 @@ namespace TVPProjekat.forms.pomocne
                         projekcijaZaIzmenu.Film = film;
                     }
                 }
-                projekcijaZaIzmenu.Sala = comboSala.SelectedIndex + 1;
+                //projekcijaZaIzmenu.Sala = comboSala.SelectedIndex + 1;
                 projekcijaZaIzmenu.CenaKarte = double.Parse(txtCena.Text);
                 foreach (Sala sala in sale)
                 {
                     if (sala.BrojSale == int.Parse(comboSala.SelectedItem.ToString().Replace("Sala ", "")))
                     {
-                        projekcijaZaIzmenu.Sala = int.Parse(comboSala.SelectedItem.ToString().Replace("Sala ", ""));
+                        projekcijaZaIzmenu.Sala = sala;
                         projekcijaZaIzmenu.DostupnaMesta = sala.UkupanBrojSedista;
                     }
                 }

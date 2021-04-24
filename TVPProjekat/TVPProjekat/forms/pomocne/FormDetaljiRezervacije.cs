@@ -89,17 +89,15 @@ namespace TVPProjekat.forms.pomocne
 
         private void ucitaj(object sender, EventArgs e)
         {
-            foreach (Rezervacija rezervacija in rezervacijeKupca)
+            for (int i = 0; i < rezervacijeKupca.Count; i++)
             {
-                if (!rezervacija.KorisnickiID.Equals(kupac.KupacUUID))
+                if (!rezervacijeKupca[i].KorisnickiID.Equals(kupac.KupacUUID))
                 {
-                    rezervacijeKupca.Remove(rezervacija);
+                    rezervacijeKupca.RemoveAt(i);
                 }
-                ListViewItem item = new ListViewItem(new[] { rezervacija.ProjekcijaID, rezervacija.KorisnickiID, rezervacija.Cena.ToString("0.00"), rezervacija.BrojMesta.ToString() });
+                ListViewItem item = new ListViewItem(new[] { rezervacijeKupca[i].ProjekcijaID, rezervacijeKupca[i].KorisnickiID, rezervacijeKupca[i].Cena.ToString("0.00"), rezervacijeKupca[i].BrojMesta.ToString() });
                 listView1.Items.Add(item);
             }
-
-            
         }
 
         private void izadji(object sender, FormClosedEventArgs e)

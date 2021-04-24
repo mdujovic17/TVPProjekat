@@ -75,7 +75,7 @@ namespace TVPProjekat.util
 
         internal static bool proveraBrojaTelefona(string telefon)
         {
-            if (!telefon.Any(char.IsDigit) || telefon.Length != 10)
+            if (!telefon.Any(char.IsDigit) && telefon.Length > 10 && telefon.Length < 9)
             {
                 return false;
             }

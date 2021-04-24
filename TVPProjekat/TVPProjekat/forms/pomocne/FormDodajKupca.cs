@@ -13,11 +13,20 @@ namespace TVPProjekat.forms.pomocne
 {
     public partial class FormDodajKupca : Form
     {
+        private delegate void prikaziIzmeneNaListi();
+        private delegate void azurirajPrikaz(object sender, EventArgs e);
+        prikaziIzmeneNaListi prikaz;
+        azurirajPrikaz azuriraj;
+
+        FormAdmin frmAdmin;
         public FormDodajKupca()
         {
             InitializeComponent();
         }
-
+        public void prihvatiFormu(FormAdmin form)
+        {
+            frmAdmin = form;
+        }
         private void dodajNovogKupca(object sender, EventArgs e)
         {
             if (!(txtIme.Text.Equals("") && txtPrezime.Text.Equals("") && txtEmail.Text.Equals("") && txtKorisnickoIme.Text.Equals("") && comboPol.SelectedIndex.Equals(null) && txtTelefon.Text.Equals("") && txtSifra.Text.Equals("") && dateDatum.Value.Equals(null)))
@@ -26,10 +35,16 @@ namespace TVPProjekat.forms.pomocne
                 Kupac noviKupac = new Kupac(txtIme.Text, txtPrezime.Text, comboPol.SelectedIndex, txtTelefon.Text, txtEmail.Text, txtKorisnickoIme.Text, txtSifra.Text, dateDatum.Value);
                 LocalFileManager.JSONSerialize(noviKupac, "kupci");
 
+                prikaz = new prikaziIzmeneNaListi(frmAdmin.listUpdate);
+                azuriraj = new azurirajPrikaz(frmAdmin.viewUpdate);
+
+                prikaz();
+                azuriraj(sender, e);
+
                 this.Dispose(); //Potrebno da bi se svi resursi ove forme oslobodili, u suprotnom izaziva StackOverflowExepction
                 this.Close();
 
-                MessageBox.Show("Potrebno je osveziti listu da bi ste videli izmene.", "Izmena podataka", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show("Potrebno je osveziti listu da bi ste videli izmene.", "Izmena podataka", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

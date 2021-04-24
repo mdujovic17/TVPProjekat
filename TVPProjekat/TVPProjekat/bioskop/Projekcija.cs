@@ -13,7 +13,7 @@ namespace TVPProjekat.bioskop
         [DataMember]
         private Film film;
         [DataMember]
-        private int sala;
+        private Sala sala;
         [DataMember]
         private int dostupnaMesta;
         [DataMember]
@@ -26,7 +26,7 @@ namespace TVPProjekat.bioskop
         private string uid;
 
         //Kreiranje nove projekcije
-        public Projekcija(Film film, int sala, int dostupnaMesta, DateTime datumProjekcije, DateTime vremeProjekcije, double cenaKarte)
+        public Projekcija(Film film, Sala sala, int dostupnaMesta, DateTime datumProjekcije, DateTime vremeProjekcije, double cenaKarte)
         {
             this.Uid = generateUID();
             this.Film = film;
@@ -37,7 +37,7 @@ namespace TVPProjekat.bioskop
             this.CenaKarte = cenaKarte;
         }
 
-        public Projekcija(string uid, Film film, int sala, int dostupnaMesta, DateTime datumProjekcije, DateTime vremeProjekcije, double cenaKarte)
+        public Projekcija(string uid, Film film, Sala sala, int dostupnaMesta, DateTime datumProjekcije, DateTime vremeProjekcije, double cenaKarte)
         {
             this.Uid = uid;
             this.Film = film;
@@ -54,7 +54,7 @@ namespace TVPProjekat.bioskop
         public string Uid { get => uid; set => uid = value; }
         public int DostupnaMesta { get => dostupnaMesta; set => dostupnaMesta = value; }
         internal Film Film { get => film; set => film = value; }
-        internal int Sala { get => sala; set => sala = value; }
+        internal Sala Sala { get => sala; set => sala = value; }
 
         private string generateUID()
         {

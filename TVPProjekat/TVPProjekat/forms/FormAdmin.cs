@@ -273,7 +273,7 @@ namespace TVPProjekat
             for (int i = 0; i < projekcije.Count; i++)
             {
                 Projekcija p = projekcije[i];
-                ListViewItem item = new ListViewItem(new[] { p.Uid, p.DatumProjekcije.ToString("dd/MM/yyyy") + " " + p.VremeProjekcije.ToString("HH:mm"), "Sala " + p.Sala, p.CenaKarte + " RSD", p.Film.ImeFilma, p.DostupnaMesta.ToString() }) ;
+                ListViewItem item = new ListViewItem(new[] { p.Uid, p.DatumProjekcije.ToString("dd/MM/yyyy") + " " + p.VremeProjekcije.ToString("HH:mm"), "Sala " + p.Sala.BrojSale.ToString(), p.CenaKarte + " RSD", p.Film.ImeFilma, p.DostupnaMesta.ToString() }) ;
                 lvAdminPrikaz.Items.Add(item);
             }
         }
@@ -361,27 +361,48 @@ namespace TVPProjekat
         {
             if (activeAdminList)
             {
+                
                 frmDodajAdmina = new FormDodajAdmina();
+
+                posaljiOvuFormu = new posaljiFormu(frmDodajAdmina.prihvatiFormu);
+                posaljiOvuFormu(this);
+
                 frmDodajAdmina.Show();
             }
             else if (activeUserList)
             {
                 frmDodajKupca = new FormDodajKupca();
+
+                posaljiOvuFormu = new posaljiFormu(frmDodajKupca.prihvatiFormu);
+                posaljiOvuFormu(this);
+
                 frmDodajKupca.Show();
             }
             else if (activeRepertoarList)
             {
                 frmDodajFilm = new FormDodajFilm();
+
+                posaljiOvuFormu = new posaljiFormu(frmDodajFilm.prihvatiFormu);
+                posaljiOvuFormu(this);
+
                 frmDodajFilm.Show();
             }
             else if (activeSalaList)
             {
                 frmDodajSalu = new FormDodajSalu();
+
+                posaljiOvuFormu = new posaljiFormu(frmDodajSalu.prihvatiFormu);
+                posaljiOvuFormu(this);
+
                 frmDodajSalu.Show();
             }
             else if (activeProjekcijeList)
             {
                 frmDodajProjekciju = new FormDodajProjekciju();
+
+                posaljiOvuFormu = new posaljiFormu(frmDodajProjekciju.prihvatiFormu);
+                posaljiOvuFormu(this);
+
                 frmDodajProjekciju.Show();
             }
         }
@@ -539,7 +560,7 @@ namespace TVPProjekat
                         }
                         else if (selectedItem is Sala)
                         {
-                            if (projekcija.Sala == (selectedItem as Sala).BrojSale)
+                            if (projekcija.Sala == (selectedItem as Sala))
                             {
                                 tempProjekcija = projekcija;
                                 break;

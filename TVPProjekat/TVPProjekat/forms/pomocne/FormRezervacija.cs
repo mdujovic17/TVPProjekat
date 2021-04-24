@@ -119,7 +119,7 @@ namespace TVPProjekat.forms.pomocne
                 ListViewItem item = new ListViewItem(new[] { projekcija.Film.ImeFilma, projekcija.Film.Trajanje.ToString() + " min", projekcija.CenaKarte.ToString("0.00") + " RSD", projekcija.DatumProjekcije.ToString("dd/MM/yyyy") + " " + projekcija.VremeProjekcije.ToString("HH:mm"), "Sala " + projekcija.Sala.ToString(), projekcija.DostupnaMesta.ToString() });
                 
                 bool datum = datePocetniDatum.Value < projekcija.DatumProjekcije && dateKrajniDatum.Value > projekcija.DatumProjekcije;
-                bool sala = !salaNotSelected && projekcija.Sala == int.Parse(comboSale.SelectedItem.ToString().Replace("Sala ", ""));
+                bool sala = !salaNotSelected && projekcija.Sala.BrojSale == int.Parse(comboSale.SelectedItem.ToString().Replace("Sala ", ""));
                 bool imeFilma = !imeFilmaNotSelected && projekcija.Film.ImeFilma.Equals(comboNazivFilma.SelectedItem.ToString());
 
                 if (datum)
