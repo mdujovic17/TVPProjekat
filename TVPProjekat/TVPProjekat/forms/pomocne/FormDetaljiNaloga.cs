@@ -13,7 +13,9 @@ namespace TVPProjekat.forms.pomocne
 {
     public partial class FormDetaljiNaloga : Form
     {
+        private delegate void odjava(object sender, EventArgs e);
         private static Korisnik infoKorisnik;
+        private FormKupac frmKupac;
         public FormDetaljiNaloga()
         {
             InitializeComponent();
@@ -59,6 +61,11 @@ namespace TVPProjekat.forms.pomocne
             infoKorisnik = korisnik;
         }
 
+        public void prihvatiFormu(FormKupac formKupac)
+        {
+            frmKupac = formKupac;
+        }
+
         private void ucitaj(object sender, EventArgs e)
         {
             lblIme.Text = infoKorisnik.Ime;
@@ -82,7 +89,17 @@ namespace TVPProjekat.forms.pomocne
 
         private void obrisiNalog(object sender, EventArgs e)
         {
-
+            DialogResult msg = MessageBox.Show("Da li stvarno zelite da obrisete nalog?", "Brisanje naloga", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (msg == DialogResult.Yes)
+            {
+                odjava odjaviSe = new odjava(frmKupac.btnOdjava_Click);
+                LocalFileManager.JSONDelete(infoKorisnik);
+                this.Dispose();
+                this.Close();
+                odjaviSe(sender, e);
+                MessageBox.Show("Vas nalog je uspesno obrisan");
+                
+            }
         }
     }
 }

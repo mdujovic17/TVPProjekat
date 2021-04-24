@@ -55,7 +55,7 @@ namespace TVPProjekat
         {
             frmLogin = formLogin as FormLogin;
         }
-        private void btnOdjava_Click(object sender, EventArgs e)
+        public void btnOdjava_Click(object sender, EventArgs e)
         {
             prijavljenKupac = null;
             if (listaRezervacija != null)
@@ -163,11 +163,14 @@ namespace TVPProjekat
         }
         private void detaljiNaloga(object sender, EventArgs e)
         {
-            posaljiKorisnika posalji = FormDetaljiNaloga.prihvatiKorisnika;
-
+            
             frmDetalji = new FormDetaljiNaloga();
+            posaljiKorisnika posalji = FormDetaljiNaloga.prihvatiKorisnika;
+            posaljiFormu posaljiFormu = new posaljiFormu(frmDetalji.prihvatiFormu);
             posalji(prijavljenKupac);
+            posaljiFormu(this);
             frmDetalji.Show();
+            this.Hide();
         }
         private void selektujObjekat(object sender, EventArgs e)
         {
