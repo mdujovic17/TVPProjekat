@@ -155,13 +155,13 @@ namespace TVPProjekat.forms.pomocne
         {
             if (selectedItem.DostupnaMesta >= (int)numBrojMesta.Value)
             {
-                bool promena;
                 novaRezervacija = new Rezervacija((kupac as Kupac).KupacUUID, selectedItem.Uid, (int)numBrojMesta.Value, double.Parse(txtCena.Text));
                 foreach (Rezervacija rezervacija in rezervacije)
                 {
                     if (rezervacija.KorisnickiID.Equals(novaRezervacija.KorisnickiID) && rezervacija.ProjekcijaID.Equals(novaRezervacija.ProjekcijaID))
                     {
-                        selectedItem.DostupnaMesta += (int)numBrojMesta.Value;
+                        selectedItem.DostupnaMesta += rezervacija.BrojMesta;
+                        LocalFileManager.JSONSerialize(selectedItem, "projekcije");
                         break;
                     }
                 }
