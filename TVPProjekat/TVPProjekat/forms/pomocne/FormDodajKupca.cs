@@ -22,6 +22,7 @@ namespace TVPProjekat.forms.pomocne
         public FormDodajKupca()
         {
             InitializeComponent();
+            dateDatum.MaxDate = DateTime.Now;
         }
         public void prihvatiFormu(FormAdmin form)
         {

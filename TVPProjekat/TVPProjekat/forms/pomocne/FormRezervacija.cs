@@ -67,9 +67,9 @@ namespace TVPProjekat.forms.pomocne
             }
             foreach (Projekcija projekcija in projekcije)
             {
-                if (projekcija.DostupnaMesta != 0)
+                if (projekcija.DostupnaMesta != 0 && projekcija.DatumProjekcije > DateTime.Now)
                 {
-                    ListViewItem item = new ListViewItem(new[] { projekcija.Film.ImeFilma, projekcija.Film.Trajanje.ToString() + " min", projekcija.CenaKarte.ToString("0.00") + " RSD", projekcija.DatumProjekcije.ToString("dd/MM/yyyy") + " " + projekcija.VremeProjekcije.ToString("HH:mm"), "Sala " + projekcija.Sala.ToString(), projekcija.DostupnaMesta.ToString() });
+                    ListViewItem item = new ListViewItem(new[] { projekcija.Film.ImeFilma, projekcija.Film.Trajanje.ToString() + " min", projekcija.CenaKarte.ToString("0.00") + " RSD", projekcija.DatumProjekcije.ToString("dd/MM/yyyy") + " " + projekcija.VremeProjekcije.ToString("HH:mm"), "Sala " + projekcija.Sala.BrojSale.ToString(), projekcija.DostupnaMesta.ToString() });
                     lvProjekcije.Items.Add(item);
                 }
             }

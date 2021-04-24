@@ -27,6 +27,7 @@ namespace TVPProjekat.forms.pomocne
         public FormIzmenaKorisnik()
         {
             InitializeComponent();
+            dateDatum.MaxDate = DateTime.Now;
         }
 
         public void prihvatiFormu(FormAdmin form)

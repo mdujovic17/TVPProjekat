@@ -14,14 +14,18 @@ namespace TVPProjekat
 {
     public partial class FormRegistracija : Form
     {
-        //List<Korisnik> lista;
-        private bool validnost;
-        private string invalidForm = "";
+        List<Korisnik> listaKorisnika;
+        List<Korisnik> listaAdmina;
         Korisnik noviKorisnik;
         public FormRegistracija()
         {
+            
             InitializeComponent();
-            //lista = new List<Korisnik>();
+            dateDatum.MaxDate = DateTime.Now;
+            listaKorisnika = new List<Korisnik>();
+            listaAdmina = new List<Korisnik>();
+            LocalFileManager.JSONDeserialize(listaKorisnika, "kupci");
+            LocalFileManager.JSONDeserialize(listaAdmina, "administratori");
         }
 
         private void registrujKorisnika(object sender, EventArgs e)
@@ -41,9 +45,47 @@ namespace TVPProjekat
                 ProveraForme.proveraPola(comboPol.SelectedIndex) && ProveraForme.proveraKorImena(txtKorisnickoIme.Text) && ProveraForme.proveraEMaila(txtEmail.Text) && ProveraForme.proveraSifre(txtSifra.Text) &&
                 ProveraForme.proveraBrojaTelefona(txtTelefon.Text) && ProveraForme.proveraCheckBoxa(chkUslovi))
             {
+                foreach (Korisnik korisnik in listaKorisnika)
+                {
+                    if (korisnik.KorisnickoIme.Equals(txtKorisnickoIme.Text))
+                    {
+                        MessageBox.Show("Korisnicko ime vec postoji!.", "Registracija", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return false;
+                    }
+                    else if (korisnik.Email.Equals(txtEmail.Text))
+                    {
+                        MessageBox.Show("EMail vec postoji!.", "Registracija", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return false;
+                    }
+                }
+                foreach (Korisnik korisnik1 in listaAdmina)
+                {
+                    if (korisnik1.KorisnickoIme.Equals(txtKorisnickoIme.Text))
+                    {
+                        MessageBox.Show("Korisnicko ime vec postoji!.", "Registracija", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return false;
+                    }
+                    else if (korisnik1.Email.Equals(txtEmail.Text))
+                    {
+                        MessageBox.Show("EMail vec postoji!.", "Registracija", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return false;
+                    }
+                }
                 return true;
             }
-            else return false;
+            else 
+                return false;
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            txtIme.Clear();
+            txtPrezime.Clear();
+            txtEmail.Clear();
+            txtKorisnickoIme.Clear();
+            txtSifra.Clear();
+            txtTelefon.Clear();
+            chkUslovi.Checked = false;
         }
     }
 }

@@ -48,7 +48,6 @@ namespace TVPProjekat
             this.chkUslovi = new System.Windows.Forms.CheckBox();
             this.btnRegister = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
-            this.btnInfo = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtIme
@@ -212,22 +211,13 @@ namespace TVPProjekat
             this.btnClear.TabIndex = 18;
             this.btnClear.Text = "Obriši formu";
             this.btnClear.UseVisualStyleBackColor = true;
-            // 
-            // btnInfo
-            // 
-            this.btnInfo.Location = new System.Drawing.Point(176, 281);
-            this.btnInfo.Name = "btnInfo";
-            this.btnInfo.Size = new System.Drawing.Size(20, 23);
-            this.btnInfo.TabIndex = 19;
-            this.btnInfo.Text = "?";
-            this.btnInfo.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // FormRegistracija
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(372, 317);
-            this.Controls.Add(this.btnInfo);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnRegister);
             this.Controls.Add(this.chkUslovi);
@@ -275,6 +265,5 @@ namespace TVPProjekat
         private System.Windows.Forms.CheckBox chkUslovi;
         private System.Windows.Forms.Button btnRegister;
         private System.Windows.Forms.Button btnClear;
-        private System.Windows.Forms.Button btnInfo;
     }
 }

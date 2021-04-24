@@ -23,6 +23,7 @@ namespace TVPProjekat
         public FormDodajAdmina()
         {
             InitializeComponent();
+            dateDatum.MaxDate = DateTime.Now;
         }
         public void prihvatiFormu(FormAdmin form)
         {
