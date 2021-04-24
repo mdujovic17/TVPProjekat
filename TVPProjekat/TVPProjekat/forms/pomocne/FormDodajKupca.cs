@@ -22,6 +22,7 @@ namespace TVPProjekat.forms.pomocne
         {
             if (!(txtIme.Text.Equals("") && txtPrezime.Text.Equals("") && txtEmail.Text.Equals("") && txtKorisnickoIme.Text.Equals("") && comboPol.SelectedIndex.Equals(null) && txtTelefon.Text.Equals("") && txtSifra.Text.Equals("") && dateDatum.Value.Equals(null)))
             {
+
                 Kupac noviKupac = new Kupac(txtIme.Text, txtPrezime.Text, comboPol.SelectedIndex, txtTelefon.Text, txtEmail.Text, txtKorisnickoIme.Text, txtSifra.Text, dateDatum.Value);
                 LocalFileManager.JSONSerialize(noviKupac, "kupci");
 

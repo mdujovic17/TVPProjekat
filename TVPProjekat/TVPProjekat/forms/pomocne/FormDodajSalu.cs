@@ -21,7 +21,7 @@ namespace TVPProjekat.forms.pomocne
 
         private void btnPotvrdi_Click(object sender, EventArgs e)
         {
-            if ((txtBrojSale.Text != null || txtBrojSale.Text != "") && (txtBrojSedista.Text != null || txtBrojSedista.Text != ""))
+            if ((txtBrojSale.Text != null && txtBrojSale.Text != "" && txtBrojSale.Text.Any(char.IsDigit)) && (txtBrojSedista.Text != null && txtBrojSedista.Text != "" && txtBrojSale.Text.Any(char.IsDigit)))
             {
                 novaSala = new Sala(int.Parse(txtBrojSale.Text), int.Parse(txtBrojSedista.Text));
                 LocalFileManager.JSONSerialize(novaSala, "sale");

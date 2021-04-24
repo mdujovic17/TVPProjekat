@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TVPProjekat.bioskop;
+using TVPProjekat.util;
 
 namespace TVPProjekat.forms.pomocne
 {
@@ -36,7 +37,7 @@ namespace TVPProjekat.forms.pomocne
 
         private void potvrdiIzmene(object sender, EventArgs e)
         {
-            if (/**/true) //TODO: Provera
+            if (!txtIme.Text.Equals(null) && !txtTrajanje.Text.Equals(null) && !txtZanr.Text.Equals("") && !txtIme.Text.Equals("") && !txtTrajanje.Text.Equals("") && !txtZanr.Text.Equals("") && comboGodine.SelectedIndex != -1)
             {
                 filmZaIzmenu.ImeFilma = txtIme.Text;
                 filmZaIzmenu.Trajanje = int.Parse(txtTrajanje.Text);

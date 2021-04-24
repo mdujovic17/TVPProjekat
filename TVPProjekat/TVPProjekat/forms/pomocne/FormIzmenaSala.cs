@@ -36,7 +36,7 @@ namespace TVPProjekat.forms.pomocne
 
         private void potvrdiIzmene(object sender, EventArgs e)
         {
-            if (/**/true) //TODO: Provera
+            if (int.Parse(txtBrojSale.Text) > 0 && int.Parse(txtBrojSedista.Text) > 0 && int.Parse(txtBrojSale.Text) < 120 && int.Parse(txtBrojSedista.Text) < 120) //TODO: Provera
             {
                 salaZaIzmenu.BrojSale = int.Parse(txtBrojSale.Text);
                 salaZaIzmenu.UkupanBrojSedista = int.Parse(txtBrojSedista.Text);

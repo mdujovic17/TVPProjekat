@@ -56,7 +56,7 @@ namespace TVPProjekat.forms.pomocne
 
         private void potvrdiIzmene(object sender, EventArgs e)
         {
-            if (/**/true) //TODO: Provera
+            if (comboSala.SelectedIndex != -1 && comboFilm.SelectedIndex != -1 && dateDatum.Value > DateTime.Now && timeVreme.Value > DateTime.Now && double.Parse(txtCena.Text) > 0)
             {
                 foreach (Film film in filmovi)
                 {
