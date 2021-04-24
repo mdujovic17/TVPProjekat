@@ -117,6 +117,10 @@ namespace TVPProjekat
             DataContractJsonSerializer serializer;
             if (uuid != "" && folder != "")
             {
+                if (uuid.EndsWith("-1"))
+                {
+                    uuid = uuid.Remove(22, 2);
+                }
                 string directoryPath = @"..\data\" + folder + @"\";
 
                 fs = new FileStream(directoryPath + uuid + ".json", FileMode.Create, FileAccess.ReadWrite);
@@ -259,6 +263,7 @@ namespace TVPProjekat
                 uuid = (o as Kupac).KupacUUID;
                 (o as Kupac).KupacUUID = "-1";
                 JSONInvalidate(o, folder, uuid);
+                uuid = "";
             }
             else if (o is Rezervacija)
             {
@@ -285,25 +290,43 @@ namespace TVPProjekat
         public static void DeleteAllInvalidated()
         {
             List<Korisnik> listA = new List<Korisnik>();
-            List<Film> listB = new List<Film>();
-            List<Projekcija> listC = new List<Projekcija>();
-            List<Sala> listD = new List<Sala>();
             List<Rezervacija> listE = new List<Rezervacija>();
             DirectoryInfo directory;
-            string[] folderi = { "administratori", "kupci", "filmovi", "sale", "projekcije", "rezervacije" };
-            string[] files;
+            string[] folderi = { "kupci", "rezervacije" };
+            string[] files = null; ;
             foreach (string folder in folderi)
             {
                 directory = new DirectoryInfo(@"..\data\" + folder + @"\");
                 if (directory.Exists && directory.GetFiles() != null)
                 {
-                    
-                    files = Directory.GetFiles($@"..\data\{folder}\*");
+                    files = Directory.GetFiles($@"..\data\{folder}\");
                     JSONDeserialize(listA, folder);
-                    JSONDeserialize(listB, folder);
-                    JSONDeserialize(listC, folder);
-                    JSONDeserialize(listD, folder);
                     JSONDeserialize(listE, folder);
+                }
+            }
+
+            if (files != null)
+            {
+                foreach (Korisnik korisnik in listA)
+                {
+                    foreach (string fajl in files)
+                    {
+                        if ((korisnik as Kupac).KupacUUID != Path.GetFileName(fajl).Replace(".json", "") && (korisnik as Kupac).KupacUUID.Equals("-1"))
+                        {
+                            File.Delete(@"..\data\kupci\" + (korisnik as Kupac).KupacUUID + ".json");
+                        }
+                    }
+                }
+                foreach (string fajl in files)
+                {
+                    foreach (Rezervacija rezervacija in listE)
+                    {
+                        if (rezervacija.ProjekcijaID != null && rezervacija.ProjekcijaID.Length > 5 && rezervacija.KorisnickiID + "-" + rezervacija.ProjekcijaID.Remove(5,2) == Path.GetFileName(fajl).Replace(".json", "") && rezervacija.ProjekcijaID.EndsWith("-1"))
+                        {
+                            File.Delete(fajl);
+                            break;
+                        }
+                    }
                 }
             }
         }

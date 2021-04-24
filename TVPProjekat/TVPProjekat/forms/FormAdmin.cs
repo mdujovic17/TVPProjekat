@@ -406,31 +406,6 @@ namespace TVPProjekat
                 frmDodajProjekciju.Show();
             }
         }
-        //private void dodajAdmina()
-        //{
-        //    frmDodajAdmina = new FormDodajAdmina();
-        //    frmDodajAdmina.Show();
-        //}
-        //private void dodajKupca()
-        //{
-        //    frmDodajKupca = new FormDodajKupca();
-        //    frmDodajKupca.Show();
-        //}
-        //private void dodajFilm()
-        //{
-        //    frmDodajFilm = new FormDodajFilm();
-        //    frmDodajFilm.Show();
-        //}
-        //private void dodajSalu()
-        //{
-        //    frmDodajSalu = new FormDodajSalu();
-        //    frmDodajSalu.Show();
-        //}
-        //private void dodajProjekciju()
-        //{
-        //    frmDodajProjekciju = new FormDodajProjekciju();
-        //    frmDodajProjekciju.Show();
-        //}
 
         /*Klikom na dugme poziva predvidjenu metodu u zavisnosti od tipa prikazane liste*/
         private void dodajStavku(object sender, EventArgs e)
@@ -452,7 +427,11 @@ namespace TVPProjekat
 
         private void obrisiInvalid(object sender, EventArgs e)
         {
-
+            DialogResult res = MessageBox.Show("Da li ste sigurni da zelite da obriste sve invalidne podatke?", "Brisanje", MessageBoxButtons.YesNo);
+            if (res == DialogResult.Yes)
+            {
+                LocalFileManager.DeleteAllInvalidated();
+            }
         }
 
         //Iskljucuje ili ukljucuje btnDodaj na formi ako je bar jedna lista prikazana
@@ -477,7 +456,7 @@ namespace TVPProjekat
                     }
                 }
             }
-            else if(uuid.Length == 2 || uuid.Length == 14 || uuid.Length == 16)
+            else if(uuid.Length == 2 || uuid.Length == 14 || uuid.Length == 15 || uuid.Length == 16)
             {
                 foreach (Kupac kupac in kupci)
                 {

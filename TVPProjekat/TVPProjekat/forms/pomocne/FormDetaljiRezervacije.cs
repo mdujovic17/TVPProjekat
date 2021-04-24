@@ -19,13 +19,16 @@ namespace TVPProjekat.forms.pomocne
         private Kupac kupac;
         private FormAdmin frmAdmin;
         List<Rezervacija> rezervacijeKupca;
+        List<Projekcija> projekcije;
         Rezervacija selectedItem;
         public FormDetaljiRezervacije()
         {
             InitializeComponent();
             btnInvalidate.Enabled = false;
             rezervacijeKupca = new List<Rezervacija>();
+            projekcije = new List<Projekcija>();
             LocalFileManager.JSONDeserialize(rezervacijeKupca, "rezervacije");
+            LocalFileManager.JSONDeserialize(projekcije, "projekcije");
         }
         public void listUpdate()
         {
@@ -75,6 +78,15 @@ namespace TVPProjekat.forms.pomocne
         {
             string uuid = uuid = selectedItem.KorisnickiID + "-" + selectedItem.ProjekcijaID;
             selectedItem.ProjekcijaID += "-1";
+            foreach (Projekcija projekcija in projekcije)
+            {
+                if (projekcija.Uid.Equals(selectedItem.ProjekcijaID))
+                {
+                    projekcija.DostupnaMesta += selectedItem.BrojMesta;
+                    LocalFileManager.JSONSerialize(projekcija, "projekcije");
+                    break;
+                }
+            }
             LocalFileManager.JSONInvalidate(selectedItem, "rezervacije", uuid);
             listUpdate();
             ucitaj(sender, e);
