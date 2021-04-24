@@ -44,6 +44,7 @@ namespace TVPProjekat
             this.btnLogout = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.btnDetalji = new System.Windows.Forms.Button();
+            this.btnDeleteInvalidated = new System.Windows.Forms.Button();
             this.statusnaLinija.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -197,11 +198,22 @@ namespace TVPProjekat
             this.btnDetalji.UseVisualStyleBackColor = true;
             this.btnDetalji.Click += new System.EventHandler(this.btnDetalji_Click);
             // 
+            // btnDeleteInvalidated
+            // 
+            this.btnDeleteInvalidated.Location = new System.Drawing.Point(747, 296);
+            this.btnDeleteInvalidated.Name = "btnDeleteInvalidated";
+            this.btnDeleteInvalidated.Size = new System.Drawing.Size(141, 44);
+            this.btnDeleteInvalidated.TabIndex = 18;
+            this.btnDeleteInvalidated.Text = "Obrisi sve invalidne podatke";
+            this.btnDeleteInvalidated.UseVisualStyleBackColor = true;
+            this.btnDeleteInvalidated.Click += new System.EventHandler(this.obrisiInvalid);
+            // 
             // FormAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(895, 430);
+            this.Controls.Add(this.btnDeleteInvalidated);
             this.Controls.Add(this.btnDetalji);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnLogout);
@@ -242,5 +254,6 @@ namespace TVPProjekat
         private System.Windows.Forms.ToolStripStatusLabel statusUUID;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnDetalji;
+        private System.Windows.Forms.Button btnDeleteInvalidated;
     }
 }

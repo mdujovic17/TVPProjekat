@@ -450,6 +450,11 @@ namespace TVPProjekat
             this.Hide();
         }
 
+        private void obrisiInvalid(object sender, EventArgs e)
+        {
+
+        }
+
         //Iskljucuje ili ukljucuje btnDodaj na formi ako je bar jedna lista prikazana
         private void changeUpdate(object sender, EventArgs e)
         {
@@ -515,7 +520,19 @@ namespace TVPProjekat
             {
                 foreach (Projekcija projekcija in projekcije)
                 {
-                    if (projekcija.Uid.Equals(uuid))
+                    if (uuid.Contains("-"))
+                    {
+                        foreach (Sala sala in sale)
+                        {
+                            if (sala.Uid.Equals(uuid))
+                            {
+                                selectedItem = sala;
+                                Debug.WriteLine(DateTime.Now.ToString("(HH:mm:ss)") + " " + "Selektovan UUID: " + sala.Uid);
+                                break;
+                            }
+                        }
+                    }
+                    else if (projekcija.Uid.Equals(uuid))
                     {
                         selectedItem = projekcija;
                         Debug.WriteLine(DateTime.Now.ToString("(HH:mm:ss)") + " " + "Selektovan UUID: " + projekcija.Uid);

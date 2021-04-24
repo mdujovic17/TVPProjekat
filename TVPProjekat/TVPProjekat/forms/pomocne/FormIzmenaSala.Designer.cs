@@ -93,6 +93,7 @@ namespace TVPProjekat.forms.pomocne
             // 
             // txtID
             // 
+            this.txtID.Enabled = false;
             this.txtID.Location = new System.Drawing.Point(12, 71);
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(155, 20);

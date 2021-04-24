@@ -19,6 +19,9 @@ namespace TVPProjekat.forms.pomocne
         prikaziIzmeneNaListi prikaz;
         azurirajPrikaz azuriraj;
 
+        List<Korisnik> listaKorisnika;
+        List<Korisnik> listaAdmina;
+
         private static Korisnik korisnikZaIzmenu;
         private static string prikrivenaLozinka;
 
@@ -28,6 +31,10 @@ namespace TVPProjekat.forms.pomocne
         {
             InitializeComponent();
             dateDatum.MaxDate = DateTime.Now;
+            listaKorisnika = new List<Korisnik>();
+            listaAdmina = new List<Korisnik>();
+            LocalFileManager.JSONDeserialize(listaKorisnika, "kupci");
+            LocalFileManager.JSONDeserialize(listaAdmina, "administratori");
         }
 
         public void prihvatiFormu(FormAdmin form)
@@ -43,8 +50,7 @@ namespace TVPProjekat.forms.pomocne
 
         private void potvrdiIzmene(object sender, EventArgs e)
         {
-            if (ProveraForme.proveraImena(txtIme.Text) && ProveraForme.proveraImena(txtPrezime.Text) && ProveraForme.proveraDatumaRodjenja(dateDatum.Value) &&
-                ProveraForme.proveraPola(comboPol.SelectedIndex) && ProveraForme.proveraKorImena(txtKorisnickoIme.Text) && ProveraForme.proveraBrojaTelefona(txtTelefon.Text)) 
+            if (proveraForme()) 
             {
                 korisnikZaIzmenu.Ime = this.txtIme.Text;
                 korisnikZaIzmenu.Prezime = this.txtPrezime.Text;
@@ -85,6 +91,63 @@ namespace TVPProjekat.forms.pomocne
             }
         }
 
+        private bool proveraForme()
+        {
+            string[] tempText = null;
+            if (txtUUID.Text.Contains("-"))
+            {
+                tempText = txtUUID.Text.Split('-');
+                if (!tempText[0].All(char.IsDigit) || !tempText[1].All(char.IsDigit))
+                {
+                    MessageBox.Show("ID nije pravilan! ID Mora da bude u sledecem formatu: 12345678901-1234\nBroj pre crtice mora da ima 11 brojeva, a posle crtice izmedju 1 i 4");
+                    return false;
+                }
+            }
+            else
+            {
+                MessageBox.Show("ID nije pravilan! ID Mora da bude u sledecem formatu: 12345678901-1234\nBroj pre crtice mora da ima 11 brojeva, a posle crtice izmedju 1 i 4");
+                return false;
+            }
+
+            if (ProveraForme.proveraImena(txtIme.Text) && ProveraForme.proveraImena(txtPrezime.Text) && ProveraForme.proveraDatumaRodjenja(dateDatum.Value) &&
+                ProveraForme.proveraPola(comboPol.SelectedIndex) && ProveraForme.proveraKorImena(txtKorisnickoIme.Text) &&
+                ProveraForme.proveraBrojaTelefona(txtTelefon.Text))
+            {
+                foreach (Korisnik korisnik in listaKorisnika)
+                {
+                    if (korisnik.KorisnickoIme.Equals(txtKorisnickoIme.Text))
+                    {
+                        MessageBox.Show("Korisnicko ime vec postoji!.", "Registracija", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return false;
+                    }
+                    else if (korisnik.Email.Equals(txtEmail.Text))
+                    {
+                        MessageBox.Show("EMail vec postoji!.", "Registracija", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return false;
+                    }
+                }
+                foreach (Korisnik korisnik1 in listaAdmina)
+                {
+                    if (korisnik1.KorisnickoIme.Equals(txtKorisnickoIme.Text))
+                    {
+                        MessageBox.Show("Korisnicko ime vec postoji!.", "Registracija", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return false;
+                    }
+                    else if (korisnik1.Email.Equals(txtEmail.Text))
+                    {
+                        MessageBox.Show("EMail vec postoji!.", "Registracija", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return false;
+                    }
+                }
+                return true;
+            }
+            else if (tempText[0].Length != 11 && tempText[1].Length < 1 && tempText[1].Length > 4)
+            {
+                MessageBox.Show("ID nije pravilan! ID Mora da bude u sledecem formatu: 12345678901-1234\nBroj pre crtice mora da ima 11 brojeva, a posle crtice izmedju 1 i 4");
+                return false;
+            }
+            else return false;
+        }
         private void popuniFormu(object sender, EventArgs e)
         {
             this.txtIme.Text = korisnikZaIzmenu.Ime;

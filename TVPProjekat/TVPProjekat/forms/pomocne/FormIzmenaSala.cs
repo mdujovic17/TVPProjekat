@@ -39,7 +39,7 @@ namespace TVPProjekat.forms.pomocne
 
         private void potvrdiIzmene(object sender, EventArgs e)
         {
-            if (int.Parse(txtBrojSale.Text) > 0 && int.Parse(txtBrojSedista.Text) > 0 && int.Parse(txtBrojSale.Text) < 120 && int.Parse(txtBrojSedista.Text) < 120) //TODO: Provera
+            if (int.Parse(txtBrojSale.Text) > 0 && int.Parse(txtBrojSedista.Text) > 0 && int.Parse(txtBrojSale.Text) < 100 && int.Parse(txtBrojSedista.Text) < 120) //TODO: Provera
             {
                 salaZaIzmenu.BrojSale = int.Parse(txtBrojSale.Text);
                 salaZaIzmenu.UkupanBrojSedista = int.Parse(txtBrojSedista.Text);
@@ -61,6 +61,10 @@ namespace TVPProjekat.forms.pomocne
 
                 this.Dispose();
                 this.Close();
+            }
+            else if (int.Parse(txtBrojSale.Text) > 100)
+            {
+                MessageBox.Show("Broj sale ne sme da bude veci od 99!");
             }
         }
 
