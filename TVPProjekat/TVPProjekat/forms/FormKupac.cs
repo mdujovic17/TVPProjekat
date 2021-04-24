@@ -101,22 +101,33 @@ namespace TVPProjekat
             listViewClear();
 
             listUpdate();
-
+            int brojac = 0;
             foreach (Rezervacija rezervacija in listaRezervacija)
             {
                 if (rezervacija.KorisnickiID == prijavljenKupac.KupacUUID)
                 {
                     foreach (Projekcija projekcija in listaProjekcija)
                     {
-                        if (rezervacija.ProjekcijaID == projekcija.Uid)
+                        if (rezervacija.ProjekcijaID.Equals(projekcija.Uid))
                         {
                             ListViewItem item = new ListViewItem(new[] { rezervacija.KorisnickiID + "-" + rezervacija.ProjekcijaID, projekcija.Film.ImeFilma, "Sala " + projekcija.Sala, projekcija.DatumProjekcije.ToString("dd/MM/yyyy") + " " + projekcija.VremeProjekcije.ToString("HH:mm"), rezervacija.BrojMesta.ToString(), rezervacija.Cena.ToString("0.00") });
                             lvRezervacije.Items.Add(item);
                             break;
                         }
+                        else if (rezervacija.ProjekcijaID.Equals(projekcija.Uid + "-1"))
+                        {
+                            ListViewItem item = new ListViewItem(new[] { rezervacija.KorisnickiID + "-" + rezervacija.ProjekcijaID, projekcija.Film.ImeFilma, "Sala " + projekcija.Sala, projekcija.DatumProjekcije.ToString("dd/MM/yyyy") + " " + projekcija.VremeProjekcije.ToString("HH:mm"), rezervacija.BrojMesta.ToString(), rezervacija.Cena.ToString("0.00") });
+                            lvRezervacije.Items.Add(item);
+                            brojac++;
+                            break;
+                        }
                     }
                     
                 }
+            }
+            if (brojac != 0)
+            {
+                MessageBox.Show("Neke od vasih rezervacija su ponistene od strane administratora. Te rezervacije sadrze '-1' na kraju identifikatora.");
             }
         }
         private void otkaziRezervaciju(object sender, EventArgs e)
@@ -125,8 +136,15 @@ namespace TVPProjekat
 
             if (msg == DialogResult.Yes)
             {
+                foreach (Projekcija projekcija in listaProjekcija)
+                {
+                    if (selectedItem.ProjekcijaID.Equals(projekcija.Uid))
+                    {
+                        projekcija.DostupnaMesta += selectedItem.BrojMesta;
+                    }
+                }
                 LocalFileManager.JSONDelete(selectedItem);
-                listUpdate();
+                prikaziListu(sender, e);
             }
         }
         private void kontrola(string uuid)

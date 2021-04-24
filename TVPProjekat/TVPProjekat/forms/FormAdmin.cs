@@ -17,6 +17,7 @@ namespace TVPProjekat
     public partial class FormAdmin : Form
     {
         private delegate Korisnik posaljiKorisnika(Korisnik korisnik, string lozinka);
+        private delegate void posaljiKupcaBezSifre(Korisnik korisnik);
         private delegate void posaljiFilm(Film film);
         private delegate void posaljiSalu(Sala sala);
         private delegate void posaljiProjekciju(Projekcija projekcija);
@@ -25,6 +26,7 @@ namespace TVPProjekat
         private delegate void Osvezi(bool osvezi);
 
         posaljiKorisnika posaljiK;
+        posaljiKupcaBezSifre posaljiKP;
         posaljiFilm posaljiF;
         posaljiSalu posaljiS;
         posaljiProjekciju posaljiP;
@@ -41,6 +43,7 @@ namespace TVPProjekat
         private FormIzmenaFilm frmIzmenaFilm;
         private FormIzmenaSala frmIzmenaSala;
         private FormIzmenaProjekcija frmIzmenaProjekcija;
+        private FormDetaljiRezervacije frmDetaljiRezervacije;
 
         private List<Korisnik> administratori;
         private List<Korisnik> kupci;
@@ -412,6 +415,18 @@ namespace TVPProjekat
         private void dodajStavku(object sender, EventArgs e)
         {
             dodajOdabrano();
+        }
+
+        private void btnDetalji_Click(object sender, EventArgs e)
+        {
+            frmDetaljiRezervacije = new FormDetaljiRezervacije();
+            posaljiOvuFormu = new posaljiFormu(frmDetaljiRezervacije.prihvatiFormu);
+            posaljiKP = new posaljiKupcaBezSifre(frmDetaljiRezervacije.prihvatiKupca);
+            posaljiKP(selectedItem as Kupac);
+            posaljiOvuFormu(this);
+
+            frmDetaljiRezervacije.Show();
+            this.Hide();
         }
 
         //Iskljucuje ili ukljucuje btnDodaj na formi ako je bar jedna lista prikazana

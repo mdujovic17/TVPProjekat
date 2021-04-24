@@ -45,7 +45,7 @@ namespace TVPProjekat
         //    this.ekstenzija = ekstenzija;
         //}
 
-        //Sluzi za citanje generisanih CSV fajlova za korisnike
+        //Citanje default.csv na FormLogin
         public List<Korisnik> UserCSVRead()
         {
             List<Korisnik> lista = new List<Korisnik>();
@@ -111,7 +111,7 @@ namespace TVPProjekat
         }
 
         //Sluzi za invalidaciju serijalizovanog objekta. Ako se objekat invaliduje, njegov UUID se prvobitno postavlja na -1
-        private static void JSONInvalidate(object o, string folder, string uuid)
+        public static void JSONInvalidate(object o, string folder, string uuid)
         {
             FileStream fs;
             DataContractJsonSerializer serializer;
@@ -264,6 +264,10 @@ namespace TVPProjekat
             {
                 folder = "rezervacije";
                 uuid = (o as Rezervacija).KorisnickiID + "-" + (o as Rezervacija).ProjekcijaID;
+                if ((o as Rezervacija).ProjekcijaID.Contains("-1"))
+                {
+                    uuid = uuid.Remove(uuid.Length - 2);
+                }
             }
 
             if (folder != "" && uuid != "")

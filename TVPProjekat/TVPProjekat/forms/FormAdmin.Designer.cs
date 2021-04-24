@@ -205,6 +205,7 @@ namespace TVPProjekat
             this.btnDetalji.TabIndex = 17;
             this.btnDetalji.Text = "Detalji o rezervacijama";
             this.btnDetalji.UseVisualStyleBackColor = true;
+            this.btnDetalji.Click += new System.EventHandler(this.btnDetalji_Click);
             // 
             // FormAdmin
             // 

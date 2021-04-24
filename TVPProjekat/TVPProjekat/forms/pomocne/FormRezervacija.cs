@@ -159,7 +159,10 @@ namespace TVPProjekat.forms.pomocne
                 LocalFileManager.JSONSerialize(novaRezervacija, "rezervacije");
                 selectedItem.DostupnaMesta -= (int)numBrojMesta.Value;
                 LocalFileManager.JSONSerialize(selectedItem, "projekcije");
-                MessageBox.Show("Uspesno ste rezervisali projekciju", "Rezervacija", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Uspesno ste rezervisali projekciju. Ukoliko zelite da izmenite rezervaciju, ponovite ovaj postupak tako sto cete odabrati istu projekciju.", "Rezervacija", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Dispose();
+                this.Close();
+                frmKupac.Show();
             }
             else
             {
