@@ -198,6 +198,7 @@ namespace TVPProjekat
             this.Text = "FormKupac";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.izlaz);
             this.Load += new System.EventHandler(this.loadKupacPanel);
+            this.VisibleChanged += new System.EventHandler(this.prikaziListu);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);

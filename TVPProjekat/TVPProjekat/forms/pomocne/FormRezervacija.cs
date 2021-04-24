@@ -23,6 +23,7 @@ namespace TVPProjekat.forms.pomocne
         List<Sala> sale;
         List<Film> filmovi;
         List<Projekcija> projekcije;
+        List<Rezervacija> rezervacije;
 
         private Projekcija selectedItem;
 
@@ -31,10 +32,7 @@ namespace TVPProjekat.forms.pomocne
         {
             InitializeComponent();
             datePocetniDatum.MinDate = DateTime.Now;
-            sale = new List<Sala>();
-            filmovi = new List<Film>();
-            projekcije = new List<Projekcija>();
-            btnRezervisi.Enabled = false;
+            listUpdate();
         }
 
         public void primiKupca(Korisnik korisnik)
@@ -47,10 +45,12 @@ namespace TVPProjekat.forms.pomocne
             sale = new List<Sala>();
             filmovi = new List<Film>();
             projekcije = new List<Projekcija>();
+            rezervacije = new List<Rezervacija>();
 
             LocalFileManager.JSONDeserialize(sale, "sale");
             LocalFileManager.JSONDeserialize(filmovi, "filmovi");
             LocalFileManager.JSONDeserialize(projekcije, "projekcije");
+            LocalFileManager.JSONDeserialize(rezervacije, "rezervacije");
         }
 
         private void ucitajPodatke(object sender, EventArgs e)
@@ -155,8 +155,18 @@ namespace TVPProjekat.forms.pomocne
         {
             if (selectedItem.DostupnaMesta >= (int)numBrojMesta.Value)
             {
+                bool promena;
                 novaRezervacija = new Rezervacija((kupac as Kupac).KupacUUID, selectedItem.Uid, (int)numBrojMesta.Value, double.Parse(txtCena.Text));
+                foreach (Rezervacija rezervacija in rezervacije)
+                {
+                    if (rezervacija.KorisnickiID.Equals(novaRezervacija.KorisnickiID) && rezervacija.ProjekcijaID.Equals(novaRezervacija.ProjekcijaID))
+                    {
+                        selectedItem.DostupnaMesta += (int)numBrojMesta.Value;
+                        break;
+                    }
+                }
                 LocalFileManager.JSONSerialize(novaRezervacija, "rezervacije");
+                
                 selectedItem.DostupnaMesta -= (int)numBrojMesta.Value;
                 LocalFileManager.JSONSerialize(selectedItem, "projekcije");
                 MessageBox.Show("Uspesno ste rezervisali projekciju. Ukoliko zelite da izmenite rezervaciju, ponovite ovaj postupak tako sto cete odabrati istu projekciju.", "Rezervacija", MessageBoxButtons.OK, MessageBoxIcon.Information);

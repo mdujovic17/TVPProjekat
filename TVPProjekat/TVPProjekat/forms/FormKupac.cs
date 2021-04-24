@@ -141,6 +141,8 @@ namespace TVPProjekat
                     if (selectedItem.ProjekcijaID.Equals(projekcija.Uid))
                     {
                         projekcija.DostupnaMesta += selectedItem.BrojMesta;
+                        LocalFileManager.JSONSerialize(projekcija, "projekcije");
+                        break;
                     }
                 }
                 LocalFileManager.JSONDelete(selectedItem);
