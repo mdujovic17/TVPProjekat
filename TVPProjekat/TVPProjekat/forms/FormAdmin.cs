@@ -346,7 +346,7 @@ namespace TVPProjekat
             {
                 btnIzmeni.Enabled = true;
                 btnObrisi.Enabled = true;
-                if (selektovanUUID == "-1" || selektovanUUID.Length == 14 || selektovanUUID.Length == 16)
+                if (selektovanUUID == "-1" || selektovanUUID.Length == 14 || selektovanUUID.Length == 15 || selektovanUUID.Length == 16)
                 {
                     btnDetalji.Enabled = true;
                 }

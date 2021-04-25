@@ -60,7 +60,7 @@ namespace TVPProjekat
                 {
                     if (bool.Parse(podaci[9]))
                     {
-                        lista.Add(new Administrator(podaci[0], podaci[1], podaci[2], int.Parse(podaci[3]), podaci[4], podaci[5], podaci[6], podaci[7], DateTime.Parse(podaci[8]), bool.Parse(podaci[9])));
+                        lista.Add(new Administrator(podaci[0], podaci[1], podaci[2], int.Parse(podaci[3]), podaci[4], podaci[5], podaci[6], podaci[7], DateTime.Parse(podaci[8], "dd.MM.yyyy"), bool.Parse(podaci[9])));
                     }
                     else
                     {
@@ -293,13 +293,21 @@ namespace TVPProjekat
             List<Rezervacija> listE = new List<Rezervacija>();
             DirectoryInfo directory;
             string[] folderi = { "kupci", "rezervacije" };
-            string[] files = null; ;
+            string[] files = null;
             foreach (string folder in folderi)
             {
                 directory = new DirectoryInfo(@"..\data\" + folder + @"\");
                 if (directory.Exists && directory.GetFiles() != null)
                 {
-                    files = Directory.GetFiles($@"..\data\{folder}\");
+                    if (files == null)
+                    {
+                        files = Directory.GetFiles($@"..\data\{folder}\");
+                    }
+                    else
+                    {
+                        files.Concat(Directory.GetFiles($@"..\data\{folder}\"));
+                    }
+                    
                     JSONDeserialize(listA, folder);
                     JSONDeserialize(listE, folder);
                 }
@@ -307,26 +315,28 @@ namespace TVPProjekat
 
             if (files != null)
             {
-                foreach (Korisnik korisnik in listA)
-                {
-                    foreach (string fajl in files)
-                    {
-                        if ((korisnik as Kupac).KupacUUID != Path.GetFileName(fajl).Replace(".json", "") && (korisnik as Kupac).KupacUUID.Equals("-1"))
-                        {
-                            File.Delete(@"..\data\kupci\" + (korisnik as Kupac).KupacUUID + ".json");
-                        }
-                    }
-                }
                 foreach (string fajl in files)
                 {
                     foreach (Rezervacija rezervacija in listE)
                     {
-                        if (rezervacija.ProjekcijaID != null && rezervacija.ProjekcijaID.Length > 5 && rezervacija.KorisnickiID + "-" + rezervacija.ProjekcijaID.Remove(5,2) == Path.GetFileName(fajl).Replace(".json", "") && rezervacija.ProjekcijaID.EndsWith("-1"))
+                        if (rezervacija.ProjekcijaID != null && rezervacija.ProjekcijaID.Length > 5 && rezervacija.KorisnickiID + "-" + rezervacija.ProjekcijaID.Remove(5, 2) == Path.GetFileName(fajl).Replace(".json", "") && rezervacija.ProjekcijaID.EndsWith("-1"))
                         {
                             File.Delete(fajl);
                             break;
                         }
                     }
+                    //foreach (Korisnik korisnik in listA)
+                    //{
+                    //    if ((korisnik as Kupac).KupacUUID == Path.GetFileName(fajl).Replace(".json", "") && !(korisnik as Kupac).KupacUUID.Equals("-1") || Path.GetFileName(fajl).Equals("-1"))
+                    //    {
+                    //        continue;
+                    //    }
+                    //    else if ((korisnik as Kupac).KupacUUID != Path.GetFileName(fajl).Replace(".json", "") && (korisnik as Kupac).KupacUUID.Equals("-1") && !Path.GetFileName(fajl).Equals("-1"))
+                    //    {
+                    //        File.Delete(fajl);
+                    //        break;
+                    //    }
+                    //}
                 }
             }
         }

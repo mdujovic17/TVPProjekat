@@ -107,8 +107,12 @@ namespace TVPProjekat.forms.pomocne
                 {
                     rezervacijeKupca.RemoveAt(i);
                 }
-                ListViewItem item = new ListViewItem(new[] { rezervacijeKupca[i].ProjekcijaID, rezervacijeKupca[i].KorisnickiID, rezervacijeKupca[i].Cena.ToString("0.00"), rezervacijeKupca[i].BrojMesta.ToString() });
-                listView1.Items.Add(item);
+                if (rezervacijeKupca.Count != 0 && rezervacijeKupca != null)
+                {
+                    ListViewItem item = new ListViewItem(new[] { rezervacijeKupca[i].ProjekcijaID, rezervacijeKupca[i].KorisnickiID, rezervacijeKupca[i].Cena.ToString("0.00"), rezervacijeKupca[i].BrojMesta.ToString() });
+                    listView1.Items.Add(item);
+                }
+                
             }
         }
 

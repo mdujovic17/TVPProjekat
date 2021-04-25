@@ -14,6 +14,7 @@ namespace TVPProjekat.util
         {
             if (ime == "" || ime == null || ime.Any(char.IsDigit) || ime.Any(char.IsWhiteSpace))
             {
+            	MessageBox.Show("Ime ili prezime nije pravilno uneseno");
                 return false;
             }
             else return true;
@@ -23,6 +24,7 @@ namespace TVPProjekat.util
         {
             if (pol != 1 && pol != 0)
             {
+            	MessageBox.Show("Odaberite pol");
                 return false;
             }
             else return true;
@@ -41,6 +43,7 @@ namespace TVPProjekat.util
         {
             if (korisnickoIme.Length > 25 || korisnickoIme.Length < 5 || korisnickoIme.Any(char.IsControl) || korisnickoIme.Any(char.IsSurrogate) || korisnickoIme.Any(char.IsWhiteSpace) || korisnickoIme.Any(char.IsPunctuation))
             {
+            	MessageBox.Show("Neispravno korisnicko ime");
                 return false;
             }
             else return true;
@@ -59,6 +62,7 @@ namespace TVPProjekat.util
 
             if (brojac != 1 || mail.Any(char.IsControl) || mail.Any(char.IsSurrogate) || mail.Any(char.IsWhiteSpace))
             {
+            	MessageBox.Show("Neispravan email");
                 return false;
             }
             else return true;
@@ -68,6 +72,7 @@ namespace TVPProjekat.util
         {
             if (sifra.Length > 25 || sifra.Length < 5 || sifra.Any(char.IsControl) || sifra.Any(char.IsSurrogate) || sifra.Any(char.IsWhiteSpace))
             {
+            	MessageBox.Show("Lozinka neispravno uneta");
                 return false;
             }
             else return true;
@@ -77,6 +82,7 @@ namespace TVPProjekat.util
         {
             if (!telefon.Any(char.IsDigit) && telefon.Length > 10 && telefon.Length < 9)
             {
+            	MessageBox.Show("Broj telefona je nepravilno unesen");
                 return false;
             }
             else return true;
@@ -86,6 +92,7 @@ namespace TVPProjekat.util
         {
             if (!check.Checked)
             {
+            	MessageBox.Show("Potrebno je da prihvatite uslove koriscenja");
                 return false;
             }
             else return true;
