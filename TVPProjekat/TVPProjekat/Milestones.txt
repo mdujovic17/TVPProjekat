@@ -1,0 +1,132 @@
+﻿Legenda: X = TODO; O = Done; ? = Untested; P = Prototype
+
+X:9; O:5; ?:0;
+[X] FormKupac
+	[O] Osvezavanje
+	[O] Nove rezervacije
+		[O] FormRezervacija
+			[O] Filteri
+				[O] Ogranicenje pocetnog datuma
+				[O] Liste
+				[O] Filtriranje projekcija
+			[O] Cena
+			[O] Osvezavanje projekcija
+			[O] Sedista
+				[O] Ogranicenje max i min broja
+			[O] Rezervisanje
+		[X] FormDetaljiNaloga
+			[O] Prikaz informacija
+			[X] Izmena informacija
+			[O] Brisanje naloga
+	[O] Prikaz rezervacija
+	[O] Otkazivanje
+	[O] Statusna linija
+	[O] Odjava
+
+X:4; O:11; ?:7;
+[X] FormAdmin
+	[X] Liste
+		[O] Prikazi
+			[O] Administratori
+			[O] Kupci
+			[O] Sale
+			[O] Repertoar
+			[O] Projekcije
+		
+		[?] Administratori
+			[?] Dodavanje
+				[?] FormDodajAdmina
+					[?] Provera forme
+			[?] Izmene
+				[?] FormIzmenaKorisnik
+					[?] Provera forme
+			[O] Brisanje
+
+		[X] Kupci
+			[?] Dodavanje
+				[?] FormDodajKupca
+					[?] Provera forme
+			[?] Izmene
+				[?] FormIzmenaKorisnik
+					[?] Provera forme
+				[X] Detalji o rezervacijama
+					[X] FormDetaljiRezervacije
+			[O] Brisanje
+
+		[X] Sale
+			[?] Dodavanje
+				[?] FormDodajSalu
+					[?] Provera forme
+			[?] Izmene
+				[x] FormIzmenaSale
+					[x] Provera forme
+			[O] Brisanje
+
+		[X] Repertoar
+			[?] Dodavanje
+				[?] FormDodajFilm
+					[?] Provera forme
+			[x] Izmene
+				[?] FormIzmenaFilma
+					[x] Provera forme
+			[O] Brisanje
+				[O] Blokada brisanja
+
+		[X] Projekcije
+			[x] Dodavanje
+				[?] FormDodajProjekciju
+					[?] Provera forme
+			[x] Izmene
+				[?] FormIzmenaProjekcije
+					[x] Provera forme
+					[O] Broj sale nakon izmene!
+			[O] Brisanje
+				
+	[X] CSV
+		[X] Export 
+		[X] Import REMOVED
+		
+	[X] Statusna linija
+	[O] Odjava
+
+X:0; O:4; ?:1;
+[?] FormLogin
+	[O] FormRegistracija
+		[?] Provera Forme
+	[O] Prijava Administratora
+	[O] Prijava Kupaca
+	[O] Blokiranje prijave
+		[O] Netacnih podataka
+		[O] Obrisanih naloga od strane administratora
+
+X:2; O:4; ?:0;
+[X] LocalFileManager
+	[O] JSON
+		[O] Serijalizacija
+		[O] Deserijalizacija
+		[O] Invalidacija
+		[O] Brisanje
+	[X] CSV 
+		[X] Pisanje
+		[P]  Citanje
+
+X:0; O:4; ?:0;
+.korisnik
+	[O] Korisnik
+		[O] Sifrovanje lozinke
+		[O] Desifrovanje lozinke
+	[O] Administrator
+		[O] Generisanje UUID
+	[O]	Kupac
+		[O] Generisanje UUID
+
+X:0; O:2; ?:2;
+.bioskop
+	[O]	Film
+		[O] Generisanje UID
+	[?] Projekcija
+		[O] Generisanje UID
+	[?] Rezervacija
+		[O] Generisanje UID
+	[O] Sala
+		[O] Generisanje UID
